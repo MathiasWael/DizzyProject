@@ -7,6 +7,11 @@
             <Entry Placeholder="Username" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
             <Entry Placeholder="Password" WidthRequest="300" IsEnabled="True" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
             <Button Pressed="LoginSuccess" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            <Label HorizontalOptions="Center" TextColor="LightGray" Text="Create Account">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateAccount}" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
