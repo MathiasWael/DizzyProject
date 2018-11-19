@@ -20,7 +20,7 @@ namespace DizzyProject.View
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)ItemType.DizzyRegister, (NavigationPage)Detail);
+            MenuPages.Add((int)HomeMenuItemType.DizzyRegister, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -29,22 +29,22 @@ namespace DizzyProject.View
             {
                 switch (id)
                 {
-                    case (int)ItemType.DizzyRegister:
+                    case (int)HomeMenuItemType.DizzyRegister:
                         MenuPages.Add(id, new NavigationPage(new DizzyRegisterPage()));
                         break;
-                    case (int)ItemType.StepCounter:
+                    case (int)HomeMenuItemType.StepCounter:
                         MenuPages.Add(id, new NavigationPage(new StepCounterPage()));
                         break;
-                    case (int)ItemType.Exercises:
+                    case (int)HomeMenuItemType.Exercises:
                         MenuPages.Add(id, new NavigationPage(new ExercisesPage()));
                         break;
-                    case (int)ItemType.Journal:
+                    case (int)HomeMenuItemType.Journal:
                         MenuPages.Add(id, new NavigationPage(new JournalPage()));
                         break;
-                    case (int)ItemType.Logout:
+                    case (int)HomeMenuItemType.Logout:
                         
                         break;
-                    case (int)ItemType.Statistics:
+                    case (int)HomeMenuItemType.Statistics:
                         MenuPages.Add(id, new NavigationPage(new StatisticsPage()));
                         break;
                 }

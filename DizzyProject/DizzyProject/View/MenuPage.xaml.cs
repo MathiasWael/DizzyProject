@@ -22,12 +22,12 @@ namespace DizzyProject.View
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Type = ItemType.DizzyRegister, Title = "Register Dizziness"},
-                new HomeMenuItem {Type = ItemType.StepCounter, Title = "Step Counter"},
-                new HomeMenuItem {Type = ItemType.Journal, Title = "Journal"},
-                new HomeMenuItem {Type = ItemType.Exercises, Title = "Exercises"},
-                new HomeMenuItem {Type = ItemType.Statistics, Title = "Statistics"},
-                new HomeMenuItem {Type = ItemType.Logout, Title = "Logout"},
+                new HomeMenuItem {Type = HomeMenuItemType.DizzyRegister, Title = "Register Dizziness"},
+                new HomeMenuItem {Type = HomeMenuItemType.StepCounter, Title = "Step Counter"},
+                new HomeMenuItem {Type = HomeMenuItemType.Journal, Title = "Journal"},
+                new HomeMenuItem {Type = HomeMenuItemType.Exercises, Title = "Exercises"},
+                new HomeMenuItem {Type = HomeMenuItemType.Statistics, Title = "Statistics"},
+                new HomeMenuItem {Type = HomeMenuItemType.Logout, Title = "Logout"},
             };
 
             ListViewMenu.ItemsSource = menuItems;

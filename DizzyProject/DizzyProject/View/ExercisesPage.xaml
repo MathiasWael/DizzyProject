@@ -4,9 +4,18 @@
              x:Class="DizzyProject.View.ExercisesPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to ExercisesPage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="ListViewExercises" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Text}" Style="{DynamicResource ListItemTextStyle}"/>
+                                <Label Text="{Binding Text}" Style="{DynamicResource ListItemDetailTextStyle}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

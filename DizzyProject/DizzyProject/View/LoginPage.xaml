@@ -9,4 +9,4 @@
             <Button Pressed="LoginSuccess" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>  
+</ContentPage>

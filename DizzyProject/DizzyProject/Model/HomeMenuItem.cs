@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DizzyProject.Model
 {
-    public enum ItemType
+    public enum HomeMenuItemType
     {
         DizzyRegister,
         StepCounter,
@@ -15,7 +15,7 @@ namespace DizzyProject.Model
     }
     public class HomeMenuItem
     {
-        public ItemType Type { get; set; }
+        public HomeMenuItemType Type { get; set; }
         public string Title { get; set; }
     }
 }
