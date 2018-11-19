@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class BadRequestException
+    public class BadRequestException : Exception
     {
-        public string Message { get; set; }
-        public BadRequestException() => Message = string.Empty;
-        public BadRequestException(string message) => Message = message;
+        public BadRequestException() { }
+        public BadRequestException(string message) : base(message) { }
+        public BadRequestException(string message, Exception inner) : base(message, inner) { }
     }
 }

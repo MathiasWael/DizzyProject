@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProxy.Resources
 {
@@ -26,11 +27,11 @@ namespace DizzyProxy.Resources
             {
                 switch (response.StatusCode)
                 {
-                    case HttpStatusCode.BadRequest: throw new BadRequestException();
+                    case HttpStatusCode.BadRequest: throw new BadRequestException(); break;
+                    case HttpStatusCode.InternalServerError: throw new BadRequestException(); break;
                 }
             }
-
-            response.d
+            
         }
     }
 }

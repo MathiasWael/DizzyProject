@@ -8,7 +8,8 @@ namespace DizzyProxy.Exceptions
 {
     public class InternalServerErrorException : Exception
     {
-        public InternalServerErrorException() => Message = string.Empty;
-        public InternalServerErrorException(string message) => Message = message;
+        public InternalServerErrorException() {}
+        public InternalServerErrorException(string message) : base(message) {}
+        public InternalServerErrorException(string message, Exception inner) : base(message, inner) {}
     }
 }
