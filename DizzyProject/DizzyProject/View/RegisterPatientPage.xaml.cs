@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DizzyProject.Model;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ExercisesPage : ContentPage
+	public partial class RegisterPatientPage : ContentPage
 	{
-        //List<Exercise> exercises = new List<Exercise>();
-		public ExercisesPage ()
+		public RegisterPatientPage ()
 		{
 			InitializeComponent ();
 		}

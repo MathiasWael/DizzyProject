@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProject.Model;
 
 namespace DizzyProject.View
 {
@@ -19,7 +20,7 @@ namespace DizzyProject.View
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)Model.MenuItem.ItemType.DizzyRegister, (NavigationPage)Detail);
+            MenuPages.Add((int)HomeMenuItemType.DizzyRegister, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -28,22 +29,22 @@ namespace DizzyProject.View
             {
                 switch (id)
                 {
-                    case (int)Model.MenuItem.ItemType.DizzyRegister:
+                    case (int)HomeMenuItemType.DizzyRegister:
                         MenuPages.Add(id, new NavigationPage(new DizzyRegisterPage()));
                         break;
-                    case (int)Model.MenuItem.ItemType.StepCounter:
+                    case (int)HomeMenuItemType.StepCounter:
                         MenuPages.Add(id, new NavigationPage(new StepCounterPage()));
                         break;
-                    case (int)Model.MenuItem.ItemType.Exercises:
+                    case (int)HomeMenuItemType.Exercises:
                         MenuPages.Add(id, new NavigationPage(new ExercisesPage()));
                         break;
-                    case (int)Model.MenuItem.ItemType.Journal:
+                    case (int)HomeMenuItemType.Journal:
                         MenuPages.Add(id, new NavigationPage(new JournalPage()));
                         break;
-                    case (int)Model.MenuItem.ItemType.Logout:
+                    case (int)HomeMenuItemType.Logout:
                         
                         break;
-                    case (int)Model.MenuItem.ItemType.Statistics:
+                    case (int)HomeMenuItemType.Statistics:
                         MenuPages.Add(id, new NavigationPage(new StatisticsPage()));
                         break;
                 }

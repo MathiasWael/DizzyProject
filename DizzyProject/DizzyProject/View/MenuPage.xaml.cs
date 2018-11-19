@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProject.Model;
 
 namespace DizzyProject.View
 {
@@ -13,52 +14,31 @@ namespace DizzyProject.View
 	public partial class MenuPage : ContentPage
 	{
         MasterPage RootPage { get => Application.Current.MainPage as MasterPage; }
-        List<Model.MenuItem> menuItems;
+        List<HomeMenuItem> menuItems;
+
 		public MenuPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
-            menuItems = new List<Model.MenuItem>
+            menuItems = new List<HomeMenuItem>
             {
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.DizzyRegister, Title = "Register Dizziness"},
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.StepCounter, Title = "Step Counter"},
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.Journal, Title = "Journal"},
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.Exercises, Title = "Exercises"},
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.Statistics, Title = "Statistics"},
-                new Model.MenuItem {Type = Model.MenuItem.ItemType.Logout, Title = "Logout"},
+                new HomeMenuItem {Type = HomeMenuItemType.DizzyRegister, Title = "Register Dizziness"},
+                new HomeMenuItem {Type = HomeMenuItemType.StepCounter, Title = "Step Counter"},
+                new HomeMenuItem {Type = HomeMenuItemType.Journal, Title = "Journal"},
+                new HomeMenuItem {Type = HomeMenuItemType.Exercises, Title = "Exercises"},
+                new HomeMenuItem {Type = HomeMenuItemType.Statistics, Title = "Statistics"},
+                new HomeMenuItem {Type = HomeMenuItemType.Logout, Title = "Logout"},
             };
 
-            ListView menuList = new ListView()
-            {
-                HasUnevenRows = true,
-                ItemsSource = menuItems,
-            };
+            ListViewMenu.ItemsSource = menuItems;
 
-            DataTemplate dataTemplate = new DataTemplate(() =>
-            {
-                Grid grid = new Grid();
-                grid.SetBinding(BindingContextProperty, "Source");
-                Label title = new Label();
-                title.SetBinding(Label.TextProperty, "Title");
-                grid.Children.Add(title);
-
-                return new ViewCell { View =  grid};
-            });
-
-            menuList.ItemTemplate = dataTemplate;
-
-            menuList.ItemSelected += async (sender, e) =>
+            ListViewMenu.SelectedItem = menuItems[0];
+            ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)
                     return;
-                int id = (int)((Model.MenuItem)e.SelectedItem).Type;
+                int id = (int)((HomeMenuItem)e.SelectedItem).Type;
                 await RootPage.NavigateFromMenu(id);
-            };
-
-            Content = new StackLayout
-            {
-                Children = { menuList },
-                Orientation = StackOrientation.Vertical
             };
         }
 	}
