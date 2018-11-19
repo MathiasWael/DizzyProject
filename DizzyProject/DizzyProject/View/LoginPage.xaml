@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.LoginPage">
     <ContentPage.Content>
-        <StackLayout>
-            
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Entry Placeholder="Username" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+            <Entry Placeholder="Password" WidthRequest="300" IsEnabled="True" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            <Button Pressed="LoginSuccess" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>  
