@@ -46,12 +46,6 @@ namespace DizzyProject
             };
 
             loginButton.Pressed += LoginSuccess;
-
-            Content = new StackLayout
-            {
-                Children = { usernameEntry, passwordEntry, loginButton },
-                Orientation = StackOrientation.Vertical
-            };
         }
 
         private void LoginSuccess(object sender, EventArgs args)
