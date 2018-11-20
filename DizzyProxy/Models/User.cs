@@ -21,6 +21,9 @@ namespace DizzyProxy.Models
         [DeserializeAs(Name = "email")]
         public string Email { get; set; }
 
+        [DeserializeAs(Name = "phone_number")]
+        public string PhoneNumber { get; set; }
+
         [DeserializeAs(Name = "created")]
         public DateTime Created { get; set; }
 
