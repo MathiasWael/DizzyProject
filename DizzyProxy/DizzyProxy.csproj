@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Exceptions\InternalServerErrorException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Sex.cs" />
