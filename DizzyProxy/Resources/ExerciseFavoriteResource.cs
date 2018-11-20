@@ -9,7 +9,7 @@ namespace DizzyProxy.Resources
 {
     public class ExerciseFavoriteResource : Resource
     {
-        public List<Exercise> GetFavoritesById() 
+        public List<Exercise> GetFavoritesById(long userId) 
         {
             return new List<Exercise>()
             {

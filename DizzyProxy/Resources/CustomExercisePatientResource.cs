@@ -9,7 +9,7 @@ namespace DizzyProxy.Resources
 {
     public class CustomExercisePatientResource : Resource
     {
-        public List<CustomExercise> GetCustomExercisesById()
+        public List<CustomExercise> GetCustomExercisesById(long userId)
         {
             return new List<CustomExercise>()
             {
