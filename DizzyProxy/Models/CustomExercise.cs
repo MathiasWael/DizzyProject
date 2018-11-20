@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Models
 {
-    public class Exercise
+    public class CustomExercise
     {
         public long Id { get; set; }
         public long AuthorId { get; set; }

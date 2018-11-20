@@ -64,8 +64,14 @@
     <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Exceptions\InternalServerErrorException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CustomExercise.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Physiotherapist.cs" />
     <Compile Include="Models\Sex.cs" />
     <Compile Include="Models\JsonWebToken.cs" />
     <Compile Include="Models\User.cs" />
