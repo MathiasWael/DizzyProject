@@ -15,7 +15,7 @@ namespace DizzyProxy.Resources
 
         public Resource()
         {
-            _baseUrl = "http://localhost:4000";
+            _baseUrl = "http://localhost:4000/v1";
             _deserializer = new JsonDeserializer();
         }
 

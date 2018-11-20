@@ -14,7 +14,8 @@ namespace DizzyProxy
         public Patient GetPatient(long id) => GetPatientAsync(id).Result;
         public async Task<Patient> GetPatientAsync(long id)
         {
-            IRestRequest request = new RestRequest(Method.GET) { Resource = "patients" };
+            IRestRequest request = new RestRequest(Method.GET) { Resource = "patients/{userId}" };
+            request.AddParameter("userId", id, ParameterType.UrlSegment);
             return await ExecuteAsync<Patient>(request);
         }
 
@@ -24,6 +25,9 @@ namespace DizzyProxy
         public async Task<Patient> CreatePatientAsync(string firstName, string lastName, string email, string password)
         {
             IRestRequest request = new RestRequest(Method.POST) { Resource = "patients" };
+            request.AddJsonBody(new 
+                
+                );
             request.AddParameter("first_name", firstName, ParameterType.RequestBody);
             request.AddParameter("last_name", firstName, ParameterType.RequestBody);
             request.AddParameter("email", firstName, ParameterType.RequestBody);
