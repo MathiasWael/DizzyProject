@@ -3,10 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.View.RegisterPatientPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Personal information" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="First Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Last Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Email" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Phone Number" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Address" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry Placeholder="City" WidthRequest="250"/>
+                    <Entry Placeholder="Zipcode" WidthRequest="250"/>
+                </StackLayout>
+                <Picker></Picker>
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry Placeholder="Height" WidthRequest="250"/>
+                    <Label Text="cm" FontSize="20" WidthRequest="250"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry Placeholder="Weight" WidthRequest="250"/>
+                    <Label Text="kg" FontSize="20" WidthRequest="250"/>
+                </StackLayout>
+                <Label Text="Gender" FontSize="20" TextColor="Black"/>
+                <Picker x:Name="genderPicker" ItemDisplayBinding="{Binding Gender}" SelectedIndexChanged="OnGenderChange"/>
+                <Label Text="Click below to select your birthdate" FontSize="20" TextColor="Black"/>
+                <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="1/1/2000" DateSelected="DatePicker_OnDateSleceted"/>
+                <Label Text="Enter your password" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="Password" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="Reenter password" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            </StackLayout>
+       </ScrollView>
     </ContentPage.Content>
 </ContentPage>

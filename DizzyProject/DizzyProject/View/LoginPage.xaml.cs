@@ -22,5 +22,10 @@ namespace DizzyProject
         {
             Application.Current.MainPage = new MasterPage();
         }
+
+        private async void CreateAccount(object sender, EventArgs args)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new RegisterPatientPage()));
+        }
 	}
 }
