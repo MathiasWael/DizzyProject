@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Models
 {
-    public class Exercise
+    public class City
     {
         public long Id { get; set; }
-        public long AuthorId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public string ZipCode { get; set; }
+        public long CountryId { get; set; }
     }
 }
