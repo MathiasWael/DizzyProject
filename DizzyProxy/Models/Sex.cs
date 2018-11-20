@@ -11,4 +11,6 @@ namespace DizzyProxy.Models
         Male,
         Female
     };
+
+    //public class Sex
 }
