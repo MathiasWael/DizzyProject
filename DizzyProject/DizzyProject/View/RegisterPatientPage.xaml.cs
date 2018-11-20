@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DizzyProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,9 +14,18 @@ namespace DizzyProject.View
 	{
         private string datePicked = "";
         private string genderPicked = "";
+        List<Sex> genders;
 		public RegisterPatientPage ()
 		{
 			InitializeComponent ();
+
+            genders = new List<Sex>
+            {
+                new Sex{Gender = "Male"},
+                new Sex{Gender = "Female"}
+            };
+
+            genderPicker.ItemsSource = genders;
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
