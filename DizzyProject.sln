@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DizzyProject", "DizzyProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DizzyProxy", "DizzyProxy\DizzyProxy.csproj", "{ECF98857-234E-4656-A9CC-44FC996361F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DizzyProxyTests", "DizzyProxyTests\DizzyProxyTests.csproj", "{BF058153-6ADB-4CF9-A807-2139FCB05FBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{ECF98857-234E-4656-A9CC-44FC996361F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECF98857-234E-4656-A9CC-44FC996361F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECF98857-234E-4656-A9CC-44FC996361F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF058153-6ADB-4CF9-A807-2139FCB05FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF058153-6ADB-4CF9-A807-2139FCB05FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF058153-6ADB-4CF9-A807-2139FCB05FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF058153-6ADB-4CF9-A807-2139FCB05FBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
