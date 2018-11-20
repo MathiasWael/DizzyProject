@@ -6,9 +6,9 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        public List<Exercise> GetAllExercises ()
-        {
-            return null;
-        }
+        //public List<Exercise> GetAllExercises ()
+        //{
+        //    return null;
+        //}
     }
 }
