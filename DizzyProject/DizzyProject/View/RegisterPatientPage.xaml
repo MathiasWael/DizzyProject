@@ -26,7 +26,7 @@
                     <Label Text="kg" FontSize="20" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Gender" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="genderPicker" ItemDisplayBinding="{Binding Gender}" SelectedIndexChanged="OnGenderChange"/>
+                <Picker x:Name="genderPicker" SelectedIndexChanged="OnGenderChange"/>
                 <Label Text="Click below to select your birthdate" FontSize="20" TextColor="Black"/>
                 <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="1/1/2000" DateSelected="DatePicker_OnDateSleceted"/>
                 <Label Text="Enter your password" FontSize="20" TextColor="Black"/>

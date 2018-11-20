@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DizzyProxy.Models;
 using Sex = DizzyProxy.Models.Sex;
-using DizzyProxy;
 
 namespace DizzyProject.View
 {
@@ -17,17 +16,17 @@ namespace DizzyProject.View
 	{
         private DateTime datePicked;
         private string genderPicked = "";
-        List<Sex> genders;
 		public RegisterPatientPage ()
 		{
 			InitializeComponent ();
 
-            genders = new List<Sex>
+            List<Enum> sexes = new List<Enum>()
             {
-
+                Sex.Female,
+                Sex.Male
             };
 
-            genderPicker.ItemsSource = genders;
+            genderPicker.ItemsSource = sexes;
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
