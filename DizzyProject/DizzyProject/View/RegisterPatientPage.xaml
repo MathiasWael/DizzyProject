@@ -3,10 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.View.RegisterPatientPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Enter your name" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="First Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Last Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+            
+                <Label Text="Contact information" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="Email" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry Placeholder="Phone Number" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+
+                <Label Text="Enter your password" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="Password" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
+                <Entry Placeholder="Reenter password" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+            
+                <Label Text="Click below to select your birthdate" FontSize="20" TextColor="Black"/>
+                <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="1/1/2000" DateSelected="DatePicker_OnDateSleceted"/>
+
+                <Label Text="Personal information" FontSize="20" TextColor="Black"/>
+                <Picker SelectedIndexChanged="OnGenderChange" ItemsSource="{Binding Gender}"/>
+
+                <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            </StackLayout>
+       </ScrollView>
     </ContentPage.Content>
 </ContentPage>
