@@ -6,31 +6,32 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProxy.Models;
+using Sex = DizzyProxy.Models.Sex;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegisterPatientPage : ContentPage
 	{
-        private string datePicked = "";
+        private DateTime datePicked;
         private string genderPicked = "";
-        List<Sex> genders;
 		public RegisterPatientPage ()
 		{
 			InitializeComponent ();
 
-            genders = new List<Sex>
+            List<Enum> sexes = new List<Enum>()
             {
-                new Sex{Gender = "Male"},
-                new Sex{Gender = "Female"}
+                Sex.Female,
+                Sex.Male
             };
 
-            genderPicker.ItemsSource = genders;
+            genderPicker.ItemsSource = sexes;
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
         {
-            datePicked = e.NewDate.ToString();
+            datePicked = e.NewDate;
         }
 
         void OnGenderChange(object sender, EventArgs e)
@@ -42,6 +43,45 @@ namespace DizzyProject.View
             {
                 genderPicked = (string)picker.ItemsSource[selectedIndex];
             }
+        }
+
+        private void Submit_Pressed(object sender, EventArgs e)
+        {
+            string h = Height.Text;
+            short height = Convert.ToInt16(h);
+
+            string w = Weight.Text;
+            short weight = Convert.ToInt16(w);
+
+            string z = ZipCode.Text;
+            int zipCode = Convert.ToInt32(z);
+
+            string c = City.Text;
+            long city = Convert.ToInt64(c);
+
+            Location location = new Location
+            {
+                Address = Address.Text,
+                CityId = city,
+                ZipCode = zipCode
+            };
+
+            Patient patient = new Patient
+            {
+                Created = DateTime.Now,
+                Updated = DateTime.Now,
+                FirstName = FirstName.Text,
+                LastName = LastName.Text,
+                Email = Email.Text,
+                PhoneNumber = PhoneNumber.Text,
+                Weight = weight,
+                Height = height,
+                BirthDate = datePicked,
+                //Sex = genderPicked,
+                LocationId = location.Id,
+            };
+            //Patients.CreatePatientAsync();
+
         }
     }   
 }
