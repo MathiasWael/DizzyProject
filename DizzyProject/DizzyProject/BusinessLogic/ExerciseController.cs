@@ -8,25 +8,25 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        ExerciseResource ExerciseResource;
-        ExerciseFavoriteResource ExerciseFavoriteResource;
-        CustomExercisePatientResource CustomExercisePatientResource;
-        RecommendationResource RecommendationResource;
-
         public List<Exercise> GetAllExercisesById(long userId)
         {
-            ExerciseResource = new ExerciseResource();
-            ExerciseFavoriteResource = new ExerciseFavoriteResource();
-            CustomExercisePatientResource = new CustomExercisePatientResource();
-            RecommendationResource = new RecommendationResource();
-
             List<Exercise> temp = new List<Exercise>();
-            temp.AddRange(CustomExercisePatientResource.GetCustomExercisesById(userId));
-            temp.AddRange(RecommendationResource.GetRecommendationsById(userId));
-            temp.AddRange(ExerciseFavoriteResource.GetFavoritesById(userId));
-            temp.AddRange(ExerciseResource.GetAllExercises());
+            temp.AddRange(new CustomExercisePatientResource().GetCustomExercisesById(userId));
+            temp.AddRange(new RecommendationResource().GetRecommendationsById(userId));
+            temp.AddRange(new ExerciseFavoriteResource().GetFavoritesById(userId));
+            temp.AddRange(new ExerciseResource().GetAllExercises());
 
             return temp;
+        }
+
+        public Exercise FavoriteExercise(Exercise exercise, long userId)
+        {
+            return new ExerciseFavoriteResource().FavoriteExercise(userId, exercise.Id);
+        }
+
+        public Exercise UnfavoriteExercise(Exercise exercise, long userId)
+        {
+            return new ExerciseFavoriteResource().UnfavoriteExercise(userId, exercise.Id);
         }
     }
 }

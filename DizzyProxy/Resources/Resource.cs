@@ -61,10 +61,11 @@ namespace DizzyProxy.Resources
 
             if (!response.IsSuccessStatusCode)
             {
-                
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.BadRequest: throw new BadRequestException(content);
+                    case HttpStatusCode.Unauthorized: throw new UnauthorizedException(content);
+                    case HttpStatusCode.Forbidden: throw new ForbiddenException(content);
                     case HttpStatusCode.NotFound: throw new NotFoundException(content);
                     case HttpStatusCode.InternalServerError: throw new InternalServerErrorException(content);
                 }

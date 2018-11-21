@@ -11,7 +11,11 @@
                             <StackLayout Padding="10">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
-                                    <Image IsVisible="{Binding Favorite}" Source="star.png" Scale="0.2"/>
+                                    <Image Source="{Binding Logo}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="{Binding LogoSize}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="LogoTapped" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                 </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
                             </StackLayout>
