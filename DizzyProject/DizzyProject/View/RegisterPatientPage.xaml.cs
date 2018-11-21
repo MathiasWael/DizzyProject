@@ -73,7 +73,7 @@ namespace DizzyProject.View
                 FirstName = FirstName.Text,
                 LastName = LastName.Text,
                 Email = Email.Text,
-                PhoneNumber = PhoneNumber.Text,
+                Phone = PhoneNumber.Text,
                 Weight = weight,
                 Height = height,
                 BirthDate = datePicked,
