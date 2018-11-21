@@ -9,8 +9,11 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Text="{Binding Text}" Style="{DynamicResource ListItemTextStyle}"/>
-                                <Label Text="{Binding Text}" Style="{DynamicResource ListItemDetailTextStyle}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                    <Image IsVisible="{Binding Favorite}" Source="star.png" Scale="0.2"/>
+                                </StackLayout>
+                                <Label Text="{Binding Description}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

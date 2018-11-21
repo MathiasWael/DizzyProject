@@ -8,18 +8,22 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DizzyProxy.Models;
 using Sex = DizzyProxy.Models.Sex;
+using DizzyProject.BusinessLogic;
 
 namespace DizzyProject.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterPatientPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RegisterPatientPage : ContentPage
+    {
         private DateTime datePicked;
         private string genderPicked = "";
-		public RegisterPatientPage ()
-		{
-			InitializeComponent ();
+        private long countryPicked;
+        CountryController countryController;
+        public RegisterPatientPage()
+        {
+            InitializeComponent();
 
+            countryController = new CountryController();
             List<Enum> sexes = new List<Enum>()
             {
                 Sex.Female,
@@ -27,6 +31,7 @@ namespace DizzyProject.View
             };
 
             genderPicker.ItemsSource = sexes;
+            CountryPicker.ItemsSource = countryController.getAllCountries();
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
@@ -34,7 +39,18 @@ namespace DizzyProject.View
             datePicked = e.NewDate;
         }
 
-        void OnGenderChange(object sender, EventArgs e)
+        private void OnGenderChange(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                genderPicked = (string)picker.ItemsSource[selectedIndex];
+            }
+        }
+
+        private void OnCountryChange(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;
@@ -63,7 +79,8 @@ namespace DizzyProject.View
             {
                 Address = Address.Text,
                 CityId = city,
-                ZipCode = zipCode
+                ZipCode = zipCode,
+                //CountryId = 
             };
 
             Patient patient = new Patient
@@ -77,11 +94,10 @@ namespace DizzyProject.View
                 Weight = weight,
                 Height = height,
                 BirthDate = datePicked,
-                //Sex = genderPicked,
+                Sex = (Sex)Enum.Parse(typeof(Sex), genderPicked),
                 LocationId = location.Id,
             };
             //Patients.CreatePatientAsync();
-
         }
-    }   
+    }
 }
