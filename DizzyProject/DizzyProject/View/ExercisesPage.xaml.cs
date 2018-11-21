@@ -44,7 +44,7 @@ namespace DizzyProject.View
             else if(exercise.Type == DizzyProxy.Models.Type.Favorite)
             {
                 exerciseController.UnfavoriteExercise(exercise, 1); //temp id
-
+                
                 //temp code
                 exercises.Remove(exercise);
                 exercise.Type = DizzyProxy.Models.Type.Normal;
