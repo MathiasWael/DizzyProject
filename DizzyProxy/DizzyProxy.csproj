@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Exceptions\ConnectionException.cs" />
+    <Compile Include="Exceptions\ForbiddenException.cs" />
     <Compile Include="Exceptions\InternalServerErrorException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Exceptions\UnauthorizedException.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\CustomExercise.cs" />
