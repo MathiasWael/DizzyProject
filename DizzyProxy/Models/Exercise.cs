@@ -25,11 +25,11 @@ namespace DizzyProxy.Models
                 switch (Type)
                 {
                     case Type.Custom:
-                        return "custom.PNG";
+                        return "wrench.png";
                     case Type.Favorite:
                         return "star.png";
                     case Type.Recommended:
-                        return "recommended.PNG";
+                        return "thumbsup.png";
                     case Type.Normal:
                         return "emptystar.png";
                     default:
