@@ -9,21 +9,21 @@
                 <Entry x:Name="FirstName" Placeholder="First Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Entry x:Name="LastName" Placeholder="Last Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Entry x:Name="Email" Placeholder="Email" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="PhoneNumber" Placeholder="Phone Number" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="PhoneNumber" Keyboard="Numeric" Placeholder="Phone Number" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Entry x:Name="Address" Placeholder="Address" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
                     <Entry x:Name="City" Placeholder="City" WidthRequest="250"/>
-                    <Entry x:Name="ZipCode" Placeholder="Zipcode" WidthRequest="250"/>
+                    <Entry x:Name="ZipCode" Keyboard="Numeric" Placeholder="Zipcode" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Country" FontSize="20" TextColor="Black"/>
                 <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"></Picker>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="Height" Placeholder="Height" WidthRequest="250"/>
+                    <Entry x:Name="Height" Keyboard="Numeric" Placeholder="Height" WidthRequest="250"/>
                     <Label Text="cm" FontSize="20" WidthRequest="250"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="Weight" Placeholder="Weight" WidthRequest="250"/>
+                    <Entry x:Name="Weight" Keyboard="Numeric" Placeholder="Weight" WidthRequest="250"/>
                     <Label Text="kg" FontSize="20" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Gender" FontSize="20" TextColor="Black"/>

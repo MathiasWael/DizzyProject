@@ -32,8 +32,6 @@ namespace DizzyProject.View
 
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
-            Sex sex = new Sex();
-            Country country = new Country();
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
@@ -64,7 +62,7 @@ namespace DizzyProject.View
         }
 
         private void Submit_Pressed(object sender, EventArgs e)
-        {
+        {            
             string h = Height.Text;
             short height = Convert.ToInt16(h);
 
@@ -82,7 +80,7 @@ namespace DizzyProject.View
                 Address = Address.Text,
                 CityId = city,
                 ZipCode = zipCode,
-                //CountryId = 
+                CountryId = country.Id
             };
 
             Patient patient = new Patient
@@ -96,8 +94,8 @@ namespace DizzyProject.View
                 Weight = weight,
                 Height = height,
                 BirthDate = datePicked,
-                //Sex = (Sex)Enum.Parse(typeof(Sex), sex),
-                LocationId = location.Id,
+                Sex = sex,
+                LocationId = location.Id
             };
             //Patients.CreatePatientAsync();
         }
