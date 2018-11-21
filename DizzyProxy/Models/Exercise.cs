@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Models
 {
+    public enum Type { Custom, Favorite, Recommended, Normal}
     public class Exercise
     {
         public long Id { get; set; }
@@ -16,6 +17,45 @@ namespace DizzyProxy.Models
         public DateTime Updated { get; set; }
         public bool Custom { get; set; }
 
-        public bool Favorite { get; set; }
+        public Type Type { get; set; }
+        public string Logo
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case Type.Custom:
+                        return "custom.PNG";
+                    case Type.Favorite:
+                        return "star.png";
+                    case Type.Recommended:
+                        return "recommended.PNG";
+                    case Type.Normal:
+                        return "emptystar.png";
+                    default:
+                        return "";
+                }
+            }
+        }
+
+        public int LogoSize
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case Type.Custom:
+                        return 25;
+                    case Type.Favorite:
+                        return 35;
+                    case Type.Recommended:
+                        return 25;
+                    case Type.Normal:
+                        return 35;
+                    default:
+                        return 0;
+                }
+            }
+        }
     }
 }
