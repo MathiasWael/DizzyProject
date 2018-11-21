@@ -11,10 +11,18 @@ namespace DizzyProject.BusinessLogic
         public List<Exercise> GetAllExercisesById(long userId)
         {
             List<Exercise> temp = new List<Exercise>();
-            temp.AddRange(new CustomExercisePatientResource().GetCustomExercisesById(userId));
-            temp.AddRange(new RecommendationResource().GetRecommendationsById(userId));
-            temp.AddRange(new ExerciseFavoriteResource().GetFavoritesById(userId));
-            temp.AddRange(new ExerciseResource().GetAllExercises());
+            try
+            {
+                temp.AddRange(new CustomExercisePatientResource().GetCustomExercisesById(userId));
+                temp.AddRange(new RecommendationResource().GetRecommendationsById(userId));
+                temp.AddRange(new ExerciseFavoriteResource().GetFavoritesById(userId));
+                temp.AddRange(new ExerciseResource().GetAllExercises().Result);
+            }
+            
+            catch(Exception e)
+            {
+                Exception t = e;
+            }
 
             return temp;
         }
