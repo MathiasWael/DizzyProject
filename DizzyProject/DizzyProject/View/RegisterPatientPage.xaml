@@ -16,6 +16,7 @@
                     <Entry x:Name="City" Placeholder="City" WidthRequest="250"/>
                     <Entry x:Name="ZipCode" Placeholder="Zipcode" WidthRequest="250"/>
                 </StackLayout>
+                <Label Text="Country" FontSize="20" TextColor="Black"/>
                 <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"></Picker>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
                     <Entry x:Name="Height" Placeholder="Height" WidthRequest="250"/>

@@ -16,8 +16,8 @@ namespace DizzyProject.View
     public partial class RegisterPatientPage : ContentPage
     {
         private DateTime datePicked;
-        private string genderPicked = "";
-        private long countryPicked;
+        private Sex sex;
+        private Country country;
         CountryController countryController;
         public RegisterPatientPage()
         {
@@ -32,6 +32,8 @@ namespace DizzyProject.View
 
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
+            Sex sex = new Sex();
+            Country country = new Country();
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
@@ -46,7 +48,7 @@ namespace DizzyProject.View
 
             if (selectedIndex != -1)
             {
-                genderPicked = (string)picker.ItemsSource[selectedIndex];
+                sex = (Sex)picker.ItemsSource[selectedIndex];
             }
         }
 
@@ -57,7 +59,7 @@ namespace DizzyProject.View
 
             if (selectedIndex != -1)
             {
-                genderPicked = (string)picker.ItemsSource[selectedIndex];
+                country = (Country)picker.ItemsSource[selectedIndex];
             }
         }
 
@@ -94,7 +96,7 @@ namespace DizzyProject.View
                 Weight = weight,
                 Height = height,
                 BirthDate = datePicked,
-                Sex = (Sex)Enum.Parse(typeof(Sex), genderPicked),
+                //Sex = (Sex)Enum.Parse(typeof(Sex), sex),
                 LocationId = location.Id,
             };
             //Patients.CreatePatientAsync();
