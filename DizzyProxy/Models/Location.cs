@@ -12,6 +12,6 @@ namespace DizzyProxy.Models
         public string Address { get; set; }
         public long CityId { get; set; }
         public int ZipCode { get; set; }
-        public int CountryId { get; set; }
+        public long CountryId { get; set; }
     }
 }
