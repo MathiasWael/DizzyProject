@@ -32,10 +32,10 @@ namespace DizzyProxyTests
             new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
 
             //Act
-            //List<Exercise> exercises = new ExerciseResource().GetAllExercises()
+            List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
 
             //Assert
-           //Assert.Equals(exercises.)
+            Assert.IsTrue(exercises[5].Description == "Touch Toes', 'Bend down and touch your toes and up again and repeat");
         }
     }
 }
