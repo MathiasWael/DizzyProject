@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.DoExercisePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                <Label Text="review of" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <!--replace this slider with the updated one from DizzyRegisterPage when its done -->
+            <Label Text="Rate dizziness after exercise" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="15"/>
+            <Label x:Name="DizzyLevelLabel" FontSize="75" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            <Slider Maximum="10.0" Minimum="0.0" Value="5.0" VerticalOptions="StartAndExpand" ValueChanged="Slider_ValueChanged"/>
+            <Label Text="Exercise/Dizziness notes" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Editor WidthRequest="300" HeightRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="LightGray"/>
+                <StackLayout>
+                    <!--Implement save logic when jounral page is done-->
+                    <Button Text="Save to journal" CornerRadius="10" BorderWidth="1" Pressed="Save_Button" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="Go back" CornerRadius="10" BorderWidth="1" Pressed="BackButton_Pressed" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

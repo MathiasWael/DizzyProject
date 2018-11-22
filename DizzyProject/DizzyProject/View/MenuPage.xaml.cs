@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DizzyProject.Model;
+using DizzyProject.ViewModels;
 
 namespace DizzyProject.View
 {
