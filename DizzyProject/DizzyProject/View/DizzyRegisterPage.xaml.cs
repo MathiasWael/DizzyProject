@@ -16,5 +16,11 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            ((Slider)sender).Value = Math.Round(e.NewValue);
+            DizzyLevelLabel.Text = ((Slider)sender).Value.ToString();
+        }
+    }
 }

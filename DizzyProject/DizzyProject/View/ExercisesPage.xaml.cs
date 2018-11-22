@@ -51,5 +51,10 @@ namespace DizzyProject.View
                 exercises.Insert(12, exercise);
             }
         }
+
+        private async void ViewExercise_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage((Exercise)e.SelectedItem)));
+        }
     }
 }

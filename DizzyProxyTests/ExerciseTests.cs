@@ -16,13 +16,26 @@ namespace DizzyProxyTests
         public void GetAllExercisesTest_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("mathiaswael@hotmail.dk", "Password1");
+            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
 
             // Act
             List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
 
             // Assert
             Assert.AreEqual(4, exercises.Count());
+        }
+
+        [TestMethod]
+        public void getExercise_fromId()
+        {
+            // Arrange
+            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+
+            //Act
+            //List<Exercise> exercises = new ExerciseResource().GetAllExercises()
+
+            //Assert
+           //Assert.Equals(exercises.)
         }
     }
 }
