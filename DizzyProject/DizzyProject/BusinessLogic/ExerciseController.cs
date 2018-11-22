@@ -3,20 +3,21 @@ using DizzyProxy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        public List<Exercise> GetAllExercisesById(long userId)
+        public async Task<List<Exercise>> GetAllExercisesById()
         {
             List<Exercise> temp = new List<Exercise>();
             try
             {
-                temp.AddRange(new CustomExercisePatientResource().GetCustomExercisesById(userId));
-                temp.AddRange(new RecommendationResource().GetRecommendationsById(userId));
-                temp.AddRange(new ExerciseFavoriteResource().GetFavoritesById(userId));
-                temp.AddRange(new ExerciseResource().GetAllExercises().Result);
+                temp.AddRange(await new CustomExercisePatientResource().GetAllCustomExercises());
+                temp.AddRange(await new RecommendationResource().GetAllRecommendations());
+                temp.AddRange(await new ExerciseFavoriteResource().GetAllFavoriteExercises());
+                temp.AddRange(await new ExerciseResource().GetAllExercises());
             }
             
             catch(Exception e)

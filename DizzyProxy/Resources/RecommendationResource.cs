@@ -9,7 +9,7 @@ namespace DizzyProxy.Resources
 {
     public class RecommendationResource : Resource
     {
-        public List<Exercise> GetRecommendationsById(long userId)
+        public async Task<List<Exercise>> GetAllRecommendations()
         {
             return new List<Exercise>()
             {
@@ -20,3 +20,4 @@ namespace DizzyProxy.Resources
         }
     }
 }
+    
