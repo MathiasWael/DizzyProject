@@ -22,5 +22,7 @@ namespace DizzyProxyTests
             Assert.AreEqual("Olesen", patient.LastName);
             Assert.AreEqual("test6@gmail.com", patient.Email);
         }
+
+
     }
 }

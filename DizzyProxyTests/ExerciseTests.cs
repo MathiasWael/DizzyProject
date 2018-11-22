@@ -24,5 +24,18 @@ namespace DizzyProxyTests
             // Assert
             Assert.AreEqual(4, exercises.Count());
         }
+
+        [TestMethod]
+        public void getExercise_fromId()
+        {
+            // Arrange
+            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+
+            //Act
+            List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
+
+            //Assert
+            Assert.IsTrue(exercises[5].Description == "Touch Toes', 'Bend down and touch your toes and up again and repeat");
+        }
     }
 }
