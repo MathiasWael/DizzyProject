@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DizzyProxy;
 using DizzyProxy.Models;
+using DizzyProxy.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DizzyProxyTests
@@ -23,6 +26,18 @@ namespace DizzyProxyTests
             Assert.AreEqual("test6@gmail.com", patient.Email);
         }
 
+        [TestMethod]
+        public void GetAllPatientsTest_Successful()
+        {
+            // Arrange
+            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+
+            // Act
+            List<Patient> patients = new PatientResource().GetAllPatientsAsync().Result;
+
+            // Assert
+            Assert.AreEqual(5, patients.Count());
+        }
 
     }
 }

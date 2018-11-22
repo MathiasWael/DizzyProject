@@ -16,13 +16,18 @@ namespace DizzyProject.View
 	public partial class PatientsPage : ContentPage
 	{
         private PatientController patientController;
-        private ObservableCollection<Patient> patients;
+        private List<Patient> patients;
         public PatientsPage()
         {
             InitializeComponent();
-
             patientController = new PatientController();
-            patients = new ObservableCollection<Patient>(patientController.GetAllPatients(//id for den physioterapeut der er logget ind ));
+            patients = new List<Patient>();
+        }
+
+        protected override async void OnAppearing()
+        {
+            patientController = new PatientController();
+            patients = new List<Patient>(await patientController.GetAllPatients());
 
             ListViewPatients.ItemsSource = patients;
         }
