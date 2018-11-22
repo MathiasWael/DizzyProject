@@ -3,11 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DizzyProject.Model
+namespace DizzyProject.ViewModels
 {
-    public enum Type { Custom, Favorite, Recommended, Normal }
+    public enum ExerciseType { Custom, Favorite, Recommended, Normal }
     public class ExerciseViewModel
     {
+        public ExerciseViewModel (Exercise exercise)
+        {
+            Id = exercise.Id;
+            AuthorId = exercise.AuthorId;
+            Name = exercise.Name;
+            Description = exercise.Description;
+            Created = exercise.Created;
+            Updated = exercise.Updated;
+        }
+
+        public ExerciseViewModel () { }
+
         public long Id { get; set; }
         public long AuthorId { get; set; }
         public string Name { get; set; }
@@ -16,11 +28,11 @@ namespace DizzyProject.Model
         public DateTime Updated { get; set; }
         public Recommendation Recommendation { get; set; }
 
-        public Type Type { get; set; }
+        public ExerciseType Type { get; set; }
 
         public bool isRecommend {
             get {
-                if (Type == Type.Recommended)
+                if (Type == ExerciseType.Recommended)
                     return true;
                 else
                     return false;
@@ -32,13 +44,13 @@ namespace DizzyProject.Model
             {
                 switch (Type)
                 {
-                    case Type.Custom:
+                    case ExerciseType.Custom:
                         return "wrench.png";
-                    case Type.Favorite:
+                    case ExerciseType.Favorite:
                         return "star.png";
-                    case Type.Recommended:
+                    case ExerciseType.Recommended:
                         return "thumbsup.png";
-                    case Type.Normal:
+                    case ExerciseType.Normal:
                         return "emptystar.png";
                     default:
                         return "";
@@ -52,13 +64,13 @@ namespace DizzyProject.Model
             {
                 switch (Type)
                 {
-                    case Type.Custom:
+                    case ExerciseType.Custom:
                         return 25;
-                    case Type.Favorite:
+                    case ExerciseType.Favorite:
                         return 35;
-                    case Type.Recommended:
+                    case ExerciseType.Recommended:
                         return 25;
-                    case Type.Normal:
+                    case ExerciseType.Normal:
                         return 35;
                     default:
                         return 0;
