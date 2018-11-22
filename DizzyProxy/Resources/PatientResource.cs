@@ -34,6 +34,9 @@ namespace DizzyProxy
             return await GetPatientAsync(token.Subject);
         }
 
+        public List<Patient> GetAllPatients()
+            => GetAllPatientsAsync().Result;
+
         public async Task<List<Patient>> GetAllPatientsAsync()
         {
             Request request = new Request(Method.GET, "patients");
