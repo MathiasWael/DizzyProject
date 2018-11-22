@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DizzyProject.ViewModels
 {
-    public enum ExerciseType { Custom, Favorite, Recommended, Normal }
+    public enum ExerciseType { Custom, Recommended, Favorite, Normal }
     public class ExerciseViewModel
     {
         public ExerciseViewModel (Exercise exercise)
@@ -30,7 +30,7 @@ namespace DizzyProject.ViewModels
 
         public ExerciseType Type { get; set; }
 
-        public bool isRecommend {
+        public bool isRecommended {
             get {
                 if (Type == ExerciseType.Recommended)
                     return true;

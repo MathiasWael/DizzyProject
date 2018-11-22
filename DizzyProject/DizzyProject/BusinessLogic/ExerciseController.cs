@@ -28,7 +28,7 @@ namespace DizzyProject.BusinessLogic
                     ex.Type = ExerciseType.Recommended;
                 }
             }
-
+            temp.Sort((x, y) => x.Type.CompareTo(y.Type));
             return temp;
         }
 
