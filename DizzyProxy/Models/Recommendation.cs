@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DizzyProxy.Models
 {
@@ -13,5 +14,9 @@ namespace DizzyProxy.Models
         public long ExerciseId { get; set; }
         public long PatientId { get; set; }
         public string Note { get; set; }
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+        [JsonProperty("updated")]
+        public DateTime Updated { get; set; }
     }
 }

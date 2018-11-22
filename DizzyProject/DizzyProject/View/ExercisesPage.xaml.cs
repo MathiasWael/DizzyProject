@@ -23,9 +23,13 @@ namespace DizzyProject.View
 			InitializeComponent ();
 
             exerciseController = new ExerciseController();
-            exercises = new ObservableCollection<Exercise>(exerciseController.GetAllExercisesById(1)); //temp id
 
             ListViewExercises.ItemsSource = exercises;
+        }
+
+        protected override async void OnAppearing()
+        {
+            exercises = new ObservableCollection<Exercise>(await exerciseController.GetAllExercisesById());
         }
 
         private void LogoTapped(object sender, EventArgs e)

@@ -9,14 +9,10 @@ namespace DizzyProxy.Resources
 {
     public class CustomExercisePatientResource : Resource
     {
-        public List<CustomExercise> GetCustomExercisesById(long userId)
+        public async Task<List<Exercise>> GetAllCustomExercises()
         {
-            return new List<CustomExercise>()
-            {
-                new CustomExercise { Id = 9, AuthorId = 1, Name = "Exercise Custom 1", Description="Exercise Custom 1 Description", Created = DateTime.Now, Updated = DateTime.Now, Type = Models.Type.Custom },
-                new CustomExercise { Id = 10, AuthorId = 2, Name = "Exercise Custom 2", Description="Exercise Custom 2 Description", Created = DateTime.Now, Updated = DateTime.Now, Type = Models.Type.Custom },
-                new CustomExercise { Id = 11, AuthorId = 3, Name = "Exercise Custom 3", Description="Exercise Custom 3 Description", Created = DateTime.Now, Updated = DateTime.Now, Type = Models.Type.Custom },
-            };
+            Request request = new Request(Method.GET, "customexercises");
+            return await ExecuteAsync<List<Exercise>>(request);
         }
     }
 }
