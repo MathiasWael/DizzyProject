@@ -4,7 +4,7 @@
              x:Class="DizzyProject.View.ExercisesPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="ListViewExercises" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+            <ListView x:Name="ListViewExercises" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="ViewExercise_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
