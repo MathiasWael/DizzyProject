@@ -20,6 +20,7 @@ namespace DizzyProxy.Resources
             set
             {
                 _token = value;
+                Client.DefaultRequestHeaders.Remove("x-auth-token");
                 Client.DefaultRequestHeaders.Add("x-auth-token", value);
             }
         }
@@ -34,9 +35,6 @@ namespace DizzyProxy.Resources
 
         protected async Task<T> ExecuteAsync<T>(Request request)
         {
-            if (Token != null)
-                Client.DefaultRequestHeaders.Add("x-auth-token", Token);
-
             string json = JsonConvert.SerializeObject(request.Body, Formatting.Indented);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response;
