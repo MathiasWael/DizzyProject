@@ -16,7 +16,7 @@ namespace DizzyProxyTests
         public void GetAllExercisesTest_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("mathiaswael@hotmail.dk", "Password1");
+            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
 
             // Act
             List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
