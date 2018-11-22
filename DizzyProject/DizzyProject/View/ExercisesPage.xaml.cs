@@ -54,7 +54,7 @@ namespace DizzyProject.View
 
         private async void ViewExercise_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage()));
+            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage((Exercise)e.SelectedItem)));
         }
     }
 }

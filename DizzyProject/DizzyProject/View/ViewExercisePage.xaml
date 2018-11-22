@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.View.ViewExercisePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label FontSize="Large" Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label FontSize="Medium" Text="{Binding Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                        <Label FontSize="Large" TextColor="Gray" Text="{Binding Updated}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label FontSize="Medium" TextColor="Gray" Text="{Binding Created}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                <Button Text="Go back to index" CornerRadius="10" BorderWidth="1" Pressed="Button_Pressed" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
