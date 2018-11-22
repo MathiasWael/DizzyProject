@@ -12,18 +12,10 @@ namespace DizzyProject.BusinessLogic
         public async Task<List<Exercise>> GetAllExercisesById()
         {
             List<Exercise> temp = new List<Exercise>();
-            try
-            {
-                temp.AddRange(await new CustomExercisePatientResource().GetAllCustomExercises());
-                temp.AddRange(await new RecommendationResource().GetAllRecommendations());
-                temp.AddRange(await new ExerciseFavoriteResource().GetAllFavoriteExercises());
-                temp.AddRange(await new ExerciseResource().GetAllExercises());
-            }
-            
-            catch(Exception e)
-            {
-                Exception t = e;
-            }
+            temp.AddRange(await new CustomExercisePatientResource().GetAllCustomExercises());
+            //temp.AddRange(await new RecommendationResource().GetAllRecommendations());
+            temp.AddRange(await new ExerciseFavoriteResource().GetAllFavoriteExercises());
+            temp.AddRange(await new ExerciseResource().GetAllExercises());
 
             return temp;
         }
