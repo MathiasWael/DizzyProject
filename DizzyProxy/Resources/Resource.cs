@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using DizzyProxy.Exceptions;
+using Newtonsoft.Json.Linq;
 
 namespace DizzyProxy.Resources
 {
@@ -59,14 +60,10 @@ namespace DizzyProxy.Resources
 
             if (!response.IsSuccessStatusCode)
             {
-                switch (response.StatusCode)
-                {
-                    case HttpStatusCode.BadRequest: throw new BadRequestException(content);
-                    case HttpStatusCode.Unauthorized: throw new UnauthorizedException(content);
-                    case HttpStatusCode.Forbidden: throw new ForbiddenException(content);
-                    case HttpStatusCode.NotFound: throw new NotFoundException(content);
-                    case HttpStatusCode.InternalServerError: throw new InternalServerErrorException(content);
-                }
+                JObject jObject = JObject.Parse(content);
+                int code = jObject["code"].ToObject<int>();
+                string message = jObject["message"].ToObject<string>();
+                throw new ApiException(response.StatusCode, code, message);
             }
 
             return JsonConvert.DeserializeObject<T>(content);

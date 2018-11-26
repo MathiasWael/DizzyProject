@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class BadRequestException : Exception
+    public class BadRequestException : ApiException
     {
-        public BadRequestException() {}
-        public BadRequestException(string message) : base(message) {}
-        public BadRequestException(string message, Exception inner) : base(message, inner) {}
+        public BadRequestException(int code) : base(code) {}
+        public BadRequestException(int code, string message) : base(code, message) {}
+        public BadRequestException(int code, string message, Exception inner) : base(code, message, inner) {}
     }
 }

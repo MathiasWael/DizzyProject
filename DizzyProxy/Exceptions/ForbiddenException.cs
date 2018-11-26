@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class ForbiddenException : Exception
+    public class ForbiddenException : ApiException
     {
-        public ForbiddenException() { }
-        public ForbiddenException(string message) : base(message) { }
-        public ForbiddenException(string message, Exception inner) : base(message, inner) { }
+        public ForbiddenException(int code) : base(code) { }
+        public ForbiddenException(int code, string message) : base(code, message) { }
+        public ForbiddenException(int code, string message, Exception inner) : base(code, message, inner) { }
     }
 }

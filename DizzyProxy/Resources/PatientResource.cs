@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 
-namespace DizzyProxy
+namespace DizzyProxy.Resources
 {
     public class PatientResource : Resource
     {

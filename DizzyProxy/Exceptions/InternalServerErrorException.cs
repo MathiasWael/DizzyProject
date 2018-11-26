@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class InternalServerErrorException : Exception
+    public class InternalServerErrorException : ApiException
     {
-        public InternalServerErrorException() {}
-        public InternalServerErrorException(string message) : base(message) {}
-        public InternalServerErrorException(string message, Exception inner) : base(message, inner) {}
+        public InternalServerErrorException(int code) : base(code) { }
+        public InternalServerErrorException(int code, string message) : base(code, message) { }
+        public InternalServerErrorException(int code, string message, Exception inner) : base(code, message, inner) { }
     }
 }

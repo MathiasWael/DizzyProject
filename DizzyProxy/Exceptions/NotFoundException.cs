@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class NotFoundException : Exception
+    public class NotFoundException : ApiException
     {
-        public NotFoundException() {}
-        public NotFoundException(string message) : base(message) {}
-        public NotFoundException(string message, Exception inner) : base(message, inner) {}
+        public NotFoundException(int code) : base(code) { }
+        public NotFoundException(int code, string message) : base(code, message) { }
+        public NotFoundException(int code, string message, Exception inner) : base(code, message, inner) { }
     }
 }
