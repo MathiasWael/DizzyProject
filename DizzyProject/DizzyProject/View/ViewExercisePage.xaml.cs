@@ -1,4 +1,5 @@
-﻿using DizzyProject.ViewModels;
+﻿using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
 using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
@@ -14,19 +15,27 @@ namespace DizzyProject.View
 	public partial class ViewExercisePage : ContentPage
 	{
         Exercise selectedExercise;
+        PhysiotherapistController physC;
+        Physiotherapist phys;
+        ExerciseViewModel exercisev;
 		public ViewExercisePage (Exercise exercise)
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
 
-            ExerciseViewModel exercisev = new ExerciseViewModel(selectedExercise);
+            ExerciseViewModel exercisev = new ExerciseViewModel(selectedExercise);            
 
-            if(exercisev.isRecommended)
+            if (exercisev.isRecommended)
             {
                 note.Text = exercisev.Recommendation.Note;
-                phy
+                physName.Text = phys.FullName;
             }
 		}
+
+        protected override async void OnAppearing()
+        {
+            phys = await physC.GetPhysioById(exercisev.Recommendation.PhysiotherapistId);
+        }
 
         private async void DoExercise_Pressed(object sender, EventArgs e)
         {

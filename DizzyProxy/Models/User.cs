@@ -16,7 +16,7 @@ namespace DizzyProxy.Models
         public string FirstName { get; set; }
 
         [JsonProperty("last_name")]
-        public string LastName { get; set; }
+        public string LastName { get; set; }      
 
         [JsonProperty("email")]
         public string Email { get; set; }
@@ -26,5 +26,13 @@ namespace DizzyProxy.Models
 
         [JsonProperty("updated")]
         public DateTime Updated { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
     }
 }
