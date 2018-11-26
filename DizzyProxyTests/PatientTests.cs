@@ -1,4 +1,5 @@
 ﻿using System;
+using DizzyProxy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using DizzyProxy;
@@ -18,12 +19,12 @@ namespace DizzyProxyTests
             PatientResource patients = new PatientResource();
 
             // Act
-            Patient patient = patients.CreatePatient("Lasse", "Olesen", "test6@gmail.com", "Password123");
+            Patient patient = patients.CreatePatient("Lars", "Larsen", "lars1@gmail.com", "Password123");
 
             // Assert
-            Assert.AreEqual("Lasse", patient.FirstName);
-            Assert.AreEqual("Olesen", patient.LastName);
-            Assert.AreEqual("test6@gmail.com", patient.Email);
+            Assert.AreEqual("Lars", patient.FirstName);
+            Assert.AreEqual("Larsen", patient.LastName);
+            Assert.AreEqual("lars1@gmail.com", patient.Email);
         }
 
         [TestMethod]

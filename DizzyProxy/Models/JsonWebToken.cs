@@ -17,5 +17,14 @@ namespace DizzyProxy.Models
                 return Convert.ToInt64(token.Subject);
             }
         }
+
+        public UserType UserType
+        {
+            get
+            {
+                JwtSecurityToken token = new JwtSecurityToken(Token);
+                return (UserType)Enum.Parse(typeof(UserType), token.Payload["type"].ToString(), true);
+            }
+        }
     }
 }

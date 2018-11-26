@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProxy.Exceptions
 {
-    public class UnauthorizedException : Exception
+    public class UnauthorizedException : ApiException
     {
-        public UnauthorizedException() { }
-        public UnauthorizedException(string message) : base(message) { }
-        public UnauthorizedException(string message, Exception inner) : base(message, inner) { }
+        public UnauthorizedException(int code) : base(code) { }
+        public UnauthorizedException(int code, string message) : base(code, message) { }
+        public UnauthorizedException(int code, string message, Exception inner) : base(code, message, inner) { }
     }
 }

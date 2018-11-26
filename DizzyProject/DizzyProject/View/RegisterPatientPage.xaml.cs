@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using DizzyProxy;
 using DizzyProject.BusinessLogic;
 using DizzyProxy.Models;
+using DizzyProxy.Resources;
 
 namespace DizzyProject.View
 {
