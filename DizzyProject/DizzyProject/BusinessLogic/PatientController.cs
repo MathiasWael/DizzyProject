@@ -1,5 +1,6 @@
 ﻿using DizzyProxy;
 using DizzyProxy.Models;
+using DizzyProxy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;

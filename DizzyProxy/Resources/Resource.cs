@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using DizzyProxy.Exceptions;
 using Newtonsoft.Json.Linq;
+using DizzyProxy.Models;
 
 namespace DizzyProxy.Resources
 {
     public abstract class Resource
     {
-        private static string _token;
-        public static string Token
+        private static JsonWebToken _token;
+        public static JsonWebToken Token
         {
             get
             {
@@ -22,7 +23,7 @@ namespace DizzyProxy.Resources
             {
                 _token = value;
                 Client.DefaultRequestHeaders.Remove("x-auth-token");
-                Client.DefaultRequestHeaders.Add("x-auth-token", value);
+                Client.DefaultRequestHeaders.Add("x-auth-token", value.Encoded);
             }
         }
 
@@ -34,7 +35,7 @@ namespace DizzyProxy.Resources
                 Client = new HttpClient { BaseAddress = new Uri("http://localhost:4000/v1/") };
         }
 
-        protected async Task<T> ExecuteAsync<T>(Request request)
+        private async Task<string> ExecuteAsyncHelper(Request request)
         {
             string json = JsonConvert.SerializeObject(request.Body, Formatting.Indented);
             StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -66,7 +67,18 @@ namespace DizzyProxy.Resources
                 throw new ApiException(response.StatusCode, code, message);
             }
 
-            return JsonConvert.DeserializeObject<T>(content);
+            return content;
+        }
+
+        protected async Task<bool> ExecuteAsync(Request request)
+        {
+            await ExecuteAsyncHelper(request);
+            return true;
+        }
+
+        protected async Task<T> ExecuteAsync<T>(Request request)
+        {
+            return JsonConvert.DeserializeObject<T>(await ExecuteAsyncHelper(request));
         }
     }
 }

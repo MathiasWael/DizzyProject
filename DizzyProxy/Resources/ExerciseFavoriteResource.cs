@@ -9,23 +9,23 @@ namespace DizzyProxy.Resources
 {
     public class ExerciseFavoriteResource : Resource
     {
-        public async Task<List<Exercise>> GetAllFavoriteExercises(long userId) 
+        public async Task<List<Exercise>> GetAllFavoriteExercises() 
         {
-            Request request = new Request(Method.GET, "patients/"+ userId + "/favoriteexercises");
+            Request request = new Request(Method.GET, "patients/"+ Token.Subject + "/favoriteexercises");
             return await ExecuteAsync<List<Exercise>>(request);
         }
 
-        public async Task<Exercise> CreateFavoriteExercise(long userId, long exerciseId)
+        public async Task<bool> CreateFavoriteExercise(long exerciseId)
         {
-            Request request = new Request(Method.POST, "patients/" + userId + "/favoriteexercises");
+            Request request = new Request(Method.POST, "patients/" + Token.Subject + "/favoriteexercises");
             request.Body["exercise_id"] = exerciseId;
-            return await ExecuteAsync<Exercise>(request);
+            return await ExecuteAsync(request);
         }
 
-        public async Task<Exercise> DeleteFavoriteExercise(long userId, long exerciseId)
+        public async Task<bool> DeleteFavoriteExercise(long exerciseId)
         {
-            Request request = new Request(Method.DELETE, "patients/" + userId + "/favoriteexercises/" + exerciseId);
-            return await ExecuteAsync<Exercise>(request);
+            Request request = new Request(Method.DELETE, "patients/" + Token.Subject + "/favoriteexercises/" + exerciseId);
+            return await ExecuteAsync(request);
         }
     }
 }

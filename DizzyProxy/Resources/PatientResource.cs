@@ -29,9 +29,8 @@ namespace DizzyProxy.Resources
             request.Body["last_name"] = lastName;
             request.Body["email"] = email;
             request.Body["password"] = password;
-            JsonWebToken token = await ExecuteAsync<JsonWebToken>(request);
-            Token = token.Token;
-            return await GetPatientAsync(token.Subject);
+            Token = await ExecuteAsync<JsonWebToken>(request);
+            return await GetPatientAsync(Token.Subject);
         }
 
         public List<Patient> GetAllPatients()

@@ -17,13 +17,12 @@ namespace DizzyProxy.Resources
             Request request = new Request(Method.POST, "logins");
             request.Body["email"] = email;
             request.Body["password"] = password;
-            JsonWebToken token = await ExecuteAsync<JsonWebToken>(request);
-            Token = token.Token;
+            Token = await ExecuteAsync<JsonWebToken>(request);
 
-            switch (token.UserType)
+            switch (Token.UserType)
             {
-                case UserType.Patient: return await new PatientResource().GetPatientAsync(token.Subject);
-                case UserType.Physiotherapist: return await new PhysiotherapistResource().GetPhysiotherapistAsync(token.Subject);
+                case UserType.Patient: return await new PatientResource().GetPatientAsync(Token.Subject);
+                case UserType.Physiotherapist: return await new PhysiotherapistResource().GetPhysiotherapistAsync(Token.Subject);
                 default: throw new ApplicationException("Unknown user type.");
             }
         }

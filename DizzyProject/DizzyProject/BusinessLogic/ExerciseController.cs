@@ -10,11 +10,11 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        public async Task<List<ExerciseViewModel>> GetAllExercisesById(long userId)
+        public async Task<List<ExerciseViewModel>> GetAllExercisesById()
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             temp.AddRange(convertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
-            temp.AddRange(convertToViewModel(await new ExerciseFavoriteResource().GetAllFavoriteExercises(userId), ExerciseType.Favorite));
+            temp.AddRange(convertToViewModel(await new ExerciseFavoriteResource().GetAllFavoriteExercises(), ExerciseType.Favorite));
             temp.AddRange(convertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
 
             List<Recommendation> recommendations = await new RecommendationResource().GetAllRecommendations();
@@ -28,8 +28,13 @@ namespace DizzyProject.BusinessLogic
                     ex.Type = ExerciseType.Recommended;
                 }
             }
-            temp.Sort((x, y) => x.Type.CompareTo(y.Type));
+            SortExercisesByType(temp);
             return temp;
+        }
+
+        public void SortExercisesByType(List<ExerciseViewModel> exercises)
+        {
+            exercises.Sort((x, y) => x.Type.CompareTo(y.Type));
         }
 
         private List<ExerciseViewModel> convertToViewModel(List<Exercise> exercises, ExerciseType type)
@@ -44,17 +49,14 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        public async Task<ExerciseViewModel> FavoriteExercise(ExerciseViewModel exerciseViewModel, long userId)
+        public async Task<bool> FavoriteExercise(ExerciseViewModel exerciseViewModel)
         {
-            Exercise exercise = await new ExerciseFavoriteResource().CreateFavoriteExercise(userId, exerciseViewModel.Id);
-            ExerciseViewModel exerciseVm = new ExerciseViewModel(exercise);
-            exerciseVm.Type = ExerciseType.Favorite;
-            return exerciseVm;
+            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exerciseViewModel.Id);
         }
 
-        public ExerciseViewModel UnfavoriteExercise(ExerciseViewModel exercise)
+        public async Task<bool> UnfavoriteExercise(ExerciseViewModel exercise)
         {
-            return null;
+            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exercise.Id);
         }
     }
 }
