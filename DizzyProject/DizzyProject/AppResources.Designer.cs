@@ -115,7 +115,7 @@ namespace DizzyProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unhandled service error..
+        ///   Looks up a localized string similar to Internal server error..
         /// </summary>
         public static string ApiError50Description {
             get {
@@ -133,7 +133,25 @@ namespace DizzyProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The service could not be reached, please check your connection..
+        /// </summary>
+        public static string ApiErrorConnectionDescription {
+            get {
+                return ResourceManager.GetString("ApiErrorConnectionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Unreachable.
+        /// </summary>
+        public static string ApiErrorConnectionTitle {
+            get {
+                return ResourceManager.GetString("ApiErrorConnectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled service error..
         /// </summary>
         public static string ApiErrorDefaultDescription {
             get {
@@ -142,11 +160,20 @@ namespace DizzyProject {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Service Error.
         /// </summary>
         public static string ApiErrorDefaultTitle {
             get {
                 return ResourceManager.GetString("ApiErrorDefaultTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string DialogOk {
+            get {
+                return ResourceManager.GetString("DialogOk", resourceCulture);
             }
         }
     }

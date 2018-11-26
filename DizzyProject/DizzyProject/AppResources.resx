@@ -119,32 +119,49 @@
   </resheader>
   <data name="ApiError40Description" xml:space="preserve">
     <value>Input does not match validation criteria.</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError40Title" xml:space="preserve">
     <value>Validation Error</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError41Description" xml:space="preserve">
     <value>Invalid email or password.</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError41Title" xml:space="preserve">
     <value>Input Error</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError42Description" xml:space="preserve">
     <value>Another user is already registered with the given email address.</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError42Title" xml:space="preserve">
     <value>Input Error</value>
+    <comment>400 Bad Request</comment>
   </data>
   <data name="ApiError50Description" xml:space="preserve">
-    <value>Unhandled service error.</value>
+    <value>Internal server error.</value>
+    <comment>500 Internal Server Error</comment>
   </data>
   <data name="ApiError50Title" xml:space="preserve">
     <value>Service Error</value>
+    <comment>500 Internal Server Error</comment>
+  </data>
+  <data name="ApiErrorConnectionDescription" xml:space="preserve">
+    <value>The service could not be reached, please check your connection.</value>
+  </data>
+  <data name="ApiErrorConnectionTitle" xml:space="preserve">
+    <value>Service Unreachable</value>
   </data>
   <data name="ApiErrorDefaultDescription" xml:space="preserve">
-    <value />
+    <value>Unhandled service error.</value>
   </data>
   <data name="ApiErrorDefaultTitle" xml:space="preserve">
-    <value />
+    <value>Service Error</value>
+  </data>
+  <data name="DialogOk" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>
