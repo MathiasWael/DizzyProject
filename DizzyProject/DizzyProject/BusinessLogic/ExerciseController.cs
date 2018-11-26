@@ -14,27 +14,21 @@ namespace DizzyProject.BusinessLogic
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             temp.AddRange(convertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
-            temp.AddRange(convertToViewModel(await new ExerciseFavoriteResource().GetAllFavoriteExercises(), ExerciseType.Favorite));
             temp.AddRange(convertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
 
-            List<Recommendation> recommendations = await new RecommendationResource().GetAllRecommendations();
+            foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercises())
+            {
+                ExerciseViewModel ex = temp.Find(x => x.Id == favorite.Id);
+                ex.Type = ExerciseType.Favorite;
+            }
 
-            foreach (Recommendation recommendation in recommendations)
+            foreach (Recommendation recommendation in await new RecommendationResource().GetAllRecommendations())
             {
                 ExerciseViewModel ex = temp.Find(x => x.Id == recommendation.ExerciseId);
-                if (ex != null)
-                {
-                    ex.Recommendation = recommendation;
-                    ex.Type = ExerciseType.Recommended;
-                }
+                ex.Type = ExerciseType.Recommended;
+                ex.Recommendation = recommendation;
             }
-            SortExercisesByType(temp);
             return temp;
-        }
-
-        public void SortExercisesByType(List<ExerciseViewModel> exercises)
-        {
-            exercises.Sort((x, y) => x.Type.CompareTo(y.Type));
         }
 
         private List<ExerciseViewModel> convertToViewModel(List<Exercise> exercises, ExerciseType type)

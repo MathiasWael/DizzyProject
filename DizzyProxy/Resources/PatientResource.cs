@@ -36,7 +36,7 @@ namespace DizzyProxy.Resources
         public List<Patient> GetAllPatients()
             => GetAllPatientsAsync().Result;
 
-        public async Task<List<Patient>> GetAllPatientsAsync()
+        public async Task<List<Patient>> GetAllPatientsAsync()//physio login id som parameter
         {
             Request request = new Request(Method.GET, "patients");
             return await ExecuteAsync<List<Patient>>(request);
