@@ -32,7 +32,7 @@ namespace DizzyProxy.Resources
         public Resource()
         {
             if (Client == null)
-                Client = new HttpClient { BaseAddress = new Uri("http://localhost:4000/v1/") };
+                Client = new HttpClient { BaseAddress = new Uri("http://10.0.2.2:4000/v1/") };
         }
 
         private async Task<string> ExecuteAsyncHelper(Request request)
