@@ -34,6 +34,7 @@ namespace DizzyProject
             try
             {
                 User user = await _controller.Login(EmailEntry.Text, PasswordEntry.Text);
+                Application.Current.MainPage = new MasterPage();
             }
             catch (ConnectionException)
             {

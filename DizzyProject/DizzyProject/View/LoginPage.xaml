@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="White">
             <Entry x:Name="EmailEntry" Placeholder="Email" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-            <Entry x:Name="PasswordEntry" Placeholder="Password" WidthRequest="300" IsEnabled="True" IsPassword="True" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Password" WidthRequest="300" IsPassword="True" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
             <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
                 <Button Pressed="CreateAccount" Text="Create Account" BackgroundColor="White" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
                 <Button Pressed="Login_Pressed" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
