@@ -7,7 +7,7 @@
             <StackLayout>
                 <Label FontSize="Large" Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 <Label FontSize="Medium" Text="{Binding Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                <Label FontSize="large" Text="Note" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label FontSize="Large" Text="Note" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 <Label x:Name="note" IsVisible="{Binding isRecommended}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 <Label x:Name="physName" IsVisible="{Binding isRecommended}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">

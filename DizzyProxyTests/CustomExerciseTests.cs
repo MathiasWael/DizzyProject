@@ -23,6 +23,14 @@ namespace DizzyProxyTests
 
             // Assert
             Assert.AreEqual(2, exercises.Count());
+            Assert.AreEqual(5, exercises[0].Id);
+            Assert.AreEqual(6, exercises[1].Id);
+            Assert.AreEqual(7, exercises[0].AuthorId);
+            Assert.AreEqual(7, exercises[1].AuthorId);
+            Assert.AreEqual("Touch Toes", exercises[0].Name);
+            Assert.AreEqual("Jumping Jacks without arms", exercises[1].Name);
+            Assert.AreEqual("Bend down and touch your toes and up again and repeat", exercises[0].Description);
+            Assert.AreEqual("Do standard jumping jack but without moving your arms", exercises[1].Description);
         }
     }
 }

@@ -21,18 +21,16 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
-                       
-
-            if (selectedExercise.isRecommended)
-            {
-                note.Text = selectedExercise.Recommendation.Note;
-                physName.Text = phys.FullName;
-            }
 		}
 
         protected override async void OnAppearing()
         {
-            phys = await physC.GetPhysioById(selectedExercise.Recommendation.PhysiotherapistId);
+            if (selectedExercise.isRecommended)
+            {
+                note.Text = selectedExercise.Recommendation.Note;
+                phys = await physC.GetPhysioById(selectedExercise.Recommendation.PhysiotherapistId);
+                physName.Text = phys.FullName;
+            }
         }
 
         private async void DoExercise_Pressed(object sender, EventArgs e)
