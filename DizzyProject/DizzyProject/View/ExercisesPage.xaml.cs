@@ -17,19 +17,25 @@ namespace DizzyProject.View
 	public partial class ExercisesPage : ContentPage
 	{
         private ExerciseController exerciseController;
-        private ObservableCollection<ExerciseViewModel> exercises;
+        private List<ExerciseViewModel> exercises;
 		public ExercisesPage ()
 		{
 			InitializeComponent ();
 
             exerciseController = new ExerciseController();
-
-            ListViewExercises.ItemsSource = exercises;
         }
 
         protected override async void OnAppearing()
         {
-            exercises = new ObservableCollection<ExerciseViewModel>(await exerciseController.GetAllExercisesById());
+            exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesById());
+            SortAndRefresh();
+        }
+
+        private void SortAndRefresh()
+        {
+            exercises.Sort((x, y) => x.Type.CompareTo(y.Type));
+            ListViewExercises.ItemsSource = null;
+            ListViewExercises.ItemsSource = exercises;
         }
 
         private async void LogoTapped(object sender, EventArgs e)
@@ -41,7 +47,7 @@ namespace DizzyProject.View
                 if(await exerciseController.FavoriteExercise(exercise))
                 {
                     exercise.Type = ExerciseType.Favorite;
-                    new ExerciseController().SortExercisesByType(exercises.ToList());
+                    SortAndRefresh();
                 }
             }
             else if(exercise.Type == ExerciseType.Favorite)
@@ -49,7 +55,7 @@ namespace DizzyProject.View
                 if (await exerciseController.UnfavoriteExercise(exercise))
                 {
                     exercise.Type = ExerciseType.Normal;
-                    new ExerciseController().SortExercisesByType(exercises.ToList());
+                    SortAndRefresh();
                 }
             }
         }
