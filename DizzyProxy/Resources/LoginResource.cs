@@ -24,6 +24,7 @@ namespace DizzyProxy.Resources
             {
                 case UserType.Patient: return await new PatientResource().GetPatientAsync(token.Subject);
                 case UserType.Physiotherapist: return await new PhysiotherapistResource().GetPhysiotherapistAsync(token.Subject);
+                default: throw new ApplicationException("Unknown user type.");
             }
         }
     }
