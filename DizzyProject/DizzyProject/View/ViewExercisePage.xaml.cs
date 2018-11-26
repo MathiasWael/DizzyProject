@@ -14,27 +14,25 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ViewExercisePage : ContentPage
 	{
-        Exercise selectedExercise;
         PhysiotherapistController physC;
         Physiotherapist phys;
-        ExerciseViewModel exercisev;
-		public ViewExercisePage (Exercise exercise)
+        ExerciseViewModel selectedExercise;
+		public ViewExercisePage (ExerciseViewModel exercise)
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
+                       
 
-            ExerciseViewModel exercisev = new ExerciseViewModel(selectedExercise);            
-
-            if (exercisev.isRecommended)
+            if (selectedExercise.isRecommended)
             {
-                note.Text = exercisev.Recommendation.Note;
+                note.Text = selectedExercise.Recommendation.Note;
                 physName.Text = phys.FullName;
             }
 		}
 
         protected override async void OnAppearing()
         {
-            phys = await physC.GetPhysioById(exercisev.Recommendation.PhysiotherapistId);
+            phys = await physC.GetPhysioById(selectedExercise.Recommendation.PhysiotherapistId);
         }
 
         private async void DoExercise_Pressed(object sender, EventArgs e)

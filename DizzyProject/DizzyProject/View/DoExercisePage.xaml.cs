@@ -1,4 +1,5 @@
-﻿using DizzyProxy.Models;
+﻿using DizzyProject.ViewModels;
+using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DoExercisePage : ContentPage
 	{
-        Exercise selectedExercise;
-		public DoExercisePage (Exercise exercise)
+        ExerciseViewModel selectedExercise;
+		public DoExercisePage (ExerciseViewModel exercise)
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
