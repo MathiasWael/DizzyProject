@@ -1,4 +1,5 @@
-﻿using DizzyProxy.Models;
+﻿using DizzyProject.ViewModels;
+using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,14 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
+
+            ExerciseViewModel exercisev = new ExerciseViewModel(selectedExercise);
+
+            if(exercisev.isRecommended)
+            {
+                note.Text = exercisev.Recommendation.Note;
+                phy
+            }
 		}
 
         private async void DoExercise_Pressed(object sender, EventArgs e)

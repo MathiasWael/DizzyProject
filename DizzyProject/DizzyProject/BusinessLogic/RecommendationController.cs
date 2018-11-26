@@ -7,12 +7,12 @@ using DizzyProxy.Resources;
 
 namespace DizzyProject.BusinessLogic
 {
-    public class PhysiotherapistController
+    public class RecommendationController
     {
-        PhysiotherapistResource physRes;
-        public async Task<Physiotherapist> getPhysioById(long id)
+        RecommendationResource recResource;
+        public async Task<Recommendation> GetRecById(long id)
         {
-            return await physRes.GetPhysiotherapistAsync(id);
+            return await recResource.getRecommendationById(id);
         }
     }
 }
