@@ -21,6 +21,8 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
             selectedExercise = exercise;
+            BindingContext = selectedExercise;
+            physC = new PhysiotherapistController();
 		}
 
         protected override async void OnAppearing()

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.LoginPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="White">
-            <Entry x:Name="EmailEntry" Text="annalarsen@hotmail.com" Placeholder="Email" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-            <Entry x:Name="PasswordEntry" Text="Password123" Placeholder="Password" WidthRequest="300" IsPassword="True" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
-            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                <Button Pressed="CreateAccount" Text="Create Account" BackgroundColor="White" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
-                <Button Pressed="Login_Pressed" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+        <StackLayout VerticalOptions="End"  BackgroundColor="White">
+            <Entry x:Name="EmailEntry" Text="annalarsen@hotmail.com" Placeholder="Email" WidthRequest="300" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="PasswordEntry" Text="Password123" Placeholder="Password" WidthRequest="300" IsPassword="True" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout VerticalOptions="End">
+                <Button Pressed="Login_Pressed" BackgroundColor="Orange" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill"/>
+                <Button Pressed="CreateAccount" BackgroundColor="Orange" Text="Create Account" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

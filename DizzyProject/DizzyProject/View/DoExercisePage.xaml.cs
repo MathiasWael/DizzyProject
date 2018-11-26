@@ -16,8 +16,11 @@ namespace DizzyProject.View
         ExerciseViewModel selectedExercise;
 		public DoExercisePage (ExerciseViewModel exercise)
 		{
-			InitializeComponent ();
+			InitializeComponent ();           
             selectedExercise = exercise;
+            BindingContext = selectedExercise;
+
+            reviewof.Text = "Review of " + selectedExercise.Name;
         }
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
