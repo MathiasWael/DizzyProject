@@ -7,13 +7,13 @@ namespace DizzyProxy.Models
     public class JsonWebToken
     {
         [JsonProperty("token")]
-        public string Token { get; set; }
+        public string Encoded { get; set; }
 
         public long Subject
         {
             get
             {
-                JwtSecurityToken token = new JwtSecurityToken(Token);
+                JwtSecurityToken token = new JwtSecurityToken(Encoded);
                 return Convert.ToInt64(token.Subject);
             }
         }
@@ -22,7 +22,7 @@ namespace DizzyProxy.Models
         {
             get
             {
-                JwtSecurityToken token = new JwtSecurityToken(Token);
+                JwtSecurityToken token = new JwtSecurityToken(Encoded);
                 return (UserType)Enum.Parse(typeof(UserType), token.Payload["type"].ToString(), true);
             }
         }

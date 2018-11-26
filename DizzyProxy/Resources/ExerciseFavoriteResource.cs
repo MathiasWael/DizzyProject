@@ -11,18 +11,21 @@ namespace DizzyProxy.Resources
     {
         public async Task<List<Exercise>> GetAllFavoriteExercises() 
         {
-            Request request = new Request(Method.GET, "favoriteexercises");
+            Request request = new Request(Method.GET, "patients/"+ Token.Subject + "/favoriteexercises");
             return await ExecuteAsync<List<Exercise>>(request);
         }
 
-        public Exercise FavoriteExercise(long userId, long exerciseId)
+        public async Task<bool> CreateFavoriteExercise(long exerciseId)
         {
-            return new Exercise();
+            Request request = new Request(Method.POST, "patients/" + Token.Subject + "/favoriteexercises");
+            request.Body["exercise_id"] = exerciseId;
+            return await ExecuteAsync(request);
         }
 
-        public Exercise UnfavoriteExercise(long userId, long exerciseId)
+        public async Task<bool> DeleteFavoriteExercise(long exerciseId)
         {
-            return new Exercise();
+            Request request = new Request(Method.DELETE, "patients/" + Token.Subject + "/favoriteexercises/" + exerciseId);
+            return await ExecuteAsync(request);
         }
     }
 }

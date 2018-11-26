@@ -32,27 +32,25 @@ namespace DizzyProject.View
             exercises = new ObservableCollection<ExerciseViewModel>(await exerciseController.GetAllExercisesById());
         }
 
-        private void LogoTapped(object sender, EventArgs e)
+        private async void LogoTapped(object sender, EventArgs e)
         {
             Image image = (Image)sender;
             ExerciseViewModel exercise = (ExerciseViewModel)image.BindingContext;
             if (exercise.Type == ExerciseType.Normal)
             {
-                exerciseController.FavoriteExercise(exercise, 1); //temp id
-
-                //temp code
-                exercises.Remove(exercise);
-                exercise.Type = ExerciseType.Favorite;
-                exercises.Insert(6, exercise);
+                if(await exerciseController.FavoriteExercise(exercise))
+                {
+                    exercise.Type = ExerciseType.Favorite;
+                    new ExerciseController().SortExercisesByType(exercises.ToList());
+                }
             }
             else if(exercise.Type == ExerciseType.Favorite)
             {
-                exerciseController.UnfavoriteExercise(exercise, 1); //temp id
-                
-                //temp code
-                exercises.Remove(exercise);
-                exercise.Type = ExerciseType.Normal;
-                exercises.Insert(12, exercise);
+                if (await exerciseController.UnfavoriteExercise(exercise))
+                {
+                    exercise.Type = ExerciseType.Normal;
+                    new ExerciseController().SortExercisesByType(exercises.ToList());
+                }
             }
         }
 

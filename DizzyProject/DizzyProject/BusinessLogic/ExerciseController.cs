@@ -28,8 +28,13 @@ namespace DizzyProject.BusinessLogic
                     ex.Type = ExerciseType.Recommended;
                 }
             }
-            temp.Sort((x, y) => x.Type.CompareTo(y.Type));
+            SortExercisesByType(temp);
             return temp;
+        }
+
+        public void SortExercisesByType(List<ExerciseViewModel> exercises)
+        {
+            exercises.Sort((x, y) => x.Type.CompareTo(y.Type));
         }
 
         private List<ExerciseViewModel> convertToViewModel(List<Exercise> exercises, ExerciseType type)
@@ -44,14 +49,14 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        public ExerciseViewModel FavoriteExercise(ExerciseViewModel exercise, long userId)
+        public async Task<bool> FavoriteExercise(ExerciseViewModel exerciseViewModel)
         {
-            return null;
+            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exerciseViewModel.Id);
         }
 
-        public ExerciseViewModel UnfavoriteExercise(ExerciseViewModel exercise, long userId)
+        public async Task<bool> UnfavoriteExercise(ExerciseViewModel exercise)
         {
-            return null;
+            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exercise.Id);
         }
     }
 }
