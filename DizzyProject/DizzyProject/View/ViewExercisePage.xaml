@@ -11,7 +11,10 @@
                         <Label FontSize="Large" TextColor="Gray" Text="{Binding Updated}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label FontSize="Medium" TextColor="Gray" Text="{Binding Created}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
-                <Button Text="Go back to index" CornerRadius="10" BorderWidth="1" Pressed="Button_Pressed" VerticalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Button Text="Do exercise" CornerRadius="10" BorderWidth="1" Pressed="DoExercise_Pressed" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="Go back to index" CornerRadius="10" BorderWidth="1" Pressed="BackButton_Pressed" VerticalOptions="CenterAndExpand" />
+                </StackLayout> 
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

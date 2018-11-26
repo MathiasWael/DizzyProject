@@ -12,12 +12,19 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ViewExercisePage : ContentPage
 	{
+        Exercise selectedExercise;
 		public ViewExercisePage (Exercise exercise)
 		{
 			InitializeComponent ();
+            selectedExercise = exercise;
 		}
 
-        private async void Button_Pressed(object sender, EventArgs e)
+        private async void DoExercise_Pressed(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new DoExercisePage(selectedExercise)));
+        }
+
+        private async void BackButton_Pressed(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new ExercisesPage()));
         }

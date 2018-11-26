@@ -4,11 +4,11 @@
              x:Class="DizzyProject.View.DizzyRegisterPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="register your dizziness" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="15"/>
+            <Label Text="How dizzy are you?" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="15"/>
             <Label x:Name="DizzyLevelLabel" FontSize="75" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
-            <Slider Maximum="10.0" Minimum="0.0" Value="5.0" VerticalOptions="StartAndExpand" ValueChanged="Slider_ValueChanged"/>
-            <Editor WidthRequest="300" HeightRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="LightGray"/>
-            <Button Text="Submit" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" CornerRadius="10" BorderWidth="1" WidthRequest="200"/>
+            <Slider Maximum="10.0" Minimum="0.0" Value="5.0" VerticalOptions="StartAndExpand" ValueChanged="Slider_ValueChanged" MinimumTrackColor="Gray" ThumbColor="Red" MaximumTrackColor="Black"/>
+            <Entry x:Name="Note" WidthRequest="300" HorizontalOptions="CenterAndExpand" BackgroundColor="Gray" HorizontalTextAlignment="Start"/>
+            <Button Text="Submit" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10" BorderWidth="1" WidthRequest="200"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

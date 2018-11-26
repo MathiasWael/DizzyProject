@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.PatientsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListViewPatients" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                </StackLayout>
+                                <Label Text="{Binding Description}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
