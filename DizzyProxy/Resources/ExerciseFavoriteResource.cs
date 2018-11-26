@@ -9,20 +9,23 @@ namespace DizzyProxy.Resources
 {
     public class ExerciseFavoriteResource : Resource
     {
-        public async Task<List<Exercise>> GetAllFavoriteExercises() 
+        public async Task<List<Exercise>> GetAllFavoriteExercises(long userId) 
         {
-            Request request = new Request(Method.GET, "favoriteexercises");
+            Request request = new Request(Method.GET, "patients/"+ userId + "/favoriteexercises");
             return await ExecuteAsync<List<Exercise>>(request);
         }
 
-        public Exercise FavoriteExercise(long userId, long exerciseId)
+        public async Task<Exercise> CreateFavoriteExercise(long userId, long exerciseId)
         {
-            return new Exercise();
+            Request request = new Request(Method.POST, "patients/" + userId + "/favoriteexercises");
+            request.Body["exercise_id"] = exerciseId;
+            return await ExecuteAsync<Exercise>(request);
         }
 
-        public Exercise UnfavoriteExercise(long userId, long exerciseId)
+        public async Task<Exercise> DeleteFavoriteExercise(long userId, long exerciseId)
         {
-            return new Exercise();
+            Request request = new Request(Method.DELETE, "patients/" + userId + "/favoriteexercises/" + exerciseId);
+            return await ExecuteAsync<Exercise>(request);
         }
     }
 }

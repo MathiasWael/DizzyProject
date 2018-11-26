@@ -10,11 +10,11 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        public async Task<List<ExerciseViewModel>> GetAllExercisesById()
+        public async Task<List<ExerciseViewModel>> GetAllExercisesById(long userId)
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             temp.AddRange(convertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
-            temp.AddRange(convertToViewModel(await new ExerciseFavoriteResource().GetAllFavoriteExercises(), ExerciseType.Favorite));
+            temp.AddRange(convertToViewModel(await new ExerciseFavoriteResource().GetAllFavoriteExercises(userId), ExerciseType.Favorite));
             temp.AddRange(convertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
 
             List<Recommendation> recommendations = await new RecommendationResource().GetAllRecommendations();
@@ -44,12 +44,15 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        public ExerciseViewModel FavoriteExercise(ExerciseViewModel exercise, long userId)
+        public async Task<ExerciseViewModel> FavoriteExercise(ExerciseViewModel exerciseViewModel, long userId)
         {
-            return null;
+            Exercise exercise = await new ExerciseFavoriteResource().CreateFavoriteExercise(userId, exerciseViewModel.Id);
+            ExerciseViewModel exerciseVm = new ExerciseViewModel(exercise);
+            exerciseVm.Type = ExerciseType.Favorite;
+            return exerciseVm;
         }
 
-        public ExerciseViewModel UnfavoriteExercise(ExerciseViewModel exercise, long userId)
+        public ExerciseViewModel UnfavoriteExercise(ExerciseViewModel exercise)
         {
             return null;
         }
