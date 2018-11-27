@@ -76,6 +76,7 @@
     <Compile Include="Resources\CustomExercisePatientResource.cs" />
     <Compile Include="Resources\ExerciseFavoriteResource.cs" />
     <Compile Include="Resources\ExerciseResource.cs" />
+    <Compile Include="Resources\LocationResource.cs" />
     <Compile Include="Resources\LoginResource.cs" />
     <Compile Include="Resources\Method.cs" />
     <Compile Include="Resources\PatientResource.cs" />

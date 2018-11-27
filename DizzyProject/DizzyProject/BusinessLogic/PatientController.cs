@@ -11,7 +11,7 @@ namespace DizzyProject.BusinessLogic
     public class PatientController
     {   
 
-        public async Task<List<Patient>> GetAllPatients()
+        public async Task<List<Patient>> GetAllPatientsAsync()
         {
             List<Patient> temp = new List<Patient>();
             try
@@ -25,6 +25,16 @@ namespace DizzyProject.BusinessLogic
             }
 
             return temp;
+        }
+
+        public async Task<Patient> CreatePatientAsync(string firstName, string lastName, string email, string password)
+        {
+            return await new PatientResource().CreatePatientAsync(firstName, lastName, email, password);
+        }
+
+        public async Task<Patient> UpdatePatientAsync()
+        {
+
         }
     }
 }

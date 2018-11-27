@@ -19,7 +19,7 @@ namespace DizzyProject.View
         private Sex sex;
         private Country country;
         private CountryController countryController;
-        private PatientResource patientResource;
+        private PatientController PatientController;
         public RegisterPatientPage()
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace DizzyProject.View
                 Sex.Male
             };
 
+            PatientController = new PatientController();
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
         }
@@ -114,7 +115,7 @@ namespace DizzyProject.View
                     LocationId = location.Id
                 };
 
-                await patientResource.CreatePatientAsync(patient.FirstName, patient.LastName, patient.Email, password1);
+                await PatientController.CreatePatientAsync(patient.FirstName, patient.LastName, patient.Email, password1);
             }
         }
     }
