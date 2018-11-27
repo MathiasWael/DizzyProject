@@ -13,7 +13,7 @@ namespace DizzyProxyTests
     public class CustomExerciseTests
     {
         [TestMethod]
-        public void GetAllExercisesTest_Successful()
+        public void GetAllCustomExercisesTest_Successful()
         {
             // Arrange
             new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
