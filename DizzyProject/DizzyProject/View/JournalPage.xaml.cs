@@ -1,4 +1,6 @@
 ﻿using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
+using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +15,61 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class JournalPage : ContentPage
 	{
-        private JournalEntryController journalEntryController;
+        private JournalLogController journalLogController;
+        private List<JournalLogViewModel> journalLogs;
+
+        private enum SelectedTimeRange { ThisWeek, ThisMonth, Later }
+        private SelectedTimeRange timeRange;
+
 		public JournalPage ()
 		{
 			InitializeComponent();
 
-            journalEntryController = new JournalEntryController();
+            journalLogController = new JournalLogController();
 		}
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            journalEntryController.getAllJournalEntries();
+            journalLogs = await journalLogController.getAllJournalEntries();
+            ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
+            timeRange = SelectedTimeRange.ThisWeek;
+            ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
+        }
 
-            ListViewJournalsWeek.ItemsSource = journalEntryController.getThisWeekJournals();
-            ListViewJournalsMonth.ItemsSource = journalEntryController.getThisMonthJournals();
-            ListViewJournalsLater.ItemsSource = journalEntryController.getLaterJournals();
+        private void WeekButton_Pressed(object sender, EventArgs args)
+        {
+            if(timeRange != SelectedTimeRange.ThisWeek)
+            {
+                ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
+                ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
+                ThisMonthButton.BackgroundColor = Color.LightBlue;
+                LaterButton.BackgroundColor = Color.LightBlue;
+                timeRange = SelectedTimeRange.ThisWeek;
+            }
+        }
+
+        private void MonthButton_Pressed(object sender, EventArgs args)
+        {
+            if (timeRange != SelectedTimeRange.ThisMonth)
+            {
+                ListViewJournal.ItemsSource = journalLogController.getThisMonthJournals(journalLogs);
+                ThisWeekButton.BackgroundColor = Color.LightBlue;
+                ThisMonthButton.BackgroundColor = Color.FromHex("#3e83f2");
+                LaterButton.BackgroundColor = Color.LightBlue;
+                timeRange = SelectedTimeRange.ThisMonth;
+            }
+        }
+
+        private void LaterButton_Pressed(object sender, EventArgs args)
+        {
+            if (timeRange != SelectedTimeRange.Later)
+            {
+                ListViewJournal.ItemsSource = journalLogController.getLaterJournals(journalLogs);
+                ThisWeekButton.BackgroundColor = Color.LightBlue;
+                ThisMonthButton.BackgroundColor = Color.LightBlue;
+                LaterButton.BackgroundColor = Color.FromHex("#3e83f2");
+                timeRange = SelectedTimeRange.Later;
+            }
         }
     }
 }
