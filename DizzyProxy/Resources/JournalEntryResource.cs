@@ -1,17 +1,18 @@
-﻿using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
 
 namespace DizzyProxy.Resources
 {
     public class JournalEntryResource : Resource
     {
-        public async Task<List<JournalEntry>> GetAllJournalEntries(string date)
+        public List<JournalEntry> GetAllJournalEntries(string date) =>
+            GetAllJournalEntriesAsync(date).Result;
+
+        public async Task<List<JournalEntry>> GetAllJournalEntriesAsync(string date)
         {
-            Request request = new Request(Method.GET, "journalentries?date=" + date);
+            Request request = new Request(Method.GET, "journalentries");
+            if (date != null) request.Query["date"] = date;
             return await ExecuteAsync<List<JournalEntry>>(request);
         }
     }

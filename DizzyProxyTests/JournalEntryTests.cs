@@ -26,7 +26,7 @@ namespace DizzyProxyTests
             Helpers.Login();
 
             // Act
-            List<JournalEntry> journalEntries = new JournalEntryResource().GetAllJournalEntries("2018-11-28").Result;
+            List<JournalEntry> journalEntries = new JournalEntryResource().GetAllJournalEntries("2018-11-28");
 
             // Assert
             Assert.AreEqual(2, journalEntries.Count());
