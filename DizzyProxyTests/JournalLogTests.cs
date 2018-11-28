@@ -12,17 +12,24 @@ namespace DizzyProxyTests
     [TestClass]
     public class JournalLogTests
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Helpers.SetBaseAddress();
+            Helpers.Wipe();
+        }
+
         [TestMethod]
         public void GetAllJournalLogsTest_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            Helpers.Login();
 
             // Act
-            List<JournalLog> journalLogs = new JournalLogResource().GetAllExercises().Result;
+            List<JournalLog> journalLogs = new JournalLogResource().GetAllJournalLogs().Result;
 
             // Assert
-            Assert.AreEqual(4, exercises.Count());
+            Assert.AreEqual(7, journalLogs.Count());
         }
     }
 }
