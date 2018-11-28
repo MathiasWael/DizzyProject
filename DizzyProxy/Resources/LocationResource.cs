@@ -9,6 +9,9 @@ namespace DizzyProxy.Resources
 {
     public class LocationResource : Resource
     {
+        public Location CreateLocation(int zipCode, string address) 
+            => CreateLocationAsync(zipCode, address).Result;
+
         public async Task<Location> CreateLocationAsync(int zipCode, string address)
         {
             Request request = new Request(Method.POST, "locations");
@@ -16,6 +19,9 @@ namespace DizzyProxy.Resources
             request.Body["address"] = address;
             return await ExecuteAsync<Location>(request);
         }
+
+        public Location GetLocation(long id) 
+            => GetLocationAsync(id).Result;
 
         public async Task<Location> GetLocationAsync(long id)
         {

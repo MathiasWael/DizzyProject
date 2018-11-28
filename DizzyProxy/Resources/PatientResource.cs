@@ -33,6 +33,9 @@ namespace DizzyProxy.Resources
             return await GetPatientAsync(Token.Subject);
         }
 
+        public Patient UpdatePatient(Patient patient) 
+            => UpdatePatientAsync(patient).Result;
+
         public async Task<Patient> UpdatePatientAsync(Patient patient)
         {
             Request request = new Request(Method.PUT, "patients");

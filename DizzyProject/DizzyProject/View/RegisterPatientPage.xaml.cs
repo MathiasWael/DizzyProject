@@ -19,7 +19,7 @@ namespace DizzyProject.View
         private Sex sex;
         private Country country;
         private CountryController countryController;
-        private PatientController PatientController;
+        private PatientController patientController;
         public RegisterPatientPage()
         {
             InitializeComponent();
@@ -65,20 +65,11 @@ namespace DizzyProject.View
 
         private async Task Submit_PressedAsync(object sender, EventArgs e)
         {
-            bool success = false;
-            string password1 = Password1.Text;
-            string password2 = Password2.Text;
-
-            if(password1 != password2)
+            if(Password1.Text != Password2.Text)
             {
                 await DisplayAlert("Password mismatch", "Passwords do not match", "OK");
             }
             else
-            {
-                success = true;
-            }
-
-            if(success == true)
             {
                 string h = Height.Text;
                 short height = Convert.ToInt16(h);
@@ -92,30 +83,11 @@ namespace DizzyProject.View
                 string c = City.Text;
                 long city = Convert.ToInt64(c);
 
-                Location location = new Location
-                {
-                    Address = Address.Text,
-                    CityId = city,
-                    ZipCode = zipCode,
-                    CountryId = country.Id
-                };
+                Location location = new LocationController().CreateLocation(zipCode, Address.Text);
 
-                Patient patient = new Patient
-                {
-                    Created = DateTime.Now,
-                    Updated = DateTime.Now,
-                    FirstName = FirstName.Text,
-                    LastName = LastName.Text,
-                    Email = Email.Text,
-                    Phone = PhoneNumber.Text,
-                    Weight = weight,
-                    Height = height,
-                    BirthDate = datePicked,
-                    Sex = sex,
-                    LocationId = location.Id
-                };
+                Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
 
-                await PatientController.CreatePatientAsync(patient.FirstName, patient.LastName, patient.Email, password1);
+                patientController.UpdatePatient(patient);
             }
         }
     }
