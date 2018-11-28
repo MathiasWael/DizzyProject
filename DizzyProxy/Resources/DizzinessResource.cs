@@ -21,5 +21,8 @@ namespace DizzyProxy.Resources
             request.Body["note"] = note;
             return await ExecuteAsync<Dizziness>(request);
         }
+
+        public Dizziness Submit(int? exercise_id, int dizziness, string note)
+           => SubmitAsync(null, dizziness, note).Result;
     }
 }

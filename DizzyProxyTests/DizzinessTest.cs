@@ -14,12 +14,11 @@ namespace DizzyProxyTests
         public void CreateDizzinessTest_Successful() //dun work, login giver connection fejl
         {
             // Arrange
-            DizzinessResource dc = new DizzinessResource();
+            DizzinessResource dr = new DizzinessResource();
             new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
 
             // Act
-            Task<Dizziness> td = dc.SubmitAsync(null, 7, "Er svimmel i dag - Anna");
-            Dizziness d = (Dizziness)td.AsyncState;
+            Dizziness d = dr.Submit(null, 7, "Er svimmel i dag - Anna");
 
             // Assert
             Assert.AreEqual(d.Note, "Er svimmel i dag - Anna");
