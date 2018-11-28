@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.EditProfilePage"
+             Title="Edit profile">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Name" FontSize="Large"/>
+                <Label Text="{Binding FullName}" FontSize="Medium"/>
+                <Label Text="Email" FontSize="Large"/>
+                <Entry x:Name="Email" Placeholder="{Binding Email}" FontSize="Medium" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Phone number" FontSize="Large"/>
+                <Entry x:Name="PhoneNumber" Keyboard="Numeric" Placeholder="{Binding Phone}" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Address" FontSize="Large"/>
+                <Entry x:Name="Address" Placeholder="{Binding Address}" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="City and Zip code" FontSize="Large"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry x:Name="City" Placeholder="{Binding City}" WidthRequest="250"/>
+                    <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" Placeholder="{Binding ZipCode}" WidthRequest="250"/>
+                </StackLayout>
+                <Label Text="Country" FontSize="20" TextColor="Black"/>
+                <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"></Picker>
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry x:Name="Height" Keyboard="Numeric" Placeholder="{Binding Height}" WidthRequest="250"/>
+                    <Label Text="cm" FontSize="20" WidthRequest="250"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Entry x:Name="Weight" Keyboard="Numeric" Placeholder="{Binding Weight}" WidthRequest="250"/>
+                    <Label Text="kg" FontSize="20" WidthRequest="250"/>
+                </StackLayout>
+                <Label Text="Gender" FontSize="20" TextColor="Black"/>
+                <Picker x:Name="genderPicker" SelectedIndexChanged="OnGenderChange"/>
+                <Label Text="Select your birthdate" FontSize="20" TextColor="Black"/>
+                <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="1/1/2000" DateSelected="DatePicker_OnDateSleceted"/>
+                <Label Text="Enter your password" FontSize="20" TextColor="Black"/>
+                <Entry x:Name="Password1" Placeholder="Password*" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
+                <Entry x:Name="Password2" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Pressed="Edit_PressedAsync"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -41,11 +41,13 @@ namespace DizzyProject.View
                     case (int)HomeMenuItemType.Journal:
                         MenuPages.Add(id, new NavigationPage(new JournalPage()));
                         break;
-                    case (int)HomeMenuItemType.Logout:
-                        
+                    case (int)HomeMenuItemType.Logout:                       
                         break;
                     case (int)HomeMenuItemType.Statistics:
                         MenuPages.Add(id, new NavigationPage(new StatisticsPage()));
+                        break;
+                    case (int)HomeMenuItemType.EditProfile:
+                        MenuPages.Add(id, new NavigationPage(new EditProfilePage()));
                         break;
                 }
             }

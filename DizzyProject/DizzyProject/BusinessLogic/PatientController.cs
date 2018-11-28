@@ -27,15 +27,20 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        public Patient CreatePatient(string firstName, string lastName, string email, string password)
+        public async Task<Patient> CreatePatientAsync(string firstName, string lastName, string email, string password)
         {
-            return new PatientResource().CreatePatient(firstName, lastName, email, password);
+            return await new PatientResource().CreatePatientAsync(firstName, lastName, email, password);
         }
 
-        public async Task<Patient> UpdatePatient(Patient patient, string password)
+        public async Task<Patient> UpdatePatientAsync(Patient patient, string password)
         {
 
            return await new PatientResource().UpdatePatientAsync(patient, password);
+        }
+
+        public async Task<Patient> GetPatientAsync(long id)
+        {
+            return await new PatientResource().GetPatientAsync(id);
         }
     }
 }

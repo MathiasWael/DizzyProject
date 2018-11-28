@@ -16,7 +16,7 @@ namespace DizzyProject.BusinessLogic
             _logins = new LoginResource();
         }
 
-        public async Task<User> Login(string email, string password)
+        public async Task<User> LoginAsync(string email, string password)
         {
             return await _logins.CreateLoginAsync(email, password);
         }

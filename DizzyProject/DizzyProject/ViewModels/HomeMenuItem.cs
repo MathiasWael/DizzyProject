@@ -11,7 +11,8 @@ namespace DizzyProject.ViewModels
         Exercises,
         Journal,
         Logout,
-        Statistics
+        Statistics,
+        EditProfile
     }
     public class HomeMenuItem
     {
