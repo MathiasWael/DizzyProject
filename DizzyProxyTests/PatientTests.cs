@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DizzyProxy;
 using DizzyProxy.Models;
-using DizzyProxy.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DizzyProxyTests

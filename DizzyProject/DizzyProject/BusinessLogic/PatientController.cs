@@ -32,10 +32,10 @@ namespace DizzyProject.BusinessLogic
             return new PatientResource().CreatePatient(firstName, lastName, email, password);
         }
 
-        public Patient UpdatePatient(Patient patient, string password)
+        public async Task<Patient> UpdatePatient(Patient patient, string password)
         {
-            return new Patient();
-            //return new PatientResource().UpdatePatient();
+
+           return await new PatientResource().UpdatePatientAsync(patient, password);
         }
     }
 }

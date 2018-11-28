@@ -85,10 +85,10 @@ namespace DizzyProject.View
             {
                 try
                 {
-                    Location location = new LocationController().CreateLocation(zipCode, Address.Text);
+                    Location location = await new LocationController().CreateLocation(zipCode, Address.Text);
                     Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
                     patient.LocationId = location.Id;
-                    patientController.UpdatePatient(patient, Password1.Text);
+                    await patientController.UpdatePatient(patient, Password1.Text);
                     await Navigation.PushModalAsync(new LoginPage(Email.Text, Password1.Text));
                 }
                 catch (ConnectionException)

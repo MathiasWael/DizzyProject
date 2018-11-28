@@ -3,19 +3,20 @@ using DizzyProxy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DizzyProject.BusinessLogic
 {
     public class LocationController
     {
-        public Location GetLocation(long id)
+        public async Task<Location> GetLocation(long id)
         {
-            return new LocationResource().GetLocation(id);
+            return await new LocationResource().GetLocationAsync(id);
         }
 
-        public Location CreateLocation(int zipCode, string address)
+        public async Task<Location> CreateLocation(int zipCode, string address)
         {
-            return new LocationResource().CreateLocation(zipCode, address);
+            return await new LocationResource().CreateLocationAsync(zipCode, address);
         }
     }
 }
