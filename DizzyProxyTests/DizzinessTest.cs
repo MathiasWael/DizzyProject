@@ -10,12 +10,14 @@ namespace DizzyProxyTests
     [TestClass]
     public class DizzinessTest
     {
+        LoginResource lr = new LoginResource();
+        DizzinessResource dr = new DizzinessResource();
+
         [TestMethod]
         public void CreateDizzinessTest_Successful() //dun work, login giver connection fejl
         {
             // Arrange
-            DizzinessResource dr = new DizzinessResource();
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            lr.CreateLogin("annalarsen@hotmail.com", "Password123");
 
             // Act
             Dizziness d = dr.Submit(null, 7, "Er svimmel i dag - Anna");
