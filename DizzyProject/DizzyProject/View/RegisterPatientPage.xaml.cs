@@ -31,7 +31,7 @@ namespace DizzyProject.View
                 Sex.Male
             };
 
-            PatientController = new PatientController();
+            patientController = new PatientController();
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
         }
@@ -84,9 +84,7 @@ namespace DizzyProject.View
                 long city = Convert.ToInt64(c);
 
                 Location location = new LocationController().CreateLocation(zipCode, Address.Text);
-
                 Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
-
                 patientController.UpdatePatient(patient);
             }
         }

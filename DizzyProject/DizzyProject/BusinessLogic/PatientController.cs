@@ -34,7 +34,8 @@ namespace DizzyProject.BusinessLogic
 
         public Patient UpdatePatient(Patient patient)
         {
-            return new PatientResource().UpdatePatient();
+            return new Patient();
+            //return new PatientResource().UpdatePatient();
         }
     }
 }
