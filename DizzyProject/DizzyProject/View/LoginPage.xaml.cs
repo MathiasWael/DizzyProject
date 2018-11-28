@@ -44,7 +44,7 @@ namespace DizzyProject
             {
                 switch (ex.ErrorCode)
                 {
-                    case 40: await DisplayAlert(AppResources.ApiError40Title, AppResources.ApiError40Description, AppResources.DialogOk); break;
+                    case 40: await DisplayAlert(AppResources.ApiError40Title, ex.Message, AppResources.DialogOk); break;
                     case 41: await DisplayAlert(AppResources.ApiError41Title, AppResources.ApiError41Description, AppResources.DialogOk); break;
                     case 50: await DisplayAlert(AppResources.ApiError50Title, AppResources.ApiError50Description, AppResources.DialogOk); break;
                     default: await DisplayAlert(AppResources.ApiErrorDefaultTitle, AppResources.ApiErrorDefaultDescription, AppResources.DialogOk); break;

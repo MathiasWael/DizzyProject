@@ -9,7 +9,10 @@ namespace DizzyProxy.Resources
 {
     public class ExerciseResource : Resource
     {
-        public async Task<List<Exercise>> GetAllExercises()
+        public List<Exercise> GetAllExercises() =>
+            GetAllExercisesAsync().Result;
+
+        public async Task<List<Exercise>> GetAllExercisesAsync()
         {
             Request request = new Request(Method.GET, "exercises");
             return await ExecuteAsync<List<Exercise>>(request);

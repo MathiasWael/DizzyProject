@@ -10,30 +10,28 @@ namespace DizzyProxyTests
     [TestClass]
     public class ExerciseTests
     {
-        [TestMethod]
-        public void GetAllExercisesTest_Successful()
+        public WipeResource wipeResource = new WipeResource();
+        public LoginResource loginResource = new LoginResource();
+        public ExerciseResource exerciseResource = new ExerciseResource();
+
+        [TestInitialize]
+        public void TestInitialize()
         {
-            // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
-
-            // Act
-            List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
-
-            // Assert
-            Assert.AreEqual(4, exercises.Count());
+            Helpers.SetBaseAddress();
+            wipeResource.CreateWipe();
         }
 
         [TestMethod]
-        public void getExercise_fromId()
+        public void GetAllExercises_ValidInput_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            loginResource.CreateLogin("annalarsen@hotmail.com", "Password123");
 
-            //Act
-            List<Exercise> exercises = new ExerciseResource().GetAllExercises().Result;
+            // Act
+            List<Exercise> exercises = exerciseResource.GetAllExercises();
 
-            //Assert
-            Assert.IsTrue(exercises[5].Description == "Touch Toes', 'Bend down and touch your toes and up again and repeat");
+            // Assert
+            Assert.AreEqual(12, exercises.Count());
         }
     }
 }

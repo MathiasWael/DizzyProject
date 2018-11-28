@@ -1,10 +1,7 @@
-﻿using System;
-using DizzyProxy.Resources;
+﻿using DizzyProxy.Resources;
 using System.Collections.Generic;
 using System.Linq;
-using DizzyProxy;
 using DizzyProxy.Models;
-using DizzyProxy.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DizzyProxyTests
@@ -12,29 +9,37 @@ namespace DizzyProxyTests
     [TestClass]
     public class PatientTests
     {
-        [TestMethod]
-        public void CreatePatient()
-        {
-            // Arrange
-            PatientResource patients = new PatientResource();
+        public WipeResource wipeResource = new WipeResource();
+        public LoginResource loginResource = new LoginResource();
+        public PatientResource patientResource = new PatientResource();
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Helpers.SetBaseAddress();
+            wipeResource.CreateWipe();
+        }
+
+        [TestMethod]
+        public void CreatePatient_ValidInput_Succesful()
+        {
             // Act
-            Patient patient = patients.CreatePatient("Lars", "Larsen", "lars1@gmail.com", "Password123");
+            Patient patient = patientResource.CreatePatient("Lars", "Larsen", "lars@email.com", "Password123");
 
             // Assert
             Assert.AreEqual("Lars", patient.FirstName);
             Assert.AreEqual("Larsen", patient.LastName);
-            Assert.AreEqual("lars1@gmail.com", patient.Email);
+            Assert.AreEqual("lars@email.com", patient.Email);
         }
 
         [TestMethod]
-        public void GetAllPatientsTest_Successful()
+        public void GetAllPatients_ValidInput_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            loginResource.CreateLogin("annalarsen@hotmail.com", "Password123");
 
             // Act
-            List<Patient> patients = new PatientResource().GetAllPatientsAsync().Result;
+            List<Patient> patients = new PatientResource().GetAllPatients();
 
             // Assert
             Assert.AreEqual(5, patients.Count());
