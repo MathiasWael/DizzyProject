@@ -9,15 +9,13 @@ namespace DizzyProxyTests
     [TestClass]
     public class PatientTests
     {
-        public WipeResource wipeResource = new WipeResource();
-        public LoginResource loginResource = new LoginResource();
         public PatientResource patientResource = new PatientResource();
 
         [TestInitialize]
         public void TestInitialize()
         {
             Helpers.SetBaseAddress();
-            wipeResource.CreateWipe();
+            Helpers.Wipe();
         }
 
         [TestMethod]
@@ -36,7 +34,7 @@ namespace DizzyProxyTests
         public void GetAllPatients_ValidInput_Successful()
         {
             // Arrange
-            loginResource.CreateLogin("annalarsen@hotmail.com", "Password123");
+            Helpers.Login();
 
             // Act
             List<Patient> patients = new PatientResource().GetAllPatients();

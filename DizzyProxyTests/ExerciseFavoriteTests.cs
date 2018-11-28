@@ -12,14 +12,23 @@ namespace DizzyProxyTests
     [TestClass]
     public class ExerciseFavoriteTests
     {
+        public ExerciseFavoriteResource exerciseFavoriteResource = new ExerciseFavoriteResource();
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Helpers.SetBaseAddress();
+            Helpers.Wipe();
+        }
+
         [TestMethod]
-        public void GetAllFavoriteExercisesTest_Successful()
+        public void GetAllFavoriteExercises_ValidInput_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            Helpers.Login();
 
             // Act
-            List<Exercise> exercises = new ExerciseFavoriteResource().GetAllFavoriteExercises().Result;
+            List<Exercise> exercises = exerciseFavoriteResource.GetAllFavoriteExercises();
 
             // Assert
             Assert.AreEqual(2, exercises.Count());
@@ -34,16 +43,15 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void CreateFavoriteExercise_Successful()
+        public void CreateFavoriteExercise__ValidInput_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
-            ExerciseFavoriteResource exerciseFavoriteResource = new ExerciseFavoriteResource();
+            Helpers.Login();
 
             // Act
-            List<Exercise> exercisesBefore = new ExerciseFavoriteResource().GetAllFavoriteExercises().Result;
-            bool success = exerciseFavoriteResource.CreateFavoriteExercise(1).Result;
-            List<Exercise> exercises = new ExerciseFavoriteResource().GetAllFavoriteExercises().Result;
+            List<Exercise> exercisesBefore = exerciseFavoriteResource.GetAllFavoriteExercises();
+            bool success = exerciseFavoriteResource.CreateFavoriteExercise(1);
+            List<Exercise> exercises = exerciseFavoriteResource.GetAllFavoriteExercises();
 
             // Assert
             Assert.AreEqual(exercisesBefore.Count() + 1, exercises.Count());
@@ -52,22 +60,18 @@ namespace DizzyProxyTests
             Assert.AreEqual(6, exercises[2].AuthorId);
             Assert.AreEqual("Lunges", exercises[2].Name);
             Assert.AreEqual("", exercises[2].Description);
-
-            //Temp clean up
-            bool clean = exerciseFavoriteResource.DeleteFavoriteExercise(1).Result;
         }
 
         [TestMethod]
         public void DeleteFavoriteExercise_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
-            ExerciseFavoriteResource exerciseFavoriteResource = new ExerciseFavoriteResource();
+            Helpers.Login();
 
             // Act
-            List<Exercise> exercisesBefore = new ExerciseFavoriteResource().GetAllFavoriteExercises().Result;
-            bool success = exerciseFavoriteResource.DeleteFavoriteExercise(3).Result;
-            List<Exercise> exercises = new ExerciseFavoriteResource().GetAllFavoriteExercises().Result;
+            List<Exercise> exercisesBefore = exerciseFavoriteResource.GetAllFavoriteExercises();
+            bool success = exerciseFavoriteResource.DeleteFavoriteExercise(3);
+            List<Exercise> exercises = exerciseFavoriteResource.GetAllFavoriteExercises();
 
             // Assert
             Assert.AreEqual(exercisesBefore.Count() - 1, exercises.Count());
@@ -76,9 +80,6 @@ namespace DizzyProxyTests
             Assert.AreEqual(7, exercises[0].AuthorId);
             Assert.AreEqual("Turn Head", exercises[0].Name);
             Assert.AreEqual("Look to your left and then your right and repeat", exercises[0].Description);
-
-            //Temp clean up
-            bool clean = exerciseFavoriteResource.CreateFavoriteExercise(3).Result;
         }
     }
 }

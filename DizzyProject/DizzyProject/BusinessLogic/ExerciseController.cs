@@ -14,9 +14,9 @@ namespace DizzyProject.BusinessLogic
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             temp.AddRange(ConvertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
-            temp.AddRange(ConvertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
+            temp.AddRange(ConvertToViewModel(await new ExerciseResource().GetAllExercisesAsync(), ExerciseType.Normal));
 
-            foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercises())
+            foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercisesAsync())
             {
                 ExerciseViewModel ex = temp.Find(x => x.Id == favorite.Id);
                 ex.Type = ExerciseType.Favorite;
@@ -45,12 +45,12 @@ namespace DizzyProject.BusinessLogic
 
         public async Task<bool> FavoriteExercise(ExerciseViewModel exerciseViewModel)
         {
-            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exerciseViewModel.Id);
+            return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exerciseViewModel.Id);
         }
 
         public async Task<bool> UnfavoriteExercise(ExerciseViewModel exercise)
         {
-            return await new ExerciseFavoriteResource().CreateFavoriteExercise(exercise.Id);
+            return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exercise.Id);
         }
     }
 }

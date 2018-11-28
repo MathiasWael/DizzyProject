@@ -10,21 +10,29 @@ namespace DizzyProxyTests
     [TestClass]
     public class DizzinessTest
     {
-        LoginResource lr = new LoginResource();
-        DizzinessResource dr = new DizzinessResource();
+        DizzinessResource dizzinessResource = new DizzinessResource();
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Helpers.SetBaseAddress();
+            Helpers.Wipe();
+        }
 
         [TestMethod]
-        public void CreateDizzinessTest_Successful() //dun work, login giver connection fejl
+        public void CreateDizziness_NoExercise_Successful() //dun work, login giver connection fejl
         {
             // Arrange
-            lr.CreateLogin("annalarsen@hotmail.com", "Password123");
+            Helpers.Login();
+            int level = 7;
+            string note = "Er svimmel i dag - Anna";
 
             // Act
-            Dizziness d = dr.Submit(null, 7, "Er svimmel i dag - Anna");
+            Dizziness dizziness = dizzinessResource.Submit(null, level, note);
 
             // Assert
-            Assert.AreEqual(d.Note, "Er svimmel i dag - Anna");
-            Assert.AreEqual(d.Level, 7);
+            Assert.AreEqual(dizziness.Level, level);
+            Assert.AreEqual(dizziness.Note, note);
         }
     }
 }
