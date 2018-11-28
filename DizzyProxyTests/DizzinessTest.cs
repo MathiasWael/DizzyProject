@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,9 +8,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DizzyProxyTests
 {
     [TestClass]
-    public class ExerciseTests
+    public class DizzinessTest
     {
-        public ExerciseResource exerciseResource = new ExerciseResource();
+        DizzinessResource dizzinessResource = new DizzinessResource();
 
         [TestInitialize]
         public void TestInitialize()
@@ -20,16 +20,19 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void GetAllExercises_ValidInput_Successful()
+        public void CreateDizziness_NoExercise_Successful() //dun work, login giver connection fejl
         {
             // Arrange
             Helpers.Login();
+            int level = 7;
+            string note = "Er svimmel i dag - Anna";
 
             // Act
-            List<Exercise> exercises = exerciseResource.GetAllExercises();
+            Dizziness dizziness = dizzinessResource.Submit(null, level, note);
 
             // Assert
-            Assert.AreEqual(12, exercises.Count());
+            Assert.AreEqual(dizziness.Level, level);
+            Assert.AreEqual(dizziness.Note, note);
         }
     }
 }

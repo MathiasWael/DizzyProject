@@ -27,12 +27,30 @@ namespace DizzyProxy.Resources
             }
         }
 
-        private static HttpClient Client { get; set; }
-
-        public Resource()
+        private static HttpClient _client;
+        private static HttpClient Client
         {
-            if (Client == null)
-                Client = new HttpClient { BaseAddress = new Uri("http://10.0.2.2:4000/v1/") };
+            get
+            {
+                if (_client == null)
+                {
+                    _client = new HttpClient
+                    {
+                        BaseAddress = new Uri("http://10.0.2.2:4000/v1/")
+                    };
+                }
+                return _client;
+            }
+        }
+        
+        public Resource() {}
+
+        public static string BaseAddress
+        {
+            set
+            {
+                Client.BaseAddress = new Uri(value);
+            }
         }
 
         private async Task<string> ExecuteAsyncHelper(Request request)
@@ -52,7 +70,7 @@ namespace DizzyProxy.Resources
                     default: throw new ApplicationException("Request method not set");
                 }
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex) when (ex is HttpRequestException || ex is WebException)
             {
                 throw new ConnectionException("Unable to connect to the service", ex);
             }

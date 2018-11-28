@@ -90,6 +90,7 @@
     <Compile Include="Resources\RecommendationResource.cs" />
     <Compile Include="Resources\Request.cs" />
     <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\WipeResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
