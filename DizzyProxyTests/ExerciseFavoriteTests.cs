@@ -56,10 +56,10 @@ namespace DizzyProxyTests
             // Assert
             Assert.AreEqual(exercisesBefore.Count() + 1, exercises.Count());
             Assert.AreEqual(3, exercises.Count());
-            Assert.AreEqual(1, exercises[2].Id);
-            Assert.AreEqual(6, exercises[2].AuthorId);
-            Assert.AreEqual("Lunges", exercises[2].Name);
-            Assert.AreEqual("", exercises[2].Description);
+            Assert.AreEqual(1, exercises[0].Id);
+            Assert.AreEqual(6, exercises[0].AuthorId);
+            Assert.AreEqual("Lunges", exercises[0].Name);
+            Assert.AreEqual("", exercises[0].Description);
         }
 
         [TestMethod]

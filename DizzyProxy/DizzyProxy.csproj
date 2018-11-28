@@ -80,6 +80,7 @@
     <Compile Include="Resources\DizzinessResource.cs" />
     <Compile Include="Resources\ExerciseFavoriteResource.cs" />
     <Compile Include="Resources\ExerciseResource.cs" />
+    <Compile Include="Resources\JournalEntryResource.cs" />
     <Compile Include="Resources\JournalLogResource.cs" />
     <Compile Include="Resources\LocationResource.cs" />
     <Compile Include="Resources\LoginResource.cs" />

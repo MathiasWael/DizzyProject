@@ -54,6 +54,7 @@
     <Compile Include="ExerciseFavoriteTests.cs" />
     <Compile Include="ExerciseTests.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="JournalEntryTests.cs" />
     <Compile Include="JournalLogTests.cs" />
     <Compile Include="PatientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

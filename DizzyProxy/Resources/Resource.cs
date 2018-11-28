@@ -55,8 +55,8 @@ namespace DizzyProxy.Resources
 
         private async Task<string> ExecuteAsyncHelper(Request request)
         {
-            string json = JsonConvert.SerializeObject(request.Body, Formatting.Indented);
-            StringContent body = new StringContent(json, Encoding.UTF8, "application/json");
+            string jsonBody = JsonConvert.SerializeObject(request.Body, Formatting.Indented);
+            StringContent body = new StringContent(jsonBody, Encoding.UTF8, "application/json");
             HttpResponseMessage response;
 
             try
