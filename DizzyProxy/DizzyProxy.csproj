@@ -64,6 +64,7 @@
     <Compile Include="Models\CustomExercise.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\JournalEntry.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Physiotherapist.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Resources\CustomExercisePatientResource.cs" />
     <Compile Include="Resources\ExerciseFavoriteResource.cs" />
     <Compile Include="Resources\ExerciseResource.cs" />
+    <Compile Include="Resources\JournalEntryResource.cs" />
     <Compile Include="Resources\LoginResource.cs" />
     <Compile Include="Resources\Method.cs" />
     <Compile Include="Resources\PatientResource.cs" />
