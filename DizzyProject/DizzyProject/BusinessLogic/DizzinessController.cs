@@ -15,5 +15,10 @@ namespace DizzyProject.BusinessLogic
         {
             return await dr.SubmitAsync(null, dizziness, note);
         }
+
+        public async Task<List<Dizziness>> getAllDizzinessesByDateAsync(string date)
+        {
+            return await new DizzinessResource().GetAllDizzinesses(date);
+        }
     }
 }

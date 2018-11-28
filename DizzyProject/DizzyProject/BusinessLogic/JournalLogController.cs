@@ -11,7 +11,7 @@ namespace DizzyProject.BusinessLogic
 {
     public class JournalLogController
     {
-        public async Task<List<JournalLogViewModel>> getAllJournalEntries()
+        public async Task<List<JournalLogViewModel>> getAllJournalLogsAsync()
         {
             List<JournalLog> temp = await new JournalLogResource().GetAllJournalLogs();
             return temp.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));

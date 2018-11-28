@@ -43,12 +43,12 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        public async Task<bool> FavoriteExercise(ExerciseViewModel exerciseViewModel)
+        public async Task<bool> FavoriteExerciseAsync(ExerciseViewModel exerciseViewModel)
         {
             return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exerciseViewModel.Id);
         }
 
-        public async Task<bool> UnfavoriteExercise(ExerciseViewModel exercise)
+        public async Task<bool> UnfavoriteExerciseAsync(ExerciseViewModel exercise)
         {
             return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exercise.Id);
         }
