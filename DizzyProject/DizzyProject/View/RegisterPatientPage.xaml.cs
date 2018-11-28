@@ -85,7 +85,8 @@ namespace DizzyProject.View
 
                 Location location = new LocationController().CreateLocation(zipCode, Address.Text);
                 Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
-                patientController.UpdatePatient(patient);
+                patient.LocationId = location.Id;
+                patientController.UpdatePatient(patient, Password1.Text);
             }
         }
     }
