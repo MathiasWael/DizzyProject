@@ -9,6 +9,7 @@ using DizzyProxy;
 using DizzyProject.BusinessLogic;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -19,7 +20,7 @@ namespace DizzyProject.View
         private Sex sex;
         private Country country;
         private CountryController countryController;
-        private PatientResource patientResource;
+        private PatientController patientController;
         public RegisterPatientPage()
         {
             InitializeComponent();
@@ -62,59 +63,49 @@ namespace DizzyProject.View
             }
         }
 
-        private async Task Submit_PressedAsync(object sender, EventArgs e)
+        private async void Submit_PressedAsync(object sender, EventArgs e)
         {
-            bool success = false;
-            string password1 = Password1.Text;
-            string password2 = Password2.Text;
+            string h = Height.Text;
+            short height = Convert.ToInt16(h);
 
-            if(password1 != password2)
+            string w = Weight.Text;
+            short weight = Convert.ToInt16(w);
+
+            string z = ZipCode.Text;
+            int zipCode = Convert.ToInt32(z);
+
+            string c = City.Text;
+            long city = Convert.ToInt64(c);
+
+            if (Password1.Text != Password2.Text)
             {
                 await DisplayAlert("Password mismatch", "Passwords do not match", "OK");
             }
             else
             {
-                success = true;
-            }
-
-            if(success == true)
-            {
-                string h = Height.Text;
-                short height = Convert.ToInt16(h);
-
-                string w = Weight.Text;
-                short weight = Convert.ToInt16(w);
-
-                string z = ZipCode.Text;
-                int zipCode = Convert.ToInt32(z);
-
-                string c = City.Text;
-                long city = Convert.ToInt64(c);
-
-                Location location = new Location
+                try
                 {
-                    Address = Address.Text,
-                    CityId = city,
-                    ZipCode = zipCode,
-                    CountryId = country.Id
-                };
-
-                Patient patient = new Patient
+                    Location location = await new LocationController().CreateLocation(zipCode, Address.Text);
+                    Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
+                    patient.LocationId = location.Id;
+                    await patientController.UpdatePatient(patient, Password1.Text);
+                    await Navigation.PushModalAsync(new LoginPage(Email.Text, Password1.Text));
+                }
+                catch (ConnectionException)
                 {
-                    Created = DateTime.Now,
-                    Updated = DateTime.Now,
-                    FirstName = FirstName.Text,
-                    LastName = LastName.Text,
-                    Email = Email.Text,
-                    Phone = PhoneNumber.Text,
-                    Weight = weight,
-                    Height = height,
-                    BirthDate = datePicked,
-                    Sex = sex,
-                    LocationId = location.Id
-                };
+                    await DisplayAlert(AppResources.ApiErrorConnectionTitle, AppResources.ApiErrorConnectionDescription, AppResources.DialogOk);
+                }
+                catch (ApiException ex)
+                {
+                    switch (ex.ErrorCode)
+                    {
+                        case 40: await DisplayAlert(AppResources.ApiError40Title, AppResources.ApiError40Description, AppResources.DialogOk); break;
+                        case 41: await DisplayAlert(AppResources.ApiError41Title, AppResources.ApiError41Description, AppResources.DialogOk); break;
+                        case 50: await DisplayAlert(AppResources.ApiError50Title, AppResources.ApiError50Description, AppResources.DialogOk); break;
+                        default: await DisplayAlert(AppResources.ApiErrorDefaultTitle, AppResources.ApiErrorDefaultDescription, AppResources.DialogOk); break;
+                    }
+                }
 
-                await patientResource.CreatePatientAsync(patient.FirstName, patient.LastName, patient.Email, password1);
             }
         }
     }
