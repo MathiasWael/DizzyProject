@@ -9,12 +9,12 @@ namespace DizzyProject.BusinessLogic
 {
     public class LocationController
     {
-        public async Task<Location> GetLocation(long id)
+        public async Task<Location> GetLocationAsync(long id)
         {
             return await new LocationResource().GetLocationAsync(id);
         }
 
-        public async Task<Location> CreateLocation(int zipCode, string address)
+        public async Task<Location> CreateLocationAsync(int zipCode, string address)
         {
             return await new LocationResource().CreateLocationAsync(zipCode, address);
         }

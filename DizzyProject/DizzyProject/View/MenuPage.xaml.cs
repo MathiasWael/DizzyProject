@@ -27,6 +27,7 @@ namespace DizzyProject.View
                 new HomeMenuItem {Type = HomeMenuItemType.Journal, Title = "Journal"},
                 new HomeMenuItem {Type = HomeMenuItemType.Exercises, Title = "Exercises"},
                 new HomeMenuItem {Type = HomeMenuItemType.Statistics, Title = "Statistics"},
+                new HomeMenuItem {Type = HomeMenuItemType.EditProfile, Title = "Edit Profile"},
                 new HomeMenuItem {Type = HomeMenuItemType.Logout, Title = "Logout"},
             };
 

@@ -18,12 +18,10 @@ namespace DizzyProject
 	{
         private LoginController _controller = new LoginController();
 
-		public LoginPage (string username, string password)
+        public LoginPage ()
 		{
 			InitializeComponent();
             _controller = new LoginController();
-            EmailEntry.Text = username;
-            PasswordEntry.Text = password;
         }
 
         private async void CreateAccount(object sender, EventArgs args)
@@ -35,7 +33,7 @@ namespace DizzyProject
         {
             try
             {
-                User user = await _controller.Login(EmailEntry.Text, PasswordEntry.Text);
+                User user = await _controller.LoginAsync(EmailEntry.Text, PasswordEntry.Text);
                 Application.Current.MainPage = new MasterPage();
             }
             catch (ConnectionException)
