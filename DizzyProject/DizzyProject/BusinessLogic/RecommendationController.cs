@@ -10,7 +10,7 @@ namespace DizzyProject.BusinessLogic
     public class RecommendationController
     {
         RecommendationResource recResource;
-        public async Task<Recommendation> GetRecById(long id)
+        public async Task<Recommendation> GetRecByIdAsync(long id)
         {
             return await recResource.getRecommendationById(id);
         }

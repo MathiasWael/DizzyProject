@@ -1,39 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DizzyProject.View.RegisterPatientPage">
+             x:Class="DizzyProject.View.RegisterPatientPage"
+             Title="Create Account">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Personal information" FontSize="20" TextColor="Black"/>
-                <Entry x:Name="FirstName" Placeholder="First Name*" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="LastName" Placeholder="Last Name*" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="Email" Placeholder="Email*" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="PhoneNumber" Keyboard="Numeric" Placeholder="Phone Number (Optional)" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="Address" Placeholder="Address (Optional)" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-
-                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="City" Placeholder="City (Optional)" WidthRequest="250"/>
-                    <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" Placeholder="Zipcode" WidthRequest="250"/>
-                </StackLayout>
-                <Label Text="Country (Optional)" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"></Picker>
-                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="Height" Keyboard="Numeric" Placeholder="Height (Optional)" WidthRequest="250"/>
-                    <Label Text="cm" FontSize="20" WidthRequest="250"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="Weight" Keyboard="Numeric" Placeholder="Weight (Optional)" WidthRequest="250"/>
-                    <Label Text="kg" FontSize="20" WidthRequest="250"/>
-                </StackLayout>
-                <Label Text="Gender (Optional)" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="genderPicker" SelectedIndexChanged="OnGenderChange"/>
-                <Label Text="Select your birthdate (Optional)" FontSize="20" TextColor="Black"/>
-                <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="1/1/2000" DateSelected="DatePicker_OnDateSleceted"/>
+                <Entry x:Name="FirstName" Placeholder="First Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="LastName" Placeholder="Last Name" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="Email" Placeholder="Email" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="Enter your password" FontSize="20" TextColor="Black"/>
-                <Entry x:Name="Password1" Placeholder="Password*" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="Password1" Placeholder="Password" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
-                <Entry x:Name="Password2" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="Password2" Placeholder="Reenter password" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Pressed="Submit_PressedAsync"/>
             </StackLayout>
        </ScrollView>

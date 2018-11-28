@@ -27,7 +27,7 @@ namespace DizzyProject.View
         protected override async void OnAppearing()
         {
             patientController = new PatientController();
-            patients = new List<Patient>(await patientController.GetAllPatients());
+            patients = new List<Patient>(await patientController.GetAllPatientsAsync());
 
             ListViewPatients.ItemsSource = patients;
         }

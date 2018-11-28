@@ -10,11 +10,11 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
-        public async Task<List<ExerciseViewModel>> GetAllExercisesById()
+        public async Task<List<ExerciseViewModel>> GetAllExercisesByIdAsync()
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
-            temp.AddRange(convertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
-            temp.AddRange(convertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
+            temp.AddRange(ConvertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
+            temp.AddRange(ConvertToViewModel(await new ExerciseResource().GetAllExercises(), ExerciseType.Normal));
 
             foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercises())
             {
@@ -31,7 +31,7 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        private List<ExerciseViewModel> convertToViewModel(List<Exercise> exercises, ExerciseType type)
+        private List<ExerciseViewModel> ConvertToViewModel(List<Exercise> exercises, ExerciseType type)
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             foreach (Exercise item in exercises)

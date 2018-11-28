@@ -30,7 +30,7 @@ namespace DizzyProject.View
             if (selectedExercise.isRecommended)
             {
                 note.Text = selectedExercise.Recommendation.Note;
-                phys = await physC.GetPhysioById(selectedExercise.Recommendation.PhysiotherapistId);
+                phys = await physC.GetPhysioByIdAsync(selectedExercise.Recommendation.PhysiotherapistId);
                 physName.Text = phys.FullName;
             }
         }

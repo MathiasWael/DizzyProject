@@ -4,9 +4,45 @@
              x:Class="DizzyProject.View.JournalPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to JournalPage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label>This week</Label>
+            <ListView x:Name="ListViewJournalsWeek" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Created}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label>This Month</Label>
+            <ListView x:Name="ListViewJournalsMonth" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Created}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label>Later</Label>
+            <ListView x:Name="ListViewJournalsLater" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Created}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

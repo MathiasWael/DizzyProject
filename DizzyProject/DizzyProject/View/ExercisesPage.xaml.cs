@@ -27,7 +27,7 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesById());
+            exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesByIdAsync());
             SortAndRefresh();
         }
 

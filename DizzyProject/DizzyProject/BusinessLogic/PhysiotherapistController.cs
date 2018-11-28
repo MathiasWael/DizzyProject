@@ -10,7 +10,7 @@ namespace DizzyProject.BusinessLogic
     public class PhysiotherapistController
     {
 
-        public async Task<Physiotherapist> GetPhysioById(long id)
+        public async Task<Physiotherapist> GetPhysioByIdAsync(long id)
         {
             return await new PhysiotherapistResource().GetPhysiotherapistAsync(id);
         }
