@@ -9,6 +9,7 @@ using DizzyProxy;
 using DizzyProject.BusinessLogic;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -31,7 +32,6 @@ namespace DizzyProject.View
                 Sex.Male
             };
 
-            patientController = new PatientController();
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
         }
@@ -63,30 +63,49 @@ namespace DizzyProject.View
             }
         }
 
-        private async Task Submit_PressedAsync(object sender, EventArgs e)
+        private async void Submit_PressedAsync(object sender, EventArgs e)
         {
-            if(Password1.Text != Password2.Text)
+            string h = Height.Text;
+            short height = Convert.ToInt16(h);
+
+            string w = Weight.Text;
+            short weight = Convert.ToInt16(w);
+
+            string z = ZipCode.Text;
+            int zipCode = Convert.ToInt32(z);
+
+            string c = City.Text;
+            long city = Convert.ToInt64(c);
+
+            if (Password1.Text != Password2.Text)
             {
                 await DisplayAlert("Password mismatch", "Passwords do not match", "OK");
             }
             else
             {
-                string h = Height.Text;
-                short height = Convert.ToInt16(h);
+                try
+                {
+                    Location location = new LocationController().CreateLocation(zipCode, Address.Text);
+                    Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
+                    patient.LocationId = location.Id;
+                    patientController.UpdatePatient(patient, Password1.Text);
+                    await Navigation.PushModalAsync(new LoginPage(Email.Text, Password1.Text));
+                }
+                catch (ConnectionException)
+                {
+                    await DisplayAlert(AppResources.ApiErrorConnectionTitle, AppResources.ApiErrorConnectionDescription, AppResources.DialogOk);
+                }
+                catch (ApiException ex)
+                {
+                    switch (ex.ErrorCode)
+                    {
+                        case 40: await DisplayAlert(AppResources.ApiError40Title, AppResources.ApiError40Description, AppResources.DialogOk); break;
+                        case 41: await DisplayAlert(AppResources.ApiError41Title, AppResources.ApiError41Description, AppResources.DialogOk); break;
+                        case 50: await DisplayAlert(AppResources.ApiError50Title, AppResources.ApiError50Description, AppResources.DialogOk); break;
+                        default: await DisplayAlert(AppResources.ApiErrorDefaultTitle, AppResources.ApiErrorDefaultDescription, AppResources.DialogOk); break;
+                    }
+                }
 
-                string w = Weight.Text;
-                short weight = Convert.ToInt16(w);
-
-                string z = ZipCode.Text;
-                int zipCode = Convert.ToInt32(z);
-
-                string c = City.Text;
-                long city = Convert.ToInt64(c);
-
-                Location location = new LocationController().CreateLocation(zipCode, Address.Text);
-                Patient patient = patientController.CreatePatient(FirstName.Text, LastName.Text, Email.Text, Password1.Text);
-                patient.LocationId = location.Id;
-                patientController.UpdatePatient(patient, Password1.Text);
             }
         }
     }

@@ -18,10 +18,12 @@ namespace DizzyProject
 	{
         private LoginController _controller = new LoginController();
 
-		public LoginPage ()
+		public LoginPage (string username, string password)
 		{
 			InitializeComponent();
             _controller = new LoginController();
+            EmailEntry.Text = username;
+            PasswordEntry.Text = password;
         }
 
         private async void CreateAccount(object sender, EventArgs args)
