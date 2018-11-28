@@ -43,7 +43,7 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void CreateFavoriteExercise__ValidInput_Successful()
+        public void CreateFavoriteExercise_ValidInput_Successful()
         {
             // Arrange
             Helpers.Login();
@@ -63,7 +63,7 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void DeleteFavoriteExercise_Successful()
+        public void DeleteFavoriteExercise_ValidInput_Successful()
         {
             // Arrange
             Helpers.Login();
