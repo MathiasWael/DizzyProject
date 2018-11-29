@@ -26,7 +26,7 @@ namespace DizzyProxyTests
             Helpers.Login();
 
             // Act
-            List<JournalLog> journalLogs = new JournalLogResource().GetAllJournalLogs().Result;
+            List<JournalLog> journalLogs = new JournalLogResource().GetAllJournalLogsAsync().Result;
 
             // Assert
             Assert.AreEqual(7, journalLogs.Count());

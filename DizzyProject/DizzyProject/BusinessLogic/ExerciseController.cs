@@ -13,7 +13,7 @@ namespace DizzyProject.BusinessLogic
         public async Task<List<ExerciseViewModel>> GetAllExercisesByIdAsync()
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
-            temp.AddRange(ConvertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercises(), ExerciseType.Custom));
+            temp.AddRange(ConvertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercisesAsync(), ExerciseType.Custom));
             temp.AddRange(ConvertToViewModel(await new ExerciseResource().GetAllExercisesAsync(), ExerciseType.Normal));
 
             foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercisesAsync())
@@ -22,7 +22,7 @@ namespace DizzyProject.BusinessLogic
                 ex.Type = ExerciseType.Favorite;
             }
 
-            foreach (Recommendation recommendation in await new RecommendationResource().GetAllRecommendations())
+            foreach (Recommendation recommendation in await new RecommendationResource().GetAllRecommendationsAsync())
             {
                 ExerciseViewModel ex = temp.Find(x => x.Id == recommendation.ExerciseId);
                 ex.Type = ExerciseType.Recommended;

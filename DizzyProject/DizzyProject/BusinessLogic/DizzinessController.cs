@@ -18,7 +18,7 @@ namespace DizzyProject.BusinessLogic
 
         public async Task<List<Dizziness>> getAllDizzinessesByDateAsync(string date)
         {
-            return await new DizzinessResource().GetAllDizzinesses(date);
+            return await new DizzinessResource().GetAllDizzinessesAsync(date);
         }
     }
 }

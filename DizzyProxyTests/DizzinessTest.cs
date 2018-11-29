@@ -43,7 +43,7 @@ namespace DizzyProxyTests
             Helpers.Login();
 
             // Act
-            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinesses("2018-11-28").Result;
+            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesAsync("2018-11-28").Result;
 
             // Assert
             Assert.AreEqual(1, dizzinesses.Count());

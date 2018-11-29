@@ -30,7 +30,7 @@ namespace DizzyProject.View
 
         protected async override void OnAppearing()
         {
-            journalLogs = await journalLogController.getAllJournalEntries();
+            journalLogs = await journalLogController.getAllJournalLogsAsync();
             ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
             timeRange = SelectedTimeRange.ThisWeek;
             ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");

@@ -9,7 +9,7 @@ namespace DizzyProxy.Resources
 {
     public class JournalLogResource : Resource
     {
-        public async Task<List<JournalLog>> GetAllJournalLogs()
+        public async Task<List<JournalLog>> GetAllJournalLogsAsync()
         {
             Request request = new Request(Method.GET, "journallogs");
             return await ExecuteAsync<List<JournalLog>>(request);

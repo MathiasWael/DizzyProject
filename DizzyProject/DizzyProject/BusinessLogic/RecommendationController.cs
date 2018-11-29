@@ -12,7 +12,7 @@ namespace DizzyProject.BusinessLogic
         RecommendationResource recResource;
         public async Task<Recommendation> GetRecByIdAsync(long id)
         {
-            return await recResource.getRecommendationById(id);
+            return await recResource.getRecommendationByIdAsync(id);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DizzyProject.BusinessLogic
     {
         public async Task<List<JournalEntry>> getAllJournalEntriesByDateAsync(string date)
         {
-            return await new JournalEntryResource().GetAllJournalEntries(date);
+            return await new JournalEntryResource().GetAllJournalEntriesAsync(date);
         }
     }
 }

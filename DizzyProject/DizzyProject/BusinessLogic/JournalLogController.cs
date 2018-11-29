@@ -13,7 +13,7 @@ namespace DizzyProject.BusinessLogic
     {
         public async Task<List<JournalLogViewModel>> getAllJournalLogsAsync()
         {
-            List<JournalLog> temp = await new JournalLogResource().GetAllJournalLogs();
+            List<JournalLog> temp = await new JournalLogResource().GetAllJournalLogsAsync();
             return temp.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));
         }
 
