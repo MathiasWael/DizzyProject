@@ -9,12 +9,14 @@ namespace DizzyProxy.Models
 {
     public class Dizziness
     {
+        [JsonProperty("id")]
+        public long Id { get; set; }
         [JsonProperty("patient_id")]
         public long PatientId { get; set; }
         [JsonProperty("exercise_id")]
-        public string ExerciseId { get; set; }
+        public long? ExerciseId { get; set; }
         [JsonProperty("level")]
-        public string Level { get; set; }
+        public int? Level { get; set; }
         [JsonProperty("note")]
         public string Note { get; set; }
         [JsonProperty("created")]

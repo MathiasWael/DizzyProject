@@ -17,5 +17,11 @@ namespace DizzyProxy.Resources
             Request request = new Request(Method.GET, "exercises");
             return await ExecuteAsync<List<Exercise>>(request);
         }
+
+        public async Task<Exercise> GetExerciseAsync(long exerciseId)
+        {
+            Request request = new Request(Method.GET, $"exercises/{exerciseId}");
+            return await ExecuteAsync<Exercise>(request);
+        }
     }
 }

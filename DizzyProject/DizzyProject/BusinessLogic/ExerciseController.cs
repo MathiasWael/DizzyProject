@@ -52,5 +52,10 @@ namespace DizzyProject.BusinessLogic
         {
             return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exercise.Id);
         }
+
+        public async Task<Exercise> GetExerciseByIdAsync(long exerciseId)
+        {
+            return await new ExerciseResource().GetExerciseAsync(exerciseId);
+        }
     }
 }

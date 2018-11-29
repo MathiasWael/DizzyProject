@@ -13,7 +13,7 @@ namespace DizzyProxy.Resources
         {
             get
             {
-                return _path + BuildQueryString();
+                return _path += BuildQueryString();
             }
             set
             {
@@ -26,6 +26,7 @@ namespace DizzyProxy.Resources
             Method = method;
             Path = path;
             Body = new Dictionary<string, object>();
+            Query = new Dictionary<string, object>();
         }
 
         private string BuildQueryString()

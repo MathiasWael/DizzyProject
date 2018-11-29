@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.ViewJournalPage"
+             Title="Journal">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListViewJournalItems" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding CreatedTimeString}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                    <Grid HorizontalOptions="EndAndExpand">
+                                        <Grid.RowDefinitions></Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Grid.Row="0" Source="ExerciseLogo.PNG" IsVisible="{Binding IsExercise}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="25"/>
+                                        <Image Grid.Column="1" Grid.Row="0" Source="{Binding Logo}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="25"/>
+                                    </Grid>
+                                </StackLayout>
+                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label IsVisible="{Binding IsExercise}" Text="{Binding ExerciseName}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap" TextColor="Blue" HorizontalOptions="EndAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ExerciseLink_Tapped"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -10,7 +10,7 @@
                 <Button x:Name="ThisMonthButton" BackgroundColor="LightBlue" Pressed="MonthButton_Pressed" Text="This Month" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
                 <Button x:Name="LaterButton" BackgroundColor="LightBlue" Pressed="LaterButton_Pressed" Text="Later" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
             </StackLayout>
-            <ListView x:Name="ListViewJournal" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+            <ListView x:Name="ListViewJournal" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="Journal_PressedAsync">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

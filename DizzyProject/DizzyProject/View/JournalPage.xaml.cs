@@ -71,5 +71,10 @@ namespace DizzyProject.View
                 timeRange = SelectedTimeRange.Later;
             }
         }
+
+        private async void Journal_PressedAsync(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new ViewJournalPage(((JournalLogViewModel)e.SelectedItem).Date)));
+        }
     }
 }
