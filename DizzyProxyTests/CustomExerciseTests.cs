@@ -12,14 +12,21 @@ namespace DizzyProxyTests
     [TestClass]
     public class CustomExerciseTests
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            Helpers.SetBaseAddress();
+            Helpers.Wipe();
+        }
+
         [TestMethod]
-        public void GetAllCustomExercisesTest_Successful()
+        public void GetAllCustomExercises_ValidInput_Successful()
         {
             // Arrange
-            new LoginResource().CreateLogin("annalarsen@hotmail.com", "Password123");
+            Helpers.Login();
 
             // Act
-            List<Exercise> exercises = new CustomExercisePatientResource().GetAllCustomExercises().Result;
+            List<Exercise> exercises = new CustomExercisePatientResource().GetAllCustomExercisesAsync().Result;
 
             // Assert
             Assert.AreEqual(2, exercises.Count());

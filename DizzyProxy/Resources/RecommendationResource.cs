@@ -9,13 +9,13 @@ namespace DizzyProxy.Resources
 {
     public class RecommendationResource : Resource
     {
-        public async Task<List<Recommendation>> GetAllRecommendations()
+        public async Task<List<Recommendation>> GetAllRecommendationsAsync()
         {
             Request request = new Request(Method.GET, "recommendations");
             return await ExecuteAsync<List<Recommendation>>(request);
         }
 
-        public async Task<Recommendation> getRecommendationById(long id)
+        public async Task<Recommendation> getRecommendationByIdAsync(long id)
         {
             Request request = new Request(Method.GET, $"Recommendation/{id}");
             return await ExecuteAsync<Recommendation>(request);

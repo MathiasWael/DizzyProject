@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Models
 {
-    public class Dizziness
+    public class JournalEntry
     {
         [JsonProperty("id")]
         public long Id { get; set; }
         [JsonProperty("patient_id")]
         public long PatientId { get; set; }
-        [JsonProperty("exercise_id")]
-        public long? ExerciseId { get; set; }
-        [JsonProperty("level")]
-        public int? Level { get; set; }
         [JsonProperty("note")]
         public string Note { get; set; }
         [JsonProperty("created")]

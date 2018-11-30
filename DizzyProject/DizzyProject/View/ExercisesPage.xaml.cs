@@ -44,7 +44,7 @@ namespace DizzyProject.View
             ExerciseViewModel exercise = (ExerciseViewModel)image.BindingContext;
             if (exercise.Type == ExerciseType.Normal)
             {
-                if(await exerciseController.FavoriteExercise(exercise))
+                if(await exerciseController.FavoriteExerciseAsync(exercise))
                 {
                     exercise.Type = ExerciseType.Favorite;
                     SortAndRefresh();
@@ -52,7 +52,7 @@ namespace DizzyProject.View
             }
             else if(exercise.Type == ExerciseType.Favorite)
             {
-                if (await exerciseController.UnfavoriteExercise(exercise))
+                if (await exerciseController.UnfavoriteExerciseAsync(exercise))
                 {
                     exercise.Type = ExerciseType.Normal;
                     SortAndRefresh();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,10 +10,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DizzyProxyTests
 {
     [TestClass]
-    public class ExerciseTests
+    public class JournalLogTests
     {
-        public ExerciseResource exerciseResource = new ExerciseResource();
-
         [TestInitialize]
         public void TestInitialize()
         {
@@ -20,16 +20,16 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void GetAllExercises_ValidInput_Successful()
+        public void GetAllJournalLogsTest_Successful()
         {
             // Arrange
             Helpers.Login();
 
             // Act
-            List<Exercise> exercises = exerciseResource.GetAllExercises();
+            List<JournalLog> journalLogs = new JournalLogResource().GetAllJournalLogsAsync().Result;
 
             // Assert
-            Assert.AreEqual(12, exercises.Count());
+            Assert.AreEqual(7, journalLogs.Count());
         }
     }
 }

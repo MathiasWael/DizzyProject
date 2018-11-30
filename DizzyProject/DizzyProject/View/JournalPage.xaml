@@ -1,12 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DizzyProject.View.JournalPage">
+             x:Class="DizzyProject.View.JournalPage"
+             Title="Journals">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to JournalPage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <Button x:Name="ThisWeekButton" BackgroundColor="LightBlue" Pressed="WeekButton_Pressed" Text="This Week" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+                <Button x:Name="ThisMonthButton" BackgroundColor="LightBlue" Pressed="MonthButton_Pressed" Text="This Month" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+                <Button x:Name="LaterButton" BackgroundColor="LightBlue" Pressed="LaterButton_Pressed" Text="Later" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+            </StackLayout>
+            <ListView x:Name="ListViewJournal" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="Journal_PressedAsync">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding DateString}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

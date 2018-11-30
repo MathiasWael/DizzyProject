@@ -65,6 +65,8 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Dizziness.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\JournalEntry.cs" />
+    <Compile Include="Models\JournalLog.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Physiotherapist.cs" />
@@ -78,6 +80,8 @@
     <Compile Include="Resources\DizzinessResource.cs" />
     <Compile Include="Resources\ExerciseFavoriteResource.cs" />
     <Compile Include="Resources\ExerciseResource.cs" />
+    <Compile Include="Resources\JournalEntryResource.cs" />
+    <Compile Include="Resources\JournalLogResource.cs" />
     <Compile Include="Resources\LocationResource.cs" />
     <Compile Include="Resources\LoginResource.cs" />
     <Compile Include="Resources\Method.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Resources\RecommendationResource.cs" />
     <Compile Include="Resources\Request.cs" />
     <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\WipeResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
