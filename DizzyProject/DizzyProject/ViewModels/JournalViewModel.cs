@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace DizzyProject.ViewModels
 {
@@ -48,8 +49,9 @@ namespace DizzyProject.ViewModels
         public string Note { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+        public ExerciseViewModel ExerciseViewModel { get; set; }
 
-        public string CreatedTimeString { get { return Created.Hour.ToString() + ":" + Created.Hour.ToString(); } }
+        public string CreatedTimeString { get { return Created.Hour.ToString() + ":" + Created.Minute.ToString(); } }
         public bool IsExercise {
             get
             {

@@ -15,11 +15,11 @@
                                     <Grid HorizontalOptions="EndAndExpand">
                                         <Grid.RowDefinitions></Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
-                                        <Image Grid.Column="0" Grid.Row="0" Source="ExerciseLogo.PNG" IsVisible="{Binding IsExercise}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="25"/>
+                                        <Image Grid.Column="0" Grid.Row="0" Source="exercise.png" IsVisible="{Binding IsExercise}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="25"/>
                                         <Image Grid.Column="1" Grid.Row="0" Source="{Binding Logo}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="25"/>
                                     </Grid>
                                 </StackLayout>
-                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label Text="{Binding Note}" Style="{DynamicResource ListItemDetailTextStyle}"/>
                                 <Label IsVisible="{Binding IsExercise}" Text="{Binding ExerciseName}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap" TextColor="Blue" HorizontalOptions="EndAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="ExerciseLink_Tapped"></TapGestureRecognizer>

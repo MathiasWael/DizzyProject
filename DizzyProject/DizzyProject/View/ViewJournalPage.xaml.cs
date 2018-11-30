@@ -28,9 +28,10 @@ namespace DizzyProject.View
             ListViewJournalItems.ItemsSource = journalViewModels;
         }
 
-        private void ExerciseLink_Tapped(object sender, EventArgs e)
+        private async void ExerciseLink_Tapped(object sender, EventArgs e)
         {
-
+            Label label = (Label)sender;
+            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel)));
         }
     }
 }

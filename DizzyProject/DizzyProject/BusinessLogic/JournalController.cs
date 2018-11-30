@@ -29,8 +29,10 @@ namespace DizzyProject.BusinessLogic
             {
                 if (dizziness.ExerciseId != null)
                 {
+                    ExerciseController exerciseController = new ExerciseController();
                     JournalViewModel journalViewModel = new JournalViewModel(dizziness);
-                    Exercise exercise = await new ExerciseController().GetExerciseByIdAsync((long)dizziness.ExerciseId);
+                    Exercise exercise = await exerciseController.GetExerciseByIdAsync((long)dizziness.ExerciseId);
+                    journalViewModel.ExerciseViewModel = await exerciseController.GetExerciseViewModelByIdAsync((long)dizziness.ExerciseId);
                     journalViewModel.ExerciseName = exercise.Name;
                     temp.Add(journalViewModel);
                 }

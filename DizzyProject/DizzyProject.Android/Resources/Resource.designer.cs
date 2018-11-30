@@ -2280,7 +2280,7 @@ namespace DizzyProject.Droid
 			public const int emptystar = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ExerciseLogo = 2130837607;
+			public const int exercise = 2130837607;
 			
 			// aapt resource value: 0x7f020068
 			public const int ic_audiotrack_dark = 2130837608;

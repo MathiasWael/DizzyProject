@@ -37,16 +37,16 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void GetAllDizzinessesTest_Successful()
+        public void GetAllDizzinessesByDateTest_Successful()
         {
             // Arrange
             Helpers.Login();
 
             // Act
-            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesAsync("2018-11-28").Result;
+            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesAsync("2018-10-15").Result;
 
             // Assert
-            Assert.AreEqual(1, dizzinesses.Count());
+            Assert.AreEqual(3, dizzinesses.Count());
         }
     }
 }

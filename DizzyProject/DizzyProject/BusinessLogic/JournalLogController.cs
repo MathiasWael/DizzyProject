@@ -25,20 +25,26 @@ namespace DizzyProject.BusinessLogic
         public List<JournalLogViewModel> getThisWeekJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-            return journalLogs.FindAll(x => x.Date  >= dateTime);
+            List<JournalLogViewModel> temp = journalLogs.FindAll(x => x.Date >= dateTime);
+            temp.Sort((x, y) => y.Date.CompareTo(x.Date));
+            return temp;
         }
 
         public List<JournalLogViewModel> getThisMonthJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today;
             DateTime dateTimeWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-            return journalLogs.FindAll(x => x.Date.Month == dateTime.Month && x.Date <= dateTimeWeek);
+            List<JournalLogViewModel> temp = journalLogs.FindAll(x => x.Date.Month == dateTime.Month && x.Date <= dateTimeWeek);
+            temp.Sort((x, y) => y.Date.CompareTo(x.Date));
+            return temp;
         }
 
         public List<JournalLogViewModel> getLaterJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today;
-            return journalLogs.FindAll(x => x.Date.Month < dateTime.Month);
+            List<JournalLogViewModel> temp = journalLogs.FindAll(x => x.Date.Month < dateTime.Month);
+            temp.Sort((x, y) => y.Date.CompareTo(x.Date));
+            return temp;
         }
     }
 }

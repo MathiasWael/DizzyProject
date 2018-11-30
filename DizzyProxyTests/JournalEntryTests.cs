@@ -20,16 +20,16 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void GetAllJournalLogsTest_Successful()
+        public void GetAllJournalLogsByDateTest_Successful()
         {
             // Arrange
             Helpers.Login();
 
             // Act
-            List<JournalEntry> journalEntries = new JournalEntryResource().GetAllJournalEntries("2018-11-28");
+            List<JournalEntry> journalEntries = new JournalEntryResource().GetAllJournalEntries("2018-10-15");
 
             // Assert
-            Assert.AreEqual(2, journalEntries.Count());
+            Assert.AreEqual(4, journalEntries.Count());
         }
     }
 }

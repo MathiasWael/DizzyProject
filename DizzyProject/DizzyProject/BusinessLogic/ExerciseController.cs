@@ -31,7 +31,7 @@ namespace DizzyProject.BusinessLogic
             return temp;
         }
 
-        private List<ExerciseViewModel> ConvertToViewModel(List<Exercise> exercises, ExerciseType type)
+        public List<ExerciseViewModel> ConvertToViewModel(List<Exercise> exercises, ExerciseType type)
         {
             List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
             foreach (Exercise item in exercises)
@@ -56,6 +56,12 @@ namespace DizzyProject.BusinessLogic
         public async Task<Exercise> GetExerciseByIdAsync(long exerciseId)
         {
             return await new ExerciseResource().GetExerciseAsync(exerciseId);
+        }
+
+        public async Task<ExerciseViewModel> GetExerciseViewModelByIdAsync(long exerciseId)
+        {
+            List<ExerciseViewModel> temp = await GetAllExercisesByIdAsync();
+            return temp.Find(x => x.Id == exerciseId);
         }
     }
 }
