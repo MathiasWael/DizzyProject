@@ -13,5 +13,11 @@ namespace DizzyProject.BusinessLogic
         {
             return await new JournalEntryResource().GetAllJournalEntriesAsync(date);
         }
+
+        public async Task<bool> CreateJournalEntryAsync(string note)
+        {
+            if (note != null) return await new JournalEntryResource().CreateJournalEntryAsync(note);
+            else return false;
+        }
     }
 }

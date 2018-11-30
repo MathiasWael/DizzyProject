@@ -19,7 +19,7 @@ namespace DizzyProject.BusinessLogic
 
         private static JournalLogViewModel JournalViewConverter(JournalLog journalLog)
         {
-            return new JournalLogViewModel(journalLog);
+            return new JournalLogViewModel { Date = journalLog.Date.AddDays(1)};
         }
 
         public List<JournalLogViewModel> getThisWeekJournals(List<JournalLogViewModel> journalLogs)

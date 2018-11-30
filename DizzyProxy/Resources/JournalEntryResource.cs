@@ -15,5 +15,12 @@ namespace DizzyProxy.Resources
             if (date != null) request.Query["date"] = date;
             return await ExecuteAsync<List<JournalEntry>>(request);
         }
+
+        public async Task<bool> CreateJournalEntryAsync(string note)
+        {
+            Request request = new Request(Method.POST, "journalentries");
+            request.Body["note"] = note;
+            return await ExecuteAsync(request);
+        }
     }
 }

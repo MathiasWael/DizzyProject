@@ -29,7 +29,7 @@ namespace DizzyProxyTests
             List<JournalLog> journalLogs = new JournalLogResource().GetAllJournalLogsAsync().Result;
 
             // Assert
-            Assert.AreEqual(7, journalLogs.Count());
+            Assert.AreEqual(6, journalLogs.Count());
         }
     }
 }

@@ -34,6 +34,8 @@ namespace DizzyProject.View
             ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
             timeRange = SelectedTimeRange.ThisWeek;
             ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
+            ThisMonthButton.BackgroundColor = Color.LightBlue;
+            LaterButton.BackgroundColor = Color.LightBlue;
         }
 
         private void WeekButton_Pressed(object sender, EventArgs args)
@@ -75,6 +77,11 @@ namespace DizzyProject.View
         private async void Journal_PressedAsync(object sender, SelectedItemChangedEventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new ViewJournalPage(((JournalLogViewModel)e.SelectedItem).Date)));
+        }
+
+        private async void ToolbarAdd_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new ViewJournalEntryPage()));
         }
     }
 }

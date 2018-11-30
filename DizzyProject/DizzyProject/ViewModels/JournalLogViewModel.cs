@@ -7,13 +7,8 @@ namespace DizzyProject.ViewModels
 {
     public class JournalLogViewModel
     {
-        public JournalLogViewModel(JournalLog journalLog)
-        {
-            Date = journalLog.Date;
-        }
-
         public DateTime Date;
 
-        public string DateString { get { return Date.Date.ToString("d"); } }
+        public string DateString { get { return Date.Year.ToString() + "-" + Date.Month + "-" + Date.Day; } }
     }
 }
