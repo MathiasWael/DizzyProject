@@ -20,6 +20,7 @@ namespace DizzyProject.View
         public RegisterPatientPage()
         {
             InitializeComponent();
+            patientController = new PatientController();
         }
 
         private async void Submit_PressedAsync(object sender, EventArgs e)

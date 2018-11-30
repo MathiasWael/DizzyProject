@@ -16,7 +16,11 @@ namespace DizzyProject.BusinessLogic
 
         public async Task<Location> CreateLocationAsync(int zipCode, string address)
         {
-            return await new LocationResource().CreateLocationAsync(zipCode, address);
+            //if (zipCode == 0 || address == null){
+
+            //}else{
+                return await new LocationResource().CreateLocationAsync(zipCode, address);
+            //}
         }
     }
 }

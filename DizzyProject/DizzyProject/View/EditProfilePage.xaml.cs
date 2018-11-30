@@ -90,7 +90,7 @@ namespace DizzyProject.View
             else
             {
                 try
-                {
+                {                  
                     Location location = await new LocationController().CreateLocationAsync(zipCode, Address.Text);                    
                     patient.LocationId = location.Id;
                     patient.BirthDate = datePicked;
