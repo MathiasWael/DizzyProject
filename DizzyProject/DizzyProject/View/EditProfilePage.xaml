@@ -13,11 +13,11 @@
                 <Label Text="Phone number" FontSize="Large" TextColor="Black"/>
                 <Entry x:Name="PhoneNumber" Keyboard="Numeric" Placeholder="{Binding Phone}" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="Address" FontSize="Large" TextColor="Black"/>
-                <Entry x:Name="Address" Placeholder="{Binding Address}" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Entry x:Name="Address" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="City and Zip code" FontSize="Large" TextColor="Black"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="City" Placeholder="{Binding City}" WidthRequest="250"/>
-                    <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" Placeholder="{Binding ZipCode}" WidthRequest="250"/>
+                    <Entry x:Name="City" WidthRequest="250"/>
+                    <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Country" FontSize="20" TextColor="Black"/>
                 <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"/>

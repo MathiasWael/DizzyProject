@@ -20,12 +20,23 @@ namespace DizzyProxy.Resources
             return await ExecuteAsync<Location>(request);
         }
 
-        public Location GetLocation(long id) 
+        public Location GetLocation(long? id) 
             => GetLocationAsync(id).Result;
 
-        public async Task<Location> GetLocationAsync(long id)
+        public async Task<Location> GetLocationAsync(long? id)
         {
             Request request = new Request(Method.GET, $"locations/{id}");
+            return await ExecuteAsync<Location>(request);
+        }
+
+        public Location UpdateLocation(Location location)
+            => UpdateLocationAsync(location).Result;
+
+        public async Task<Location> UpdateLocationAsync(Location location)
+        {
+            Request request = new Request(Method.PUT, "locations");
+            request.Body["zip_code"] = location.ZipCode;
+            request.Body["address"] = location.Address;
             return await ExecuteAsync<Location>(request);
         }
     }

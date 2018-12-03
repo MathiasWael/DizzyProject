@@ -21,7 +21,9 @@ namespace DizzyProject.View
         private Country country;
         private CountryController countryController;
         private PatientController patientController;
-        Patient patient;
+        private LocationController locationController;
+        private Patient patient;
+        private Location location;
         public EditProfilePage()
         {
             InitializeComponent();           
@@ -36,10 +38,21 @@ namespace DizzyProject.View
         }
 
         protected override async void OnAppearing()
-        {
+        {           
             patientController = new PatientController();
+            locationController = new LocationController();
             patient = await patientController.GetPatientAsync(Resource.Token.Subject);
             BindingContext = patient;
+
+            if (patient.LocationId != null)
+            {
+                location = await locationController.GetLocationAsync(patient.LocationId);
+            }
+
+            if (location.Address != null)
+            {
+                Address.Placeholder = location.Address;
+            }                   
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
@@ -90,9 +103,15 @@ namespace DizzyProject.View
             else
             {
                 try
-                {                  
-                    Location location = await new LocationController().CreateLocationAsync(zipCode, Address.Text);                    
-                    patient.LocationId = location.Id;
+                {
+                    if(patient.LocationId == null)
+                    {
+                       location = await locationController.CreateLocationAsync(zipCode, Address.Text);
+                    } else
+                    {
+                        location = await locationController.updateLocation(location);
+                    }
+                    patient.LocationId = location.Id;   
                     patient.BirthDate = datePicked;
                     patient.Sex = sex;
                     patient.Phone = PhoneNumber.Text;
