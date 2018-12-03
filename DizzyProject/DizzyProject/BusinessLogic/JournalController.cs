@@ -8,11 +8,10 @@ namespace DizzyProject.BusinessLogic
 {
     public class JournalController
     {
-        public async Task<List<JournalViewModel>> getAllJournalItemsAsync(DateTime dateTime)
+        public async Task<List<JournalViewModel>> GetAllJournalItemsAsync(DateTime dateTime)
         {
-            string date = dateTime.Year.ToString() + "-" + dateTime.Month + "-" + dateTime.Day;
-            List<Dizziness> dizzinesses = await new DizzinessController().getAllDizzinessesByDateAsync(date);
-            List<JournalEntry> journalEntries = await new JournalEntryController().getAllJournalEntriesByDateAsync(date);
+            List<Dizziness> dizzinesses = await new DizzinessController().GetAllDizzinessesByDateAsync(dateTime);
+            List<JournalEntry> journalEntries = await new JournalEntryController().GetAllJournalEntriesByDateAsync(dateTime);
 
             List<JournalViewModel> journalViewModels = new List<JournalViewModel>();
             journalViewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));

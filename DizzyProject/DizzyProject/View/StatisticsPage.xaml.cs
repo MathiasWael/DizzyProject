@@ -16,5 +16,20 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private async void ViewDizzinessGraphButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new DizzinessGraphPage()));
+        }
+
+        private async void StepsGraphButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new StepCountGraphPage()));
+        }
+
+        private async void CombinedGraphButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new CombinedGraphPage()));
+        }
+    }
 }

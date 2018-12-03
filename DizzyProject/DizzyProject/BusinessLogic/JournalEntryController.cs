@@ -9,9 +9,9 @@ namespace DizzyProject.BusinessLogic
 {
     public class JournalEntryController
     {
-        public async Task<List<JournalEntry>> getAllJournalEntriesByDateAsync(string date)
+        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
         {
-            return await new JournalEntryResource().GetAllJournalEntriesAsync(date);
+            return await new JournalEntryResource().GetAllJournalEntriesByDateAsync(dateTime);
         }
 
         public async Task<bool> CreateJournalEntryAsync(string note)

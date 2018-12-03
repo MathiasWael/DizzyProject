@@ -25,10 +25,21 @@ namespace DizzyProxy.Resources
         public Dizziness Submit(int? exercise_id, int dizziness, string note)
            => SubmitAsync(null, dizziness, note).Result;
 
-        public async Task<List<Dizziness>> GetAllDizzinessesAsync(string date)
+        public async Task<List<Dizziness>> GetAllDizzinessesAsync(string query)
         {
-            Request request = new Request(Method.GET, "dizzinesses?date=" + date);
+            Request request = new Request(Method.GET, "dizzinesses" + query);
             return await ExecuteAsync<List<Dizziness>>(request);
+        }
+
+        public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
+        {
+            string date = dateTime.Year.ToString() + "-" + dateTime.Month + "-" + dateTime.Day;
+            return await GetAllDizzinessesAsync("?date=" + date);
+        }
+
+        public async Task<List<Dizziness>> GetAllDizzinessesWithLevelAsync()
+        {
+            return await GetAllDizzinessesAsync("?levelgiven=true");
         }
     }
 }

@@ -41,12 +41,26 @@ namespace DizzyProxyTests
         {
             // Arrange
             Helpers.Login();
+            DateTime dateTime = new DateTime(2018, 10, 15);
 
             // Act
-            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesAsync("2018-10-15").Result;
+            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesByDateAsync(dateTime).Result;
 
             // Assert
             Assert.AreEqual(3, dizzinesses.Count());
+        }
+
+        [TestMethod]
+        public void GetAllDizzinessesWithLevelTest_Successful()
+        {
+            // Arrange
+            Helpers.Login();
+
+            // Act
+            List<Dizziness> dizzinesses = new DizzinessResource().GetAllDizzinessesWithLevelAsync().Result;
+
+            // Assert
+            Assert.AreEqual(23, dizzinesses.Count());
         }
     }
 }

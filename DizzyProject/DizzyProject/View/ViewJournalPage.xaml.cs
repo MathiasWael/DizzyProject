@@ -24,7 +24,7 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            List<JournalViewModel> journalViewModels = await new JournalController().getAllJournalItemsAsync(dateTime);
+            List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(dateTime);
             ListViewJournalItems.ItemsSource = journalViewModels;
         }
 

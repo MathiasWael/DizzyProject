@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DizzyProxy.Models;
 
@@ -6,14 +7,19 @@ namespace DizzyProxy.Resources
 {
     public class JournalEntryResource : Resource
     {
-        public List<JournalEntry> GetAllJournalEntries(string date) =>
-            GetAllJournalEntriesAsync(date).Result;
+        public List<JournalEntry> GetAllJournalEntriesByDate(DateTime dateTime) =>
+            GetAllJournalEntriesByDateAsync(dateTime).Result;
 
-        public async Task<List<JournalEntry>> GetAllJournalEntriesAsync(string date)
+        public async Task<List<JournalEntry>> GetAllJournalEntriesAsync(string query)
         {
-            Request request = new Request(Method.GET, "journalentries");
-            if (date != null) request.Query["date"] = date;
+            Request request = new Request(Method.GET, "journalentries" + query);
             return await ExecuteAsync<List<JournalEntry>>(request);
+        }
+
+        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
+        {
+            string date = dateTime.Year.ToString() + "-" + dateTime.Month + "-" + dateTime.Day;
+            return await GetAllJournalEntriesAsync("?date=" + date);
         }
 
         public async Task<bool> CreateJournalEntryAsync(string note)

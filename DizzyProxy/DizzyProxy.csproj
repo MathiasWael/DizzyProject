@@ -73,6 +73,7 @@
     <Compile Include="Models\Recommendation.cs" />
     <Compile Include="Models\Sex.cs" />
     <Compile Include="Models\JsonWebToken.cs" />
+    <Compile Include="Models\StepCount.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Resources\CountryRessource.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Resources\RecommendationResource.cs" />
     <Compile Include="Resources\Request.cs" />
     <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\StepCountResource.cs" />
     <Compile Include="Resources\WipeResource.cs" />
   </ItemGroup>
   <ItemGroup>

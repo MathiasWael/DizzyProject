@@ -58,6 +58,7 @@
     <Compile Include="JournalLogTests.cs" />
     <Compile Include="PatientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepCountTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
