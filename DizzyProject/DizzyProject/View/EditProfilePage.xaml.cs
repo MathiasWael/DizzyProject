@@ -10,6 +10,7 @@ using DizzyProject.BusinessLogic;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 using DizzyProxy.Exceptions;
+using DizzyProject.ViewModels;
 
 namespace DizzyProject.View
 {
@@ -22,12 +23,20 @@ namespace DizzyProject.View
         private CountryController countryController;
         private PatientController patientController;
         private LocationController locationController;
+        private PatientViewModel patientViewModel;
         private Patient patient;
         private Location location;
         public EditProfilePage()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            country = new Country();
             countryController = new CountryController();
+            patientController = new PatientController();
+            locationController = new LocationController();           
+        }
+
+        protected override async void OnAppearing()
+        {            
             List<Enum> sexes = new List<Enum>()
             {
                 Sex.Female,
@@ -35,24 +44,16 @@ namespace DizzyProject.View
             };
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = countryController.getAllCountries();
-        }
-
-        protected override async void OnAppearing()
-        {           
-            patientController = new PatientController();
-            locationController = new LocationController();
             patient = await patientController.GetPatientAsync(Resource.Token.Subject);
-            BindingContext = patient;
+            patientViewModel = new PatientViewModel(patient);
+            BindingContext = patientViewModel;
 
             if (patient.LocationId != null)
             {
                 location = await locationController.GetLocationAsync(patient.LocationId);
-            }
-
-            if (location.Address != null)
-            {
+                ZipCode.Placeholder = location.ZipCode.ToString();
                 Address.Placeholder = location.Address;
-            }                   
+            }                
         }
 
         private void DatePicker_OnDateSleceted(object sender, DateChangedEventArgs e)
@@ -104,13 +105,22 @@ namespace DizzyProject.View
             {
                 try
                 {
-                    if(patient.LocationId == null)
+                    if (ZipCode.Text != "" && Address.Text != "" && country.Code != "")
                     {
-                       location = await locationController.CreateLocationAsync(zipCode, Address.Text);
-                    } else
-                    {
-                        location = await locationController.updateLocation(location);
+                        if(patient.LocationId == null)
+                        {
+                            location = await locationController.CreateLocationAsync(zipCode, country.Code, Address.Text);
+                        }
+                        else
+                        {
+                            location = await locationController.UpdateLocation(location);
+                        }
                     }
+                    else if (ZipCode.Text == "" || Address.Text == "" || country.Code == "")
+                    {
+                        await DisplayAlert("Location fail", "Fill in all the location settings", "OK");
+                    }
+                    
                     patient.LocationId = location.Id;   
                     patient.BirthDate = datePicked;
                     patient.Sex = sex;

@@ -5,11 +5,10 @@
              Title="Edit profile">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Label Text="Name" FontSize="Large" TextColor="Black" />
-                <Label Text="{Binding FullName}" FontSize="Medium" TextColor="Black"/>
-                <Label Text="Email" FontSize="Large" TextColor="Black"/>
-                <Entry x:Name="Email" Placeholder="{Binding Email}" FontSize="Medium" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+            <StackLayout Margin="16">
+                <Label Text="Name" FontSize="Large" TextColor="Gray" />
+                <Label Text="{Binding FullName}" FontSize="Medium" TextColor="Gray"/>
+                <Label Text="{Binding Email}" FontSize="Medium" TextColor="Gray"/>
                 <Label Text="Phone number" FontSize="Large" TextColor="Black"/>
                 <Entry x:Name="PhoneNumber" Keyboard="Numeric" Placeholder="{Binding Phone}" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="Address" FontSize="Large" TextColor="Black"/>
