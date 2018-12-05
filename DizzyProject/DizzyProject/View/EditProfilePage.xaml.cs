@@ -63,7 +63,7 @@ namespace DizzyProject.View
                 city = await cityController.GetCityAsync(patient.ZipCode, patient.CountryCode);
                 City.Text = city.Name;
             }
-            if(patient.CountryCode != null)
+            if (patient.CountryCode != null)
             {
                 country = await countryController.GetCountryAsync(patient.CountryCode);
                 CountryPicker.Title = country.Name;
@@ -109,8 +109,8 @@ namespace DizzyProject.View
             {
                 if (NewPassword.Text != NewPassword2.Text || CurrentPassword == null)
                 {
-                    await DisplayAlert("Password mismatch", "Passwords do not match or current is incorrect", "OK");
-                }               
+                    await DisplayAlert("Password error", "Passwords do not match or youre missing a field", "OK");
+                }
                 else
                 {
                     try
