@@ -48,7 +48,7 @@ namespace DizzyProject.View
             patient = await patientController.GetPatientAsync(Resource.Token.Subject);
             patientViewModel = new PatientViewModel(patient);
             sex = (Sex)patientViewModel.Sex;
-            BindingContext = patientViewModel;
+            BindingContext = patientViewModel;          
 
             if (patient.ZipCode != null)
             {
@@ -107,58 +107,49 @@ namespace DizzyProject.View
 
             if (CurrentPassword.Text != null || NewPassword.Text != null || NewPassword2 != null)
             {
-                if (NewPassword.Text != NewPassword2.Text || CurrentPassword == null)
+                if (NewPassword.Text != NewPassword2.Text || CurrentPassword.Text == null)
                 {
-                    await DisplayAlert("Password error", "Passwords do not match or youre missing a field", "OK");
+                    await DisplayAlert("Password error", "Passwords do not match or you're missing a field", "OK");
                 }
                 else
                 {
                     try
                     {
-                        if (ZipCode.Text != null || ZipCode.Placeholder != null && Address.Text != null || Address.Placeholder != null && country.Code != null)
+                        //Zip
+                        if (ZipCode.Text != null)
                         {
-                            //Zip
-                            if (ZipCode.Text != null)
-                            {
-                                patient.ZipCode = ZipCode.Text;
-                            }
-
-                            //Address
-                            if (Address.Text != null)
-                            {
-                                patient.Address = Address.Text;
-                            }
-
-                            //Phone
-                            if (PhoneNumber.Text != null)
-                            {
-                                patient.Phone = PhoneNumber.Text;
-                            }
-
-                            //Height
-                            if (Height.Text != null)
-                            {
-                                patient.Height = height;
-                            }
-
-                            //Weight
-                            if (Weight.Text != null)
-                            {
-                                patient.Weight = weight;
-                            }
-
-
-                            patient.BirthDate = datePicked;
-                            patient.Sex = sex;
-                            patient.CountryCode = country.Code;
-                            await patientController.UpdatePatientAsync(patient, CurrentPassword.Text, NewPassword.Text);
-                            await DisplayAlert("Success", "Profile updated", "OK");
-                            Application.Current.MainPage = new MasterPage();
+                            patient.ZipCode = ZipCode.Text;
                         }
-                        else if (ZipCode.Text == null || Address.Text == null || country.Code == null)
+
+                        //Address
+                        if (Address.Text != null)
                         {
-                            await DisplayAlert("Location fail", "Fill in all the location settings", "OK");
+                            patient.Address = Address.Text;
                         }
+
+                        //Phone
+                        if (PhoneNumber.Text != null)
+                        {
+                            patient.Phone = PhoneNumber.Text;
+                        }
+
+                        //Height
+                        if (Height.Text != null)
+                        {
+                            patient.Height = height;
+                        }
+
+                        //Weight
+                        if (Weight.Text != null)
+                        {
+                            patient.Weight = weight;
+                        }
+                        patient.BirthDate = datePicked;
+                        patient.Sex = sex;
+                        patient.CountryCode = country.Code;
+                        await patientController.UpdatePatientAsync(patient, CurrentPassword.Text, NewPassword.Text);
+                        await DisplayAlert("Success", "Profile updated", "OK");
+                        Application.Current.MainPage = new MasterPage();
 
                     }
                     catch (ConnectionException)
