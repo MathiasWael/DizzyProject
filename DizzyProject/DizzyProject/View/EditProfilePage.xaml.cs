@@ -48,7 +48,7 @@ namespace DizzyProject.View
             patient = await patientController.GetPatientAsync(Resource.Token.Subject);
             patientViewModel = new PatientViewModel(patient);
             sex = (Sex)patientViewModel.Sex;
-            BindingContext = patientViewModel;          
+            BindingContext = patientViewModel;
 
             if (patient.ZipCode != null)
             {
