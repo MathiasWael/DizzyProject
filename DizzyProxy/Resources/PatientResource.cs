@@ -33,24 +33,22 @@ namespace DizzyProxy.Resources
             return await GetPatientAsync(Token.Subject);
         }
 
-        public Patient UpdatePatient(Patient patient, string password) 
-            => UpdatePatientAsync(patient, password).Result;
+        public Patient UpdatePatient(Patient patient, string currentPassword, string newPassword) 
+            => UpdatePatientAsync(patient, currentPassword, newPassword).Result;
 
-        public async Task<Patient> UpdatePatientAsync(Patient patient, string password)
+        public async Task<Patient> UpdatePatientAsync(Patient patient, string currentPassword, string newPassword)
         {
             Request request = new Request(Method.PUT, "patients");
-            request.Body["first_name"] = patient.FirstName;
-            request.Body["last_name"] = patient.LastName;
-            request.Body["password"] = password;
-            request.Body["email"] = patient.Email;
-            request.Body["created"] = patient.Created;
-            request.Body["updated"] = patient.Updated;
-            request.Body["location_id"] = patient.LocationId;
+            request.Body["current_password"] = currentPassword;
+            request.Body["password"] = newPassword;
             request.Body["phone"] = patient.Phone;
             request.Body["birth_date"] = patient.BirthDate;
             request.Body["sex"] = patient.Sex;
             request.Body["height"] = patient.Height;
             request.Body["weight"] = patient.Weight;
+            request.Body["zip_code"] = patient.ZipCode;
+            request.Body["country_code"] = patient.CountryCode;
+            request.Body["address"] = patient.Address;
             return await ExecuteAsync<Patient>(request);
         }      
 

@@ -7,16 +7,25 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Resources
 {
-    public class CountryRessource
+    public class CountryRessource : Resource
     {
-        public List<Country> GetAllCountries() 
+        public List<Country> GetAllCountries()
+            => GetAllCountriesAsync().Result;
+
+        public async Task<List<Country>> GetAllCountriesAsync()
         {
-            return new List<Country>()
-            {
-                new Country() {Id = 1, Name = "Denmark", Code = "DK"},
-                new Country() {Id = 2, Name = "England", Code = "EN"},
-                new Country() {Id = 3, Name = "Japan", Code = "JP"},
-            };
+            Request request = new Request(Method.GET, "countries");
+            return await ExecuteAsync<List<Country>>(request);
         }
+
+        public Country GetCountry(string countryCode)
+            => GetCountryAsync(countryCode).Result;
+
+        public async Task<Country> GetCountryAsync(string countryCode)
+        {
+            Request request = new Request(Method.GET, "countries/" + countryCode);
+            return await ExecuteAsync<Country>(request);
+        }
+        
     }
 }

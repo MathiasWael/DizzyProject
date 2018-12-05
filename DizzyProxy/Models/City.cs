@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,13 @@ namespace DizzyProxy.Models
 {
     public class City
     {
-        public long Id { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("zip_code")]
         public string ZipCode { get; set; }
-        public long CountryId { get; set; }
+
+        [JsonProperty("country_code")]
+        public string CountryCode { get; set; }
     }
 }

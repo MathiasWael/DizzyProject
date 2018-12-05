@@ -31,6 +31,9 @@ namespace DizzyProject.ViewModels
         public Sex? Sex { get; set; }
         public short? Height { get; set; }
         public short? Weight { get; set; }
+        public string ZipCode { get; set; }
+        public string CountryCode { get; set; }
+        public string Address { get; set; }
         public string FullName { get; set; }
 
         public PatientViewModel(Patient patient)
@@ -44,6 +47,9 @@ namespace DizzyProject.ViewModels
             Sex = patient.Sex;
             Height = patient.Height;
             Weight = patient.Weight;
+            ZipCode = patient.ZipCode;
+            CountryCode = patient.CountryCode;
+            Address = patient.Address;
             FullName = FirstName + " " + LastName;
         }
     }

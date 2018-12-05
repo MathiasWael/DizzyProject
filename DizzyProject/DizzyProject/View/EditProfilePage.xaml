@@ -15,11 +15,11 @@
                 <Entry x:Name="Address" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="City and Zip code" FontSize="Large" TextColor="Black"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Entry x:Name="City" WidthRequest="250"/>
+                    <Entry x:Name="City" IsEnabled="False" WidthRequest="250"/>
                     <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Country" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"/>
+                <Picker x:Name="CountryPicker" Title="{Binding Country}" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
                     <Entry x:Name="Height" Keyboard="Numeric" Placeholder="{Binding Height}" WidthRequest="250"/>
                     <Label Text="cm" FontSize="20" WidthRequest="250"/>
@@ -29,13 +29,15 @@
                     <Label Text="kg" FontSize="20" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Gender" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="genderPicker" SelectedIndexChanged="OnGenderChange"/>
+                <Picker x:Name="genderPicker" Title="{Binding Sex}" SelectedIndexChanged="OnGenderChange"/>
                 <Label Text="Select your birthdate" FontSize="20" TextColor="Black"/>
                 <DatePicker MinimumDate="1/1/1900" MaximumDate="1/1/2050" Date="{Binding BirthDate}" DateSelected="DatePicker_OnDateSleceted"/>
-                <Label Text="Enter your password" FontSize="20" TextColor="Black"/>
-                <Entry x:Name="Password1" Placeholder="Password*" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
-                <Entry x:Name="Password2" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Enter your current password" FontSize="20" TextColor="Black"/>
+                <Entry x:Name="CurrentPassword" Placeholder="Password*" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Enter your new password" FontSize="20" TextColor="Black"/>
+                <Entry x:Name="NewPassword" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+                <Label Text="Reenter your new password" FontSize="20" TextColor="Black"/>
+                <Entry x:Name="NewPassword2" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <StackLayout>
                     <Button Text="Edit profile" CornerRadius="10" BackgroundColor="Orange" BorderWidth="1" Pressed="Edit_PressedAsync" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>

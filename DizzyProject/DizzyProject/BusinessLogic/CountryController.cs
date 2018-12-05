@@ -3,17 +3,21 @@ using DizzyProxy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DizzyProject.BusinessLogic
 {
     public class CountryController
     {
-        CountryRessource countryRessource;
-
-        public List<Country> getAllCountries()
+        public async Task<List<Country>> GetAllCountriesAsync()
         {
-            countryRessource = new CountryRessource();
-            return countryRessource.GetAllCountries();
+            return await new CountryRessource().GetAllCountriesAsync();
         }
+
+        public async Task<Country> GetCountryAsync(string countryCode)
+        {
+            return await new CountryRessource().GetCountryAsync(countryCode);
+        }
+        
     }
 }

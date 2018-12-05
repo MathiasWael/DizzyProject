@@ -9,8 +9,14 @@ namespace DizzyProxy.Models
 {
     public class Patient : User
     {
-        [JsonProperty("location_id")]
-        public long? LocationId { get; set; }
+        [JsonProperty("zip_code")]
+        public string ZipCode { get; set; }
+
+        [JsonProperty("country_code")]
+        public string CountryCode { get; set; }
+
+        [JsonProperty("Address")]
+        public string Address { get; set; }
 
         [JsonProperty("phone")]
         public string Phone { get; set; }
