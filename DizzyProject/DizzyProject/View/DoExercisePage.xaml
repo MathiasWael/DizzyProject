@@ -4,13 +4,15 @@
              xmlns:view="clr-namespace:DizzyProject.View"
              x:Class="DizzyProject.View.DoExercisePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="reviewof" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-            <view:DizzyRegisterView x:Name="DizzyView"/>
-            <StackLayout>
-                    <Button Text="Save to journal" CornerRadius="10" BackgroundColor="Orange" BorderWidth="1" Pressed="Save_Pressed" VerticalOptions="CenterAndExpand"/>
-                    <Button Text="Go back" CornerRadius="10" BackgroundColor="Orange" BorderWidth="1" Pressed="BackButton_Pressed" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="reviewof" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="0"/>
+            <view:DizzyRegisterView x:Name="DizzyView" Grid.Row="1"/>
+            <Button Text="Save to journal" CornerRadius="10" BackgroundColor="LightBlue" BorderWidth="1" Pressed="Save_Pressed" VerticalOptions="CenterAndExpand" Grid.Row="2"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

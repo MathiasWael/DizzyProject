@@ -20,9 +20,11 @@ namespace DizzyProject.View
         public Label DizzinessLevelLabel { get { return DizzyLevelLabel; } }
         public Slider DizzinessValueSlider { get { return dizzinessValue; } }
         public Editor DizzinessRegisterNote { get { return Note; } }
+        public int? DizzyLevel;
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
+            DizzyLevel = (int)Math.Round(e.NewValue);
             ((Slider)sender).Value = Math.Round(e.NewValue);
             DizzyLevelLabel.Text = ((Slider)sender).Value.ToString();
         }

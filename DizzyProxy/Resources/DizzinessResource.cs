@@ -9,21 +9,30 @@ namespace DizzyProxy.Resources
 {
     public class DizzinessResource : Resource
     {
-        public async Task<Dizziness> SubmitAsync(int? exercise_id, int dizziness, string note)
+        public async Task<bool> CreateDizzinessAsync(long? exercise_id, int? dizziness, string note)
         {
             Request request = new Request(Method.POST, "patients/" + Token.Subject + "/dizzinesses");
-            request.Body["patient_id"] = Token.Subject;
 
-            if(exercise_id != null)
-            request.Body["exercise_id"] = exercise_id;
+            if (exercise_id != null)
+                request.Body["exercise_id"] = exercise_id;
+            else
+                request.Body["exercise_id"] = null;
 
-            request.Body["level"] = dizziness;
-            request.Body["note"] = note;
-            return await ExecuteAsync<Dizziness>(request);
+            if(dizziness != null)
+                request.Body["level"] = dizziness;
+            else
+                request.Body["level"] = null;
+
+            if (note != null)
+                request.Body["note"] = note;
+            else
+                request.Body["note"] = "";
+
+            return await ExecuteAsync(request);
         }
 
-        public Dizziness Submit(int? exercise_id, int dizziness, string note)
-           => SubmitAsync(null, dizziness, note).Result;
+        public bool CreateDizziness(long? exercise_id, int? dizziness, string note)
+           => CreateDizzinessAsync(null, dizziness, note).Result;
 
         public async Task<List<Dizziness>> GetAllDizzinessesAsync(string query)
         {
@@ -33,7 +42,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
         {
-            string date = dateTime.Year.ToString() + "-" + dateTime.Month + "-" + dateTime.Day;
+            string date = dateTime.ToString("yyyy-MM-dd");
             return await GetAllDizzinessesAsync("?date=" + date);
         }
 

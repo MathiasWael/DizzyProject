@@ -26,7 +26,7 @@ namespace DizzyProject.View
             }
             else
             {
-                await DisplayAlert("Error", "No entry in journal found", "OK");
+                await DisplayAlert("Error", "Something went wrong", "OK");
             }
         }
     }

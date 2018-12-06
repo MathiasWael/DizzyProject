@@ -1,4 +1,5 @@
-﻿using DizzyProject.ViewModels;
+﻿using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
 using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,20 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();           
             selectedExercise = exercise;
-            BindingContext = selectedExercise;
 
             reviewof.Text = "Review of " + selectedExercise.Name;
         }
 
         private async void Save_Pressed(object sender, EventArgs e)
         {
-            //save logic stump
-            //await Navigation.PushModalAsync(new NavigationPage(new DoExercisePage(selectedExercise)));
-        }
-
-        private async void BackButton_Pressed(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
+            if (await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id))
+            {
+                await Navigation.PopModalAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Something went wrong", "OK");
+            }
         }
     }
 }

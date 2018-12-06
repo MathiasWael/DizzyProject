@@ -14,8 +14,6 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DizzyRegisterPage : ContentPage
 	{
-        DizzinessController dc = new DizzinessController();
-
 		public DizzyRegisterPage ()
 		{
 			InitializeComponent ();
@@ -27,7 +25,7 @@ namespace DizzyProject.View
             var answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
             if (answer)
             {
-                d = await dc.SubmitAsync(Convert.ToInt32(DizzyView.DizzinessValueSlider.Value), DizzyView.DizzinessRegisterNote.Text);
+                await new DizzinessController().CreateDizzinessAsync(Convert.ToInt32(DizzyView.DizzinessValueSlider.Value), DizzyView.DizzinessRegisterNote.Text, null);
             }
         }
     }

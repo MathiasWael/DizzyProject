@@ -18,7 +18,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
         {
-            string date = dateTime.Year.ToString() + "-" + dateTime.Month + "-" + dateTime.Day;
+            string date = dateTime.ToString("yyyy-MM-dd");
             return await GetAllJournalEntriesAsync("?date=" + date);
         }
 

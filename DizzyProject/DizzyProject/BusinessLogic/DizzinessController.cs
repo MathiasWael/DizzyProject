@@ -11,11 +11,9 @@ namespace DizzyProject.BusinessLogic
 {
     public class DizzinessController
     {
-        DizzinessResource dr = new DizzinessResource();
-
-        public async Task<Dizziness> SubmitAsync(int dizziness, string note)
+        public async Task<bool> CreateDizzinessAsync(int? dizziness, string note, long? exerciseId)
         {
-            return await dr.SubmitAsync(null, dizziness, note);
+            return await new DizzinessResource().CreateDizzinessAsync(exerciseId, dizziness, note);
         }
 
         public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
