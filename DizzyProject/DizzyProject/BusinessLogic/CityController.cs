@@ -11,12 +11,12 @@ namespace DizzyProject.BusinessLogic
     {
         public async Task<List<City>> GetAllCitiesAsync()
         {
-            return await new CityRessource().GetAllCitiesAsync();
+            return await new CityResource().GetAllCitiesAsync();
         }
 
         public async Task<City> GetCityAsync(string zipCode, string countryCode)
         {
-            return await new CityRessource().GetCityAsync(zipCode, countryCode);
+            return await new CityResource().GetCityAsync(zipCode, countryCode);
         }
 
     }

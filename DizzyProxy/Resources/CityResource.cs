@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Resources
 {
-    public class CityRessource : Resource
+    public class CityResource : Resource
     {
         public City GetCity(string zipCode, string countryCode)
             => GetCityAsync(zipCode, countryCode).Result;

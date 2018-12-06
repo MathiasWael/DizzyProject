@@ -19,7 +19,7 @@
                     <Entry x:Name="ZipCode" MaxLength="4" Keyboard="Numeric" WidthRequest="250"/>
                 </StackLayout>
                 <Label Text="Country" FontSize="20" TextColor="Black"/>
-                <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange" ItemDisplayBinding="{Binding Name}"/>
+                <Picker x:Name="CountryPicker" SelectedIndexChanged="OnCountryChange"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
                     <Entry x:Name="Height" Keyboard="Numeric" Placeholder="{Binding Height}" WidthRequest="250"/>
                     <Label Text="cm" FontSize="20" WidthRequest="250"/>
