@@ -11,7 +11,7 @@ namespace DizzyProxy.Resources
     {
         public async Task<Dizziness> SubmitAsync(int? exercise_id, int dizziness, string note)
         {
-            Request request = new Request(Method.POST, "dizzinesses");
+            Request request = new Request(Method.POST, "patients/" + Token.Subject + "/dizzinesses");
             request.Body["patient_id"] = Token.Subject;
 
             if(exercise_id != null)
@@ -27,7 +27,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<Dizziness>> GetAllDizzinessesAsync(string query)
         {
-            Request request = new Request(Method.GET, "dizzinesses" + query);
+            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/dizzinesses" + query);
             return await ExecuteAsync<List<Dizziness>>(request);
         }
 
