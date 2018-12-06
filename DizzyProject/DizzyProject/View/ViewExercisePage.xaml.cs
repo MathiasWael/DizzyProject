@@ -42,7 +42,7 @@ namespace DizzyProject.View
 
         private async void BackButton_Pressed(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ExercisesPage()));
+            await Navigation.PopModalAsync();
         }
     }
 }

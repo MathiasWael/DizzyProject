@@ -23,12 +23,6 @@ namespace DizzyProject.View
             reviewof.Text = "Review of " + selectedExercise.Name;
         }
 
-        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            ((Slider)sender).Value = Math.Round(e.NewValue);
-            DizzyLevelLabel.Text = ((Slider)sender).Value.ToString();
-        }
-
         private async void Save_Pressed(object sender, EventArgs e)
         {
             //save logic stump
@@ -37,7 +31,7 @@ namespace DizzyProject.View
 
         private async void BackButton_Pressed(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage(selectedExercise)));
+            await Navigation.PopModalAsync();
         }
     }
 }

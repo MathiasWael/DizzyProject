@@ -20,12 +20,6 @@ namespace DizzyProject.View
 		{
 			InitializeComponent ();
 		}
-        
-        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            ((Slider)sender).Value = Math.Round(e.NewValue);
-            DizzyLevelLabel.Text = ((Slider)sender).Value.ToString();
-        }
 
         private async void Submit_Pressed(object sender, EventArgs e)
         {
@@ -33,7 +27,7 @@ namespace DizzyProject.View
             var answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
             if (answer)
             {
-                d = await dc.SubmitAsync(Convert.ToInt32(dizzinessValue.Value), Note.Text);
+                d = await dc.SubmitAsync(Convert.ToInt32(DizzyView.DizzinessValueSlider.Value), DizzyView.DizzinessRegisterNote.Text);
             }
         }
     }
