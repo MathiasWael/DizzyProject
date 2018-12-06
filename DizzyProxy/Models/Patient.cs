@@ -15,7 +15,7 @@ namespace DizzyProxy.Models
         [JsonProperty("country_code")]
         public string CountryCode { get; set; }
 
-        [JsonProperty("Address")]
+        [JsonProperty("address")]
         public string Address { get; set; }
 
         [JsonProperty("phone")]

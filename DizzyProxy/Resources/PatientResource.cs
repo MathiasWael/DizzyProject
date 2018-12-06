@@ -38,12 +38,12 @@ namespace DizzyProxy.Resources
 
         public async Task<Patient> UpdatePatientAsync(Patient patient, string currentPassword, string newPassword)
         {
-            Request request = new Request(Method.PUT, "patients");
+            Request request = new Request(Method.PUT, "patients/" + patient.Id);
             request.Body["current_password"] = currentPassword;
             request.Body["password"] = newPassword;
             request.Body["phone"] = patient.Phone;
-            request.Body["birth_date"] = patient.BirthDate;
-            request.Body["sex"] = patient.Sex;
+            request.Body["birth_date"] = patient.BirthDate?.ToString("yyyy-MM-dd");
+            request.Body["sex"] = patient.Sex?.ToString().ToLower();
             request.Body["height"] = patient.Height;
             request.Body["weight"] = patient.Weight;
             request.Body["zip_code"] = patient.ZipCode;

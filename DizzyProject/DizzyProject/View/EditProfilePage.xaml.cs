@@ -105,69 +105,60 @@ namespace DizzyProject.View
             string w = Weight.Text;
             short weight = Convert.ToInt16(w);
 
-            if (CurrentPassword.Text != null || NewPassword.Text != null || NewPassword2 != null)
+            if ((CurrentPassword.Text != null || NewPassword.Text != null || NewPassword2.Text != null) && (NewPassword.Text != NewPassword2.Text || CurrentPassword.Text == null))
             {
-                if (NewPassword.Text != NewPassword2.Text || CurrentPassword.Text == null)
+                await DisplayAlert("Password error", "Passwords do not match or you're missing a field", "OK");
+            }
+            else
+            {
+                try
                 {
-                    await DisplayAlert("Password error", "Passwords do not match or you're missing a field", "OK");
-                }
-                else
-                {
-                    try
+                    //Zip
+                    if (ZipCode.Text != null)
                     {
-                        //Zip
-                        if (ZipCode.Text != null)
-                        {
-                            patient.ZipCode = ZipCode.Text;
-                        }
-
-                        //Address
-                        if (Address.Text != null)
-                        {
-                            patient.Address = Address.Text;
-                        }
-
-                        //Phone
-                        if (PhoneNumber.Text != null)
-                        {
-                            patient.Phone = PhoneNumber.Text;
-                        }
-
-                        //Height
-                        if (Height.Text != null)
-                        {
-                            patient.Height = height;
-                        }
-
-                        //Weight
-                        if (Weight.Text != null)
-                        {
-                            patient.Weight = weight;
-                        }
-                        patient.BirthDate = datePicked;
-                        patient.Sex = sex;
-                        patient.CountryCode = country.Code;
-                        await patientController.UpdatePatientAsync(patient, CurrentPassword.Text, NewPassword.Text);
-                        await DisplayAlert("Success", "Profile updated", "OK");
-                        Application.Current.MainPage = new MasterPage();
-
+                        patient.ZipCode = ZipCode.Text;
                     }
-                    catch (ConnectionException)
+
+                    //Address
+                    if (Address.Text != null)
                     {
-                        await DisplayAlert(AppResources.ApiErrorConnectionTitle, AppResources.ApiErrorConnectionDescription, AppResources.DialogOk);
+                        patient.Address = Address.Text;
                     }
-                    catch (ApiException ex)
+
+                    //Phone
+                    if (PhoneNumber.Text != null)
                     {
-                        switch (ex.ErrorCode)
-                        {
-                            case 40: await DisplayAlert(AppResources.ApiError40Title, AppResources.ApiError40Description, AppResources.DialogOk); break;
-                            case 41: await DisplayAlert(AppResources.ApiError41Title, AppResources.ApiError41Description, AppResources.DialogOk); break;
-                            case 50: await DisplayAlert(AppResources.ApiError50Title, AppResources.ApiError50Description, AppResources.DialogOk); break;
-                            default: await DisplayAlert(AppResources.ApiErrorDefaultTitle, AppResources.ApiErrorDefaultDescription, AppResources.DialogOk); break;
-                        }
+                        patient.Phone = PhoneNumber.Text;
                     }
+
+                    //Height
+                    if (Height.Text != null)
+                    {
+                        patient.Height = height;
+                    }
+
+                    //Weight
+                    if (Weight.Text != null)
+                    {
+                        patient.Weight = weight;
+                    }
+                    patient.BirthDate = datePicked;
+                    patient.Sex = sex;
+                    patient.CountryCode = country.Code;
+                    await patientController.UpdatePatientAsync(patient, CurrentPassword.Text, NewPassword.Text);
+                    await DisplayAlert("Success", "Profile updated", "OK");
+                    Application.Current.MainPage = new MasterPage();
 
                 }
+                catch (ConnectionException)
+                {
+                    await DisplayAlert(AppResources.ApiErrorConnectionTitle, AppResources.ApiErrorConnectionDescription, AppResources.DialogOk);
+                }
+                catch (ApiException ex)
+                {
+                    await DisplayAlert(ex.ErrorCode.ToString(), ex.Message, "ok");
+                }
+
             }
         }
     }
