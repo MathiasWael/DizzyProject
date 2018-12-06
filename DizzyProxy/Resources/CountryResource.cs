@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DizzyProxy.Resources
 {
-    public class CountryRessource : Resource
+    public class CountryResource : Resource
     {
         public List<Country> GetAllCountries()
             => GetAllCountriesAsync().Result;

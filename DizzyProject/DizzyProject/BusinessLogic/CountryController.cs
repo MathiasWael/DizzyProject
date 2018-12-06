@@ -11,13 +11,12 @@ namespace DizzyProject.BusinessLogic
     {
         public async Task<List<Country>> GetAllCountriesAsync()
         {
-            return await new CountryRessource().GetAllCountriesAsync();
+            return await new CountryResource().GetAllCountriesAsync();
         }
 
         public async Task<Country> GetCountryAsync(string countryCode)
         {
-            return await new CountryRessource().GetCountryAsync(countryCode);
-        }
-        
+            return await new CountryResource().GetCountryAsync(countryCode);
+        }       
     }
 }
