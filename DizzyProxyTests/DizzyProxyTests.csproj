@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityTest.cs" />
+    <Compile Include="CountryTest.cs" />
     <Compile Include="CustomExerciseTests.cs" />
     <Compile Include="DizzinessTest.cs" />
     <Compile Include="ExerciseFavoriteTests.cs" />
