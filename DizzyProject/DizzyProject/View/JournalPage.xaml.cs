@@ -1,5 +1,6 @@
 ﻿using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,23 @@ namespace DizzyProject.View
 
         protected async override void OnAppearing()
         {
-            journalLogs = await journalLogController.getAllJournalLogsAsync();
-            ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
-            timeRange = SelectedTimeRange.ThisWeek;
-            ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
-            ThisMonthButton.BackgroundColor = Color.LightBlue;
-            LaterButton.BackgroundColor = Color.LightBlue;
+            try
+            {
+                journalLogs = await journalLogController.getAllJournalLogsAsync();
+                ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
+                timeRange = SelectedTimeRange.ThisWeek;
+                ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
+                ThisMonthButton.BackgroundColor = Color.LightBlue;
+                LaterButton.BackgroundColor = Color.LightBlue;
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
+            }
         }
 
         private void WeekButton_Pressed(object sender, EventArgs args)

@@ -10,6 +10,7 @@ using DizzyProject.ViewModels;
 using DizzyProxy.Models;
 using DizzyProject.BusinessLogic;
 using System.Collections.ObjectModel;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -27,8 +28,19 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesByIdAsync());
-            SortAndRefresh();
+            try
+            {
+                exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesByIdAsync());
+                SortAndRefresh();
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
+            }
         }
 
         private void SortAndRefresh()
@@ -40,23 +52,34 @@ namespace DizzyProject.View
 
         private async void LogoTapped(object sender, EventArgs e)
         {
-            Image image = (Image)sender;
-            ExerciseViewModel exercise = (ExerciseViewModel)image.BindingContext;
-            if (exercise.Type == ExerciseType.Normal)
+            try
             {
-                if(await exerciseController.FavoriteExerciseAsync(exercise))
+                Image image = (Image)sender;
+                ExerciseViewModel exercise = (ExerciseViewModel)image.BindingContext;
+                if (exercise.Type == ExerciseType.Normal)
                 {
-                    exercise.Type = ExerciseType.Favorite;
-                    SortAndRefresh();
+                    if (await exerciseController.FavoriteExerciseAsync(exercise))
+                    {
+                        exercise.Type = ExerciseType.Favorite;
+                        SortAndRefresh();
+                    }
+                }
+                else if (exercise.Type == ExerciseType.Favorite)
+                {
+                    if (await exerciseController.UnfavoriteExerciseAsync(exercise))
+                    {
+                        exercise.Type = ExerciseType.Normal;
+                        SortAndRefresh();
+                    }
                 }
             }
-            else if(exercise.Type == ExerciseType.Favorite)
+            catch (ApiException ex)
             {
-                if (await exerciseController.UnfavoriteExerciseAsync(exercise))
-                {
-                    exercise.Type = ExerciseType.Normal;
-                    SortAndRefresh();
-                }
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
 

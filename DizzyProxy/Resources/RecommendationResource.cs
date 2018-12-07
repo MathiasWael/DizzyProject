@@ -11,13 +11,13 @@ namespace DizzyProxy.Resources
     {
         public async Task<List<Recommendation>> GetAllRecommendationsAsync()
         {
-            Request request = new Request(Method.GET, "recommendations");
+            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/recommendations");
             return await ExecuteAsync<List<Recommendation>>(request);
         }
 
         public async Task<Recommendation> getRecommendationByIdAsync(long id)
         {
-            Request request = new Request(Method.GET, $"Recommendation/{id}");
+            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/recommendation/" + id);
             return await ExecuteAsync<Recommendation>(request);
         }
     }

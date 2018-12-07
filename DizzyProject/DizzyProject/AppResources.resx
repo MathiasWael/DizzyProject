@@ -117,51 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiError40Description" xml:space="preserve">
-    <value>Input does not match validation criteria.</value>
-    <comment>400 Bad Request</comment>
+  <data name="ApiError40001validation" xml:space="preserve">
+    <value>Validation error.</value>
   </data>
-  <data name="ApiError40Title" xml:space="preserve">
-    <value>Validation Error</value>
-    <comment>400 Bad Request</comment>
-  </data>
-  <data name="ApiError41Description" xml:space="preserve">
+  <data name="ApiError40002invalidEmailOrPassword" xml:space="preserve">
     <value>Invalid email or password.</value>
-    <comment>400 Bad Request</comment>
   </data>
-  <data name="ApiError41Title" xml:space="preserve">
-    <value>Input Error</value>
-    <comment>400 Bad Request</comment>
+  <data name="ApiError40003userAlreadyRegistered" xml:space="preserve">
+    <value>User already registered.</value>
   </data>
-  <data name="ApiError42Description" xml:space="preserve">
-    <value>Another user is already registered with the given email address.</value>
-    <comment>400 Bad Request</comment>
+  <data name="ApiError40004noToken" xml:space="preserve">
+    <value>Access denied. No token provided.</value>
   </data>
-  <data name="ApiError42Title" xml:space="preserve">
-    <value>Input Error</value>
-    <comment>400 Bad Request</comment>
+  <data name="ApiError40005invalidToken" xml:space="preserve">
+    <value>Invalid token.</value>
   </data>
-  <data name="ApiError50Description" xml:space="preserve">
+  <data name="ApiError40006urlParameterNumber" xml:space="preserve">
+    <value>The url parameter must be a number.</value>
+  </data>
+  <data name="ApiError40007currentPasswordIncorrect" xml:space="preserve">
+    <value>The current password is incorrect.</value>
+  </data>
+  <data name="ApiError40008locationNotFound" xml:space="preserve">
+    <value>The city/country does not exist.</value>
+  </data>
+  <data name="ApiError40009relationExists" xml:space="preserve">
+    <value>Relation already exists.</value>
+  </data>
+  <data name="ApiError40010levelRequired" xml:space="preserve">
+    <value>Dizziness register requires a level from 0-10.</value>
+  </data>
+  <data name="ApiError40301onlyPhysiotherapist" xml:space="preserve">
+    <value>The endpoint can only be used by physiotherapists.</value>
+  </data>
+  <data name="ApiError40302onlyPatient" xml:space="preserve">
+    <value>The endpoint can only be used by patients.</value>
+  </data>
+  <data name="ApiError40303accessDenied" xml:space="preserve">
+    <value>You do not have access to the specified element.</value>
+  </data>
+  <data name="ApiError40401userNotFound" xml:space="preserve">
+    <value>The user no longer exists.</value>
+  </data>
+  <data name="ApiError40402elementNotFound" xml:space="preserve">
+    <value>The element could not be found.</value>
+  </data>
+  <data name="ApiError50001internalServerError" xml:space="preserve">
     <value>Internal server error.</value>
-    <comment>500 Internal Server Error</comment>
   </data>
-  <data name="ApiError50Title" xml:space="preserve">
-    <value>Service Error</value>
-    <comment>500 Internal Server Error</comment>
-  </data>
-  <data name="ApiErrorConnectionDescription" xml:space="preserve">
-    <value>The service could not be reached, please check your connection.</value>
-  </data>
-  <data name="ApiErrorConnectionTitle" xml:space="preserve">
-    <value>Service Unreachable</value>
-  </data>
-  <data name="ApiErrorDefaultDescription" xml:space="preserve">
-    <value>Unhandled service error.</value>
-  </data>
-  <data name="ApiErrorDefaultTitle" xml:space="preserve">
-    <value>Service Error</value>
+  <data name="ConnectionException" xml:space="preserve">
+    <value>Could not connect to server.</value>
   </data>
   <data name="DialogOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Unhandled Service Error</value>
   </data>
 </root>

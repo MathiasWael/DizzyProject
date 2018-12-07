@@ -1,4 +1,5 @@
 ﻿using DizzyProject.BusinessLogic;
+using DizzyProxy.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,20 @@ namespace DizzyProject.View
 
         private async void SubmitJournalEntryButton_Clicked(object sender, EventArgs e)
         {
-            if(await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text))
+            try
             {
-                await Navigation.PopModalAsync();
+                if (await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text))
+                {
+                    await Navigation.PopModalAsync();
+                }
             }
-            else
+            catch (ApiException ex)
             {
-                await DisplayAlert("Error", "Something went wrong", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
     }

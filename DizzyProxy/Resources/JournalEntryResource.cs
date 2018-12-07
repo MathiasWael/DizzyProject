@@ -12,7 +12,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<JournalEntry>> GetAllJournalEntriesAsync(string query)
         {
-            Request request = new Request(Method.GET, "journalentries" + query);
+            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/journalentries" + query);
             return await ExecuteAsync<List<JournalEntry>>(request);
         }
 
@@ -24,7 +24,7 @@ namespace DizzyProxy.Resources
 
         public async Task<bool> CreateJournalEntryAsync(string note)
         {
-            Request request = new Request(Method.POST, "journalentries");
+            Request request = new Request(Method.POST, "patients/" + Token.Subject + "/journalentries");
             request.Body["note"] = note;
             return await ExecuteAsync(request);
         }

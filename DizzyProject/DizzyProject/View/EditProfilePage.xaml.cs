@@ -152,7 +152,7 @@ namespace DizzyProject.View
                 }
                 catch (ConnectionException)
                 {
-                    await DisplayAlert(AppResources.ApiErrorConnectionTitle, AppResources.ApiErrorConnectionDescription, AppResources.DialogOk);
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
                 }
                 catch (ApiException ex)
                 {

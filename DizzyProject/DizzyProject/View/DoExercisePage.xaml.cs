@@ -1,5 +1,6 @@
 ﻿using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,17 @@ namespace DizzyProject.View
 
         private async void Save_Pressed(object sender, EventArgs e)
         {
-            if (await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id))
+            try
             {
-                await Navigation.PopModalAsync();
+                await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id);
             }
-            else
+            catch(ApiException ex)
             {
-                await DisplayAlert("Error", "Something went wrong", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch(ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
     }

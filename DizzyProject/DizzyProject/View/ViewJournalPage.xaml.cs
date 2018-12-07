@@ -1,5 +1,6 @@
 ﻿using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,19 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(dateTime);
-            ListViewJournalItems.ItemsSource = journalViewModels;
+            try
+            {
+                List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(dateTime);
+                ListViewJournalItems.ItemsSource = journalViewModels;
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
+            }
         }
 
         private async void ExerciseLink_Tapped(object sender, EventArgs e)

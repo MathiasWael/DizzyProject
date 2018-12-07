@@ -11,7 +11,7 @@ namespace DizzyProxy.Resources
     {
         public async Task<List<JournalLog>> GetAllJournalLogsAsync()
         {
-            Request request = new Request(Method.GET, "journallogs");
+            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/journallogs");
             return await ExecuteAsync<List<JournalLog>>(request);
         }
     }
