@@ -1,14 +1,20 @@
 ﻿using DizzyProxy.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DizzyProxy.Resources
 {
     public class PhysiotherapistResource : Resource
     {
+        public List<Physiotherapist> GetAllPhysiotherapists()
+            => GetAllPhysiotherapistsAsync().Result;
+
+        public async Task<List<Physiotherapist>> GetAllPhysiotherapistsAsync()
+        {
+            Request request = new Request(Method.GET, "physiotherapists");
+            return await ExecuteAsync<List<Physiotherapist>>(request);
+        }
+
         public Physiotherapist GetPhysiotherapist(long id)
             => GetPhysiotherapistAsync(id).Result;
 

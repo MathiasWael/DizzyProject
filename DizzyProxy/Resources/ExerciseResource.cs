@@ -1,9 +1,6 @@
-﻿using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
 
 namespace DizzyProxy.Resources
 {
@@ -17,6 +14,9 @@ namespace DizzyProxy.Resources
             Request request = new Request(Method.GET, "exercises");
             return await ExecuteAsync<List<Exercise>>(request);
         }
+
+        public Exercise GetExercise(long exerciseId) =>
+            GetExerciseAsync(exerciseId).Result;
 
         public async Task<Exercise> GetExerciseAsync(long exerciseId)
         {

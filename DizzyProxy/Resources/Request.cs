@@ -38,14 +38,17 @@ namespace DizzyProxy.Resources
                 bool first = true;
                 foreach (string key in Query.Keys)
                 {
-                    if (first)
+                    if (Query[key] != null)
                     {
-                        queryString += $"?{key}={Query[key]}";
-                        first = false;
-                    }
-                    else
-                    {
-                        queryString += $"&{key}={Query[key]}";
+                        if (first)
+                        {
+                            queryString += $"?{key}={Query[key]}";
+                            first = false;
+                        }
+                        else
+                        {
+                            queryString += $"&{key}={Query[key]}";
+                        }
                     }
                 }
             }

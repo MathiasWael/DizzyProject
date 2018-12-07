@@ -1,17 +1,17 @@
 ﻿using DizzyProxy.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DizzyProxy.Resources
 {
     public class StepCountResource : Resource
     {
-        public async Task<List<StepCount>> GetAllStepCountsAsync()
+        public List<StepCount> GetAllStepCounts(long userId)
+            => GetAllStepCountsAsync(userId).Result;
+
+        public async Task<List<StepCount>> GetAllStepCountsAsync(long userId)
         {
-            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/stepcounts");
+            Request request = new Request(Method.GET, $"patients/{UserId}/stepcounts");
             return await ExecuteAsync<List<StepCount>>(request);
         }
     }

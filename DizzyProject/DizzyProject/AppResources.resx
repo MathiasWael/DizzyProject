@@ -117,52 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiError40001validation" xml:space="preserve">
+  <data name="ApiError40001Validation" xml:space="preserve">
     <value>Validation error.</value>
   </data>
-  <data name="ApiError40002invalidEmailOrPassword" xml:space="preserve">
+  <data name="ApiError40002InvalidEmailOrPassword" xml:space="preserve">
     <value>Invalid email or password.</value>
   </data>
-  <data name="ApiError40003userAlreadyRegistered" xml:space="preserve">
+  <data name="ApiError40003UserAlreadyRegistered" xml:space="preserve">
     <value>User already registered.</value>
   </data>
-  <data name="ApiError40004noToken" xml:space="preserve">
+  <data name="ApiError40004NoToken" xml:space="preserve">
     <value>Access denied. No token provided.</value>
   </data>
-  <data name="ApiError40005invalidToken" xml:space="preserve">
+  <data name="ApiError40005InvalidToken" xml:space="preserve">
     <value>Invalid token.</value>
   </data>
-  <data name="ApiError40006urlParameterNumber" xml:space="preserve">
+  <data name="ApiError40006UrlParameterNumber" xml:space="preserve">
     <value>The url parameter must be a number.</value>
   </data>
-  <data name="ApiError40007currentPasswordIncorrect" xml:space="preserve">
+  <data name="ApiError40007CurrentPasswordIncorrect" xml:space="preserve">
     <value>The current password is incorrect.</value>
   </data>
-  <data name="ApiError40008locationNotFound" xml:space="preserve">
+  <data name="ApiError40008LocationNotFound" xml:space="preserve">
     <value>The city/country does not exist.</value>
   </data>
-  <data name="ApiError40009relationExists" xml:space="preserve">
+  <data name="ApiError40009RelationExists" xml:space="preserve">
     <value>Relation already exists.</value>
   </data>
-  <data name="ApiError40010levelRequired" xml:space="preserve">
+  <data name="ApiError40010LevelRequired" xml:space="preserve">
     <value>Dizziness register requires a level from 0-10.</value>
   </data>
-  <data name="ApiError40301onlyPhysiotherapist" xml:space="preserve">
+  <data name="ApiError40301OnlyPhysiotherapist" xml:space="preserve">
     <value>The endpoint can only be used by physiotherapists.</value>
   </data>
-  <data name="ApiError40302onlyPatient" xml:space="preserve">
+  <data name="ApiError40302OnlyPatient" xml:space="preserve">
     <value>The endpoint can only be used by patients.</value>
   </data>
-  <data name="ApiError40303accessDenied" xml:space="preserve">
+  <data name="ApiError40303AccessDenied" xml:space="preserve">
     <value>You do not have access to the specified element.</value>
   </data>
-  <data name="ApiError40401userNotFound" xml:space="preserve">
+  <data name="ApiError40401UserNotFound" xml:space="preserve">
     <value>The user no longer exists.</value>
   </data>
-  <data name="ApiError40402elementNotFound" xml:space="preserve">
+  <data name="ApiError40402ElementNotFound" xml:space="preserve">
     <value>The element could not be found.</value>
   </data>
-  <data name="ApiError50001internalServerError" xml:space="preserve">
+  <data name="ApiError50001InternalServerError" xml:space="preserve">
     <value>Internal server error.</value>
   </data>
   <data name="ConnectionException" xml:space="preserve">

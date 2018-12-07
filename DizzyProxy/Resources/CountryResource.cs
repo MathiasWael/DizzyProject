@@ -1,9 +1,6 @@
-﻿using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
 
 namespace DizzyProxy.Resources
 {
@@ -23,9 +20,8 @@ namespace DizzyProxy.Resources
 
         public async Task<Country> GetCountryAsync(string countryCode)
         {
-            Request request = new Request(Method.GET, "countries/" + countryCode);
+            Request request = new Request(Method.GET, $"countries/{countryCode}");
             return await ExecuteAsync<Country>(request);
         }
-        
     }
 }

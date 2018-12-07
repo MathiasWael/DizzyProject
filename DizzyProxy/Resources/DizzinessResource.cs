@@ -1,54 +1,52 @@
-﻿using DizzyProxy.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
 
 namespace DizzyProxy.Resources
 {
     public class DizzinessResource : Resource
     {
-        public async Task<bool> CreateDizzinessAsync(long? exercise_id, int? dizziness, string note)
+        public List<Dizziness> GetAllDizzinesses(long userId) =>
+            GetAllDizzinessesAsync(userId).Result;
+
+        public async Task<List<Dizziness>> GetAllDizzinessesAsync(long userId)
         {
-            Request request = new Request(Method.POST, "patients/" + Token.Subject + "/dizzinesses");
-
-            if (exercise_id != null)
-                request.Body["exercise_id"] = exercise_id;
-            else
-                request.Body["exercise_id"] = null;
-
-            if(dizziness != null)
-                request.Body["level"] = dizziness;
-            else
-                request.Body["level"] = null;
-
-            if (note != null)
-                request.Body["note"] = note;
-            else
-                request.Body["note"] = "";
-
-            return await ExecuteAsync(request);
-        }
-
-        public bool CreateDizziness(long? exercise_id, int? dizziness, string note)
-           => CreateDizzinessAsync(null, dizziness, note).Result;
-
-        public async Task<List<Dizziness>> GetAllDizzinessesAsync(string query)
-        {
-            Request request = new Request(Method.GET, "patients/" + Token.Subject + "/dizzinesses" + query);
+            Request request = new Request(Method.GET, $"patients/{userId}/dizzinesses");
             return await ExecuteAsync<List<Dizziness>>(request);
         }
 
-        public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
+        public List<Dizziness> GetAllDizzinesses(long userId, DateTime? date) =>
+            GetAllDizzinessesAsync(userId, date).Result;
+
+        public async Task<List<Dizziness>> GetAllDizzinessesAsync(long userId, DateTime? date)
         {
-            string date = dateTime.ToString("yyyy-MM-dd");
-            return await GetAllDizzinessesAsync("?date=" + date);
+            Request request = new Request(Method.GET, $"patients/{userId}/dizzinesses");
+            request.Query["date"] = date?.ToString("yyyy-MM-dd");
+            return await ExecuteAsync<List<Dizziness>>(request);
         }
 
-        public async Task<List<Dizziness>> GetAllDizzinessesWithLevelAsync()
+        public List<Dizziness> GetAllDizzinesses(long userId, DateTime? date, bool? levelGiven) =>
+            GetAllDizzinessesAsync(userId, date, levelGiven).Result;
+
+        public async Task<List<Dizziness>> GetAllDizzinessesAsync(long userId, DateTime? date, bool? levelGiven)
         {
-            return await GetAllDizzinessesAsync("?levelgiven=true");
+            Request request = new Request(Method.GET, $"patients/{userId}/dizzinesses");
+            request.Query["date"] = date?.ToString("yyyy-MM-dd");
+            request.Query["levelgiven"] = levelGiven == null ? null : ((bool)levelGiven ? "true" : "false");
+            return await ExecuteAsync<List<Dizziness>>(request);
+        }
+
+        public Dizziness CreateDizziness(long userId, long? exerciseId, int? dizziness, string note) =>
+            CreateDizzinessAsync(userId, exerciseId, dizziness, note).Result;
+
+        public async Task<Dizziness> CreateDizzinessAsync(long userId, long? exerciseId, int? dizziness, string note)
+        {
+            Request request = new Request(Method.POST, $"patients/{userId}/dizzinesses");
+            request.Body["exercise_id"] = exerciseId;
+            request.Body["level"] = dizziness;
+            request.Body["note"] = note;
+            return await ExecuteAsync<Dizziness>(request);
         }
     }
 }

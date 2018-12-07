@@ -77,7 +77,7 @@
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Resources\CityResource.cs" />
     <Compile Include="Resources\CountryResource.cs" />
-    <Compile Include="Resources\CustomExercisePatientResource.cs" />
+    <Compile Include="Resources\CustomExerciseResource.cs" />
     <Compile Include="Resources\DizzinessResource.cs" />
     <Compile Include="Resources\ExerciseFavoriteResource.cs" />
     <Compile Include="Resources\ExerciseResource.cs" />

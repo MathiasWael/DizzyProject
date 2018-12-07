@@ -1,23 +1,27 @@
-﻿using DizzyProxy.Models;
-using DizzyProxy.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
+using DizzyProxy.Resources;
 
 namespace DizzyProject.BusinessLogic
 {
     public class CityController
     {
+        private CityResource _cityResource;
+
+        public CityController()
+        {
+            _cityResource = new CityResource();
+        }
+
         public async Task<List<City>> GetAllCitiesAsync()
         {
-            return await new CityResource().GetAllCitiesAsync();
+            return await _cityResource.GetAllCitiesAsync();
         }
 
         public async Task<City> GetCityAsync(string zipCode, string countryCode)
         {
-            return await new CityResource().GetCityAsync(zipCode, countryCode);
+            return await _cityResource.GetCityAsync(zipCode, countryCode);
         }
-
     }
 }

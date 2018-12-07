@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using DizzyProxy.Resources;
 using DizzyProxy.Models;
@@ -11,19 +10,26 @@ namespace DizzyProject.BusinessLogic
 {
     public class DizzinessController
     {
-        public async Task<bool> CreateDizzinessAsync(int? dizziness, string note, long? exerciseId)
+        private DizzinessResource _dizzinessResource;
+
+        public DizzinessController()
         {
-            return await new DizzinessResource().CreateDizzinessAsync(exerciseId, dizziness, note);
+            _dizzinessResource = new DizzinessResource();
+        }
+
+        public async Task<Dizziness> CreateDizzinessAsync(long? exerciseId, int? dizziness, string note)
+        {
+            return await _dizzinessResource.CreateDizzinessAsync(Resource.UserId, exerciseId, dizziness, note);
         }
 
         public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
         {
-            return await new DizzinessResource().GetAllDizzinessesByDateAsync(dateTime);
+            return await _dizzinessResource.GetAllDizzinessesAsync(Resource.UserId, dateTime);
         }
 
         public async Task<List<Dizziness>> GetAllDizzinessesWithLevelAsync()
         {
-            return await new DizzinessResource().GetAllDizzinessesWithLevelAsync();
+            return await _dizzinessResource.GetAllDizzinessesAsync(Resource.UserId, null, true);
         }
 
         public List<DataPoint> GetDizzinessDataPoints(List<Dizziness> dizzinesses)

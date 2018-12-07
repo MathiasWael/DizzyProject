@@ -10,25 +10,41 @@ namespace DizzyProject.BusinessLogic
 {
     public class ExerciseController
     {
+        private ExerciseResource _exerciseResource;
+        private ExerciseFavoriteResource _exerciseFavoriteResource;
+        private CustomExerciseResource _customExerciseResource;
+        private RecommendationResource _recommendationResource;
+
+        public ExerciseController()
+        {
+            _exerciseResource = new ExerciseResource();
+            _exerciseFavoriteResource = new ExerciseFavoriteResource();
+            _customExerciseResource = new CustomExerciseResource();
+            _recommendationResource = new RecommendationResource();
+        }
+
         public async Task<List<ExerciseViewModel>> GetAllExercisesByIdAsync()
         {
-            List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
-            temp.AddRange(ConvertToViewModel(await new CustomExercisePatientResource().GetAllCustomExercisesAsync(), ExerciseType.Custom));
-            temp.AddRange(ConvertToViewModel(await new ExerciseResource().GetAllExercisesAsync(), ExerciseType.Normal));
+            List<ExerciseViewModel> viewModels = new List<ExerciseViewModel>();
+            viewModels.AddRange(ConvertToViewModel(await _customExerciseResource.GetAllCustomExercisesAsync(Resource.UserId), ExerciseType.Custom));
+            viewModels.AddRange(ConvertToViewModel(await _exerciseResource.GetAllExercisesAsync(), ExerciseType.Normal));
 
-            foreach (Exercise favorite in await new ExerciseFavoriteResource().GetAllFavoriteExercisesAsync())
+            List<Exercise> favoriteExercises = await _exerciseFavoriteResource.GetAllFavoriteExercisesAsync(Resource.UserId);
+            foreach (Exercise favorite in favoriteExercises)
             {
-                ExerciseViewModel ex = temp.Find(x => x.Id == favorite.Id);
+                ExerciseViewModel ex = viewModels.Find(x => x.Id == favorite.Id);
                 ex.Type = ExerciseType.Favorite;
             }
 
-            foreach (Recommendation recommendation in await new RecommendationResource().GetAllRecommendationsAsync())
+            List<Recommendation> recommendations = await _recommendationResource.GetAllRecommendationsAsync(Resource.UserId);
+            foreach (Recommendation recommendation in recommendations)
             {
-                ExerciseViewModel ex = temp.Find(x => x.Id == recommendation.ExerciseId);
+                ExerciseViewModel ex = viewModels.Find(x => x.Id == recommendation.ExerciseId);
                 ex.Type = ExerciseType.Recommended;
                 ex.Recommendation = recommendation;
             }
-            return temp;
+
+            return viewModels;
         }
 
         public List<ExerciseViewModel> ConvertToViewModel(List<Exercise> exercises, ExerciseType type)

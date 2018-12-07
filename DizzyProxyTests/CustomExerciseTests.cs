@@ -26,7 +26,7 @@ namespace DizzyProxyTests
             Helpers.Login();
 
             // Act
-            List<Exercise> exercises = new CustomExercisePatientResource().GetAllCustomExercisesAsync().Result;
+            List<Exercise> exercises = new CustomExerciseResource().GetAllCustomExercisesAsync().Result;
 
             // Assert
             Assert.AreEqual(2, exercises.Count());

@@ -63,144 +63,144 @@ namespace DizzyProject {
         /// <summary>
         ///   Looks up a localized string similar to Validation error..
         /// </summary>
-        public static string ApiError40001validation {
+        public static string ApiError40001Validation {
             get {
-                return ResourceManager.GetString("ApiError40001validation", resourceCulture);
+                return ResourceManager.GetString("ApiError40001Validation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invalid email or password..
         /// </summary>
-        public static string ApiError40002invalidEmailOrPassword {
+        public static string ApiError40002InvalidEmailOrPassword {
             get {
-                return ResourceManager.GetString("ApiError40002invalidEmailOrPassword", resourceCulture);
+                return ResourceManager.GetString("ApiError40002InvalidEmailOrPassword", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to User already registered..
         /// </summary>
-        public static string ApiError40003userAlreadyRegistered {
+        public static string ApiError40003UserAlreadyRegistered {
             get {
-                return ResourceManager.GetString("ApiError40003userAlreadyRegistered", resourceCulture);
+                return ResourceManager.GetString("ApiError40003UserAlreadyRegistered", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Access denied. No token provided..
         /// </summary>
-        public static string ApiError40004noToken {
+        public static string ApiError40004NoToken {
             get {
-                return ResourceManager.GetString("ApiError40004noToken", resourceCulture);
+                return ResourceManager.GetString("ApiError40004NoToken", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invalid token..
         /// </summary>
-        public static string ApiError40005invalidToken {
+        public static string ApiError40005InvalidToken {
             get {
-                return ResourceManager.GetString("ApiError40005invalidToken", resourceCulture);
+                return ResourceManager.GetString("ApiError40005InvalidToken", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The url parameter must be a number..
         /// </summary>
-        public static string ApiError40006urlParameterNumber {
+        public static string ApiError40006UrlParameterNumber {
             get {
-                return ResourceManager.GetString("ApiError40006urlParameterNumber", resourceCulture);
+                return ResourceManager.GetString("ApiError40006UrlParameterNumber", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The current password is incorrect..
         /// </summary>
-        public static string ApiError40007currentPasswordIncorrect {
+        public static string ApiError40007CurrentPasswordIncorrect {
             get {
-                return ResourceManager.GetString("ApiError40007currentPasswordIncorrect", resourceCulture);
+                return ResourceManager.GetString("ApiError40007CurrentPasswordIncorrect", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The city/country does not exist..
         /// </summary>
-        public static string ApiError40008locationNotFound {
+        public static string ApiError40008LocationNotFound {
             get {
-                return ResourceManager.GetString("ApiError40008locationNotFound", resourceCulture);
+                return ResourceManager.GetString("ApiError40008LocationNotFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Relation already exists..
         /// </summary>
-        public static string ApiError40009relationExists {
+        public static string ApiError40009RelationExists {
             get {
-                return ResourceManager.GetString("ApiError40009relationExists", resourceCulture);
+                return ResourceManager.GetString("ApiError40009RelationExists", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Dizziness register requires a level from 0-10..
         /// </summary>
-        public static string ApiError40010levelRequired {
+        public static string ApiError40010LevelRequired {
             get {
-                return ResourceManager.GetString("ApiError40010levelRequired", resourceCulture);
+                return ResourceManager.GetString("ApiError40010LevelRequired", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The endpoint can only be used by physiotherapists..
         /// </summary>
-        public static string ApiError40301onlyPhysiotherapist {
+        public static string ApiError40301OnlyPhysiotherapist {
             get {
-                return ResourceManager.GetString("ApiError40301onlyPhysiotherapist", resourceCulture);
+                return ResourceManager.GetString("ApiError40301OnlyPhysiotherapist", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The endpoint can only be used by patients..
         /// </summary>
-        public static string ApiError40302onlyPatient {
+        public static string ApiError40302OnlyPatient {
             get {
-                return ResourceManager.GetString("ApiError40302onlyPatient", resourceCulture);
+                return ResourceManager.GetString("ApiError40302OnlyPatient", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You do not have access to the specified element..
         /// </summary>
-        public static string ApiError40303accessDenied {
+        public static string ApiError40303AccessDenied {
             get {
-                return ResourceManager.GetString("ApiError40303accessDenied", resourceCulture);
+                return ResourceManager.GetString("ApiError40303AccessDenied", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The user no longer exists..
         /// </summary>
-        public static string ApiError40401userNotFound {
+        public static string ApiError40401UserNotFound {
             get {
-                return ResourceManager.GetString("ApiError40401userNotFound", resourceCulture);
+                return ResourceManager.GetString("ApiError40401UserNotFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The element could not be found..
         /// </summary>
-        public static string ApiError40402elementNotFound {
+        public static string ApiError40402ElementNotFound {
             get {
-                return ResourceManager.GetString("ApiError40402elementNotFound", resourceCulture);
+                return ResourceManager.GetString("ApiError40402ElementNotFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Internal server error..
         /// </summary>
-        public static string ApiError50001internalServerError {
+        public static string ApiError50001InternalServerError {
             get {
-                return ResourceManager.GetString("ApiError50001internalServerError", resourceCulture);
+                return ResourceManager.GetString("ApiError50001InternalServerError", resourceCulture);
             }
         }
         

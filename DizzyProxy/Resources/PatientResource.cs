@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DizzyProxy.Models;
-using DizzyProxy.Resources;
 
 namespace DizzyProxy.Resources
 {
     public class PatientResource : Resource
     {
+        public List<Patient> GetAllPatients()
+            => GetAllPatientsAsync().Result;
+
+        public async Task<List<Patient>> GetAllPatientsAsync()
+        {
+            Request request = new Request(Method.GET, "patients");
+            return await ExecuteAsync<List<Patient>>(request);
+        }
+
         public Patient GetPatient(long id) 
             => GetPatientAsync(id).Result;
 
@@ -50,15 +55,6 @@ namespace DizzyProxy.Resources
             request.Body["country_code"] = patient.CountryCode;
             request.Body["address"] = patient.Address;
             return await ExecuteAsync<Patient>(request);
-        }      
-
-        public List<Patient> GetAllPatients()
-            => GetAllPatientsAsync().Result;
-
-        public async Task<List<Patient>> GetAllPatientsAsync()//physio login id som parameter
-        {
-            Request request = new Request(Method.GET, "patients");
-            return await ExecuteAsync<List<Patient>>(request);
         }
     }
 }
