@@ -28,7 +28,10 @@ namespace DizzyProject.View
         {
             try
             {
-                await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id);
+                if(await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id))
+                {
+                    await Navigation.PopModalAsync();
+                }
             }
             catch(ApiException ex)
             {

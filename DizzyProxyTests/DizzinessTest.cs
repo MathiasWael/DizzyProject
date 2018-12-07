@@ -11,8 +11,6 @@ namespace DizzyProxyTests
     [TestClass]
     public class DizzinessTest
     {
-        DizzinessResource dizzinessResource = new DizzinessResource();
-
         [TestInitialize]
         public void TestInitialize()
         {
@@ -21,19 +19,24 @@ namespace DizzyProxyTests
         }
 
         [TestMethod]
-        public void CreateDizziness_NoExercise_Successful() //dun work, login giver connection fejl
+        public void CreateDizziness_NoExercise_Successful()
         {
             // Arrange
             Helpers.Login();
-            int level = 7;
-            string note = "Er svimmel i dag - Anna";
+            DizzinessResource dizzinessResource = new DizzinessResource();
+            string dizzinessNote = "Dizziness Note";
+            DateTime dateTime = DateTime.Now;
+            List<Dizziness> dizzinessesBefore = dizzinessResource.GetAllDizzinessesByDateAsync(DateTime.Now).Result;
 
             // Act
-            //Dizziness dizziness = dizzinessResource.CreateDizziness(null, level, note);
+            bool success = dizzinessResource.CreateDizzinessAsync(null, 5, dizzinessNote).Result;
+            List<Dizziness> dizzinessesAfter = dizzinessResource.GetAllDizzinessesByDateAsync(DateTime.Now).Result;
 
             // Assert
-            //Assert.AreEqual(dizziness.Level, level);
-            //Assert.AreEqual(dizziness.Note, note);
+            Assert.IsTrue(success);
+            Assert.AreEqual(dizzinessesBefore.Count() + 1, dizzinessesAfter.Count());
+            Assert.AreEqual(true, dizzinessesAfter.Exists(x => x.Note == dizzinessNote));
+            Assert.AreEqual(false, dizzinessesBefore.Exists(x => x.Note == dizzinessNote));
         }
 
         [TestMethod]

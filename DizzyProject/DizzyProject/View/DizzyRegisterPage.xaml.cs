@@ -1,4 +1,5 @@
 ﻿using DizzyProject.BusinessLogic;
+using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,21 @@ namespace DizzyProject.View
 
         private async void Submit_Pressed(object sender, EventArgs e)
         {
-            Dizziness d;
-            var answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
-            if (answer)
+            try
             {
-                await new DizzinessController().CreateDizzinessAsync(Convert.ToInt32(DizzyView.DizzinessValueSlider.Value), DizzyView.DizzinessRegisterNote.Text, null);
+                bool answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
+                if (answer)
+                {
+                    await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, null);
+                }
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
     }
