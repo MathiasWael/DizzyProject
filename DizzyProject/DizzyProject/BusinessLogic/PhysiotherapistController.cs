@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 
@@ -9,10 +6,16 @@ namespace DizzyProject.BusinessLogic
 {
     public class PhysiotherapistController
     {
+        private PhysiotherapistResource _physiotherapistResource;
 
-        public async Task<Physiotherapist> GetPhysioByIdAsync(long id)
+        public PhysiotherapistController()
         {
-            return await new PhysiotherapistResource().GetPhysiotherapistAsync(id);
+            _physiotherapistResource = new PhysiotherapistResource();
+        }
+
+        public async Task<Physiotherapist> GetPhysiotherapistAsync(long id)
+        {
+            return await _physiotherapistResource.GetPhysiotherapistAsync(id);
         }
     }
 }

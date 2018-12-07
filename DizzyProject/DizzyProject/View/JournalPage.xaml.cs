@@ -1,15 +1,10 @@
-﻿using DizzyProject.BusinessLogic;
-using DizzyProject.ViewModels;
-using DizzyProxy.Exceptions;
-using DizzyProxy.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -25,7 +20,6 @@ namespace DizzyProject.View
 		public JournalPage ()
 		{
 			InitializeComponent();
-
             journalLogController = new JournalLogController();
 		}
 

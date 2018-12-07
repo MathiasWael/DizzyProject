@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using DizzyProxy.Models;
-using DizzyProxy.Resources;
+﻿using DizzyProxy.Resources;
 
 namespace DizzyProject.BusinessLogic
 {
     public class RecommendationController
     {
-        RecommendationResource recResource;
-        public async Task<Recommendation> GetRecByIdAsync(long id)
+        private RecommendationResource _recommendationResource;
+
+        public RecommendationController()
         {
-            return await recResource.getRecommendationByIdAsync(id);
+            _recommendationResource = new RecommendationResource();
         }
     }
 }

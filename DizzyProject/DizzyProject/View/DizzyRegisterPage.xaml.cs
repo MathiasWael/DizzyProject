@@ -1,14 +1,8 @@
-﻿using DizzyProject.BusinessLogic;
-using DizzyProxy.Exceptions;
-using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProject.BusinessLogic;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -27,7 +21,7 @@ namespace DizzyProject.View
                 bool answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
                 if (answer)
                 {
-                    await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, null);
+                    await new DizzinessController().CreateDizzinessAsync(null, DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text);
                 }
             }
             catch (ApiException ex)

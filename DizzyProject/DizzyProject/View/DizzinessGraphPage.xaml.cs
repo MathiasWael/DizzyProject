@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using OxyPlot;
 using DizzyProject.BusinessLogic;
+using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
+using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DizzinessGraphPage : ContentPage
 	{
-		public DizzinessGraphPage ()
+		public DizzinessGraphPage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
         protected async override void OnAppearing()

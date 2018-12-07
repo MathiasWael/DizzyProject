@@ -1,33 +1,29 @@
-﻿using DizzyProject.BusinessLogic;
-using DizzyProject.ViewModels;
-using DizzyProxy.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewJournalPage : ContentPage
     {
-        private DateTime dateTime;
+        private DateTime _dateTime;
+
         public ViewJournalPage(DateTime dateTime)
         {
             InitializeComponent();
-
-            this.dateTime = dateTime;
+            _dateTime = dateTime;
         }
 
         protected override async void OnAppearing()
         {
             try
             {
-                List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(dateTime);
+                List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(_dateTime);
                 ListViewJournalItems.ItemsSource = journalViewModels;
             }
             catch (ApiException ex)

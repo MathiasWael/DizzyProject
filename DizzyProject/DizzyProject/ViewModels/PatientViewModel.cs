@@ -1,33 +1,15 @@
-﻿using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using DizzyProxy.Models;
 
 namespace DizzyProject.ViewModels
 {
     public class PatientViewModel
     {
-        private DateTime? birthDate;
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime? BirthDate
-        {
-            get
-            {
-                if(birthDate == null)
-                {
-                    return DateTime.Now;
-                } else
-                {
-                    return birthDate;
-                }
-            }
-
-            set { birthDate = value; }
-        }
         public Sex? Sex { get; set; }
         public short? Height { get; set; }
         public short? Weight { get; set; }
@@ -35,6 +17,19 @@ namespace DizzyProject.ViewModels
         public string CountryCode { get; set; }
         public string Address { get; set; }
         public string FullName { get; set; }
+
+        private DateTime? _birthDate;
+        public DateTime? BirthDate
+        {
+            get
+            {
+                return _birthDate == null ? DateTime.Now : _birthDate;
+            }
+            set
+            {
+                _birthDate = value;
+            }
+        }
 
         public PatientViewModel(Patient patient)
         {

@@ -1,46 +1,58 @@
-﻿using DizzyProject.ViewModels;
-using DizzyProxy.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DizzyProject.ViewModels;
+using DizzyProxy.Models;
 
 namespace DizzyProject.BusinessLogic
 {
     public class JournalController
     {
+        private DizzinessController _dizzinessController;
+        private JournalEntryController _journalEntryController;
+        private ExerciseController _exerciseController;
+
+        public JournalController()
+        {
+            _dizzinessController = new DizzinessController();
+            _journalEntryController = new JournalEntryController();
+            _exerciseController = new ExerciseController();
+        }
+
         public async Task<List<JournalViewModel>> GetAllJournalItemsAsync(DateTime dateTime)
         {
-            List<Dizziness> dizzinesses = await new DizzinessController().GetAllDizzinessesByDateAsync(dateTime);
-            List<JournalEntry> journalEntries = await new JournalEntryController().GetAllJournalEntriesByDateAsync(dateTime);
+            List<Dizziness> dizzinesses = await _dizzinessController.GetAllDizzinessesByDateAsync(dateTime);
+            List<JournalEntry> journalEntries = await _journalEntryController.GetAllJournalEntriesByDateAsync(dateTime);
 
-            List<JournalViewModel> journalViewModels = new List<JournalViewModel>();
-            journalViewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));
-            journalViewModels.AddRange(journalEntries.ConvertAll(new Converter<JournalEntry, JournalViewModel>(JournalEntryJournalViewModelConverter)));
+            List<JournalViewModel> viewModels = new List<JournalViewModel>();
+            viewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));
+            viewModels.AddRange(journalEntries.ConvertAll(new Converter<JournalEntry, JournalViewModel>(JournalEntryJournalViewModelConverter)));
+            viewModels.Sort((a, b) => a.Created.CompareTo(b.Created));
 
-            journalViewModels.Sort((x, y) => x.Created.CompareTo(y.Created));
-            return journalViewModels;
+            return viewModels;
         }
 
         private async Task<List<JournalViewModel>> DizzinessJournalViewModelConverter(List<Dizziness> dizzinesses)
         {
-            List<JournalViewModel> temp = new List<JournalViewModel>();
+            List<JournalViewModel> viewModels = new List<JournalViewModel>();
+
             foreach (Dizziness dizziness in dizzinesses)
             {
                 if (dizziness.ExerciseId != null)
                 {
-                    ExerciseController exerciseController = new ExerciseController();
                     JournalViewModel journalViewModel = new JournalViewModel(dizziness);
-                    Exercise exercise = await exerciseController.GetExerciseByIdAsync((long)dizziness.ExerciseId);
-                    journalViewModel.ExerciseViewModel = await exerciseController.GetExerciseViewModelByIdAsync((long)dizziness.ExerciseId);
+                    Exercise exercise = await _exerciseController.GetExerciseAsync((long)dizziness.ExerciseId);
+                    journalViewModel.ExerciseViewModel = await _exerciseController.GetExerciseViewModelAsync((long)dizziness.ExerciseId);
                     journalViewModel.ExerciseName = exercise.Name;
-                    temp.Add(journalViewModel);
+                    viewModels.Add(journalViewModel);
                 }
                 else
                 {
-                    temp.Add(new JournalViewModel(dizziness));
+                    viewModels.Add(new JournalViewModel(dizziness));
                 }
             }
-            return temp;
+
+            return viewModels;
         }
 
         private JournalViewModel JournalEntryJournalViewModelConverter(JournalEntry journalEntry)

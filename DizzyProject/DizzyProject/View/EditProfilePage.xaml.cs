@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DizzyProxy;
 using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 using DizzyProxy.Exceptions;
-using DizzyProject.ViewModels;
 
 namespace DizzyProject.View
 {
@@ -26,6 +22,7 @@ namespace DizzyProject.View
         private Patient patient;
         private Country country;
         private City city;
+
         public EditProfilePage()
         {
             InitializeComponent();
@@ -43,6 +40,7 @@ namespace DizzyProject.View
                 Sex.Female,
                 Sex.Male
             };
+
             genderPicker.ItemsSource = sexes;
             CountryPicker.ItemsSource = await countryController.GetAllCountriesAsync();
             patient = await patientController.GetPatientAsync(Resource.Token.Subject);
@@ -51,18 +49,17 @@ namespace DizzyProject.View
             BindingContext = patientViewModel;
 
             if (patient.ZipCode != null)
-            {
                 ZipCode.Placeholder = patient.ZipCode.ToString();
-            }
+
             if (patient.Address != null)
-            {
                 Address.Placeholder = patient.Address;
-            }
+
             if (patient.ZipCode != null && patient.CountryCode != null)
             {
                 city = await cityController.GetCityAsync(patient.ZipCode, patient.CountryCode);
                 City.Text = city.Name;
             }
+
             if (patient.CountryCode != null)
             {
                 country = await countryController.GetCountryAsync(patient.CountryCode);
@@ -81,9 +78,7 @@ namespace DizzyProject.View
             int selectedIndex = picker.SelectedIndex;
 
             if (selectedIndex != -1)
-            {
                 sex = (Sex)picker.ItemsSource[selectedIndex];
-            }
         }
 
         private void OnCountryChange(object sender, EventArgs e)
@@ -92,9 +87,7 @@ namespace DizzyProject.View
             int selectedIndex = picker.SelectedIndex;
 
             if (selectedIndex != -1)
-            {
                 country = (Country)picker.ItemsSource[selectedIndex];
-            }
         }
 
         private async void Edit_PressedAsync(object sender, EventArgs e)
@@ -113,42 +106,27 @@ namespace DizzyProject.View
             {
                 try
                 {
-                    //Zip
                     if (ZipCode.Text != null)
-                    {
                         patient.ZipCode = ZipCode.Text;
-                    }
-
-                    //Address
+                    
                     if (Address.Text != null)
-                    {
                         patient.Address = Address.Text;
-                    }
-
-                    //Phone
+                    
                     if (PhoneNumber.Text != null)
-                    {
                         patient.Phone = PhoneNumber.Text;
-                    }
-
-                    //Height
+                    
                     if (Height.Text != null)
-                    {
                         patient.Height = height;
-                    }
-
-                    //Weight
+                    
                     if (Weight.Text != null)
-                    {
                         patient.Weight = weight;
-                    }
+
                     patient.BirthDate = datePicked;
                     patient.Sex = sex;
                     patient.CountryCode = country.Code;
                     await patientController.UpdatePatientAsync(patient, CurrentPassword.Text, NewPassword.Text);
                     await DisplayAlert("Success", "Profile updated", "OK");
                     Application.Current.MainPage = new MasterPage();
-
                 }
                 catch (ConnectionException)
                 {
@@ -158,7 +136,6 @@ namespace DizzyProject.View
                 {
                     await DisplayAlert(ex.ErrorCode.ToString(), ex.Message, "ok");
                 }
-
             }
         }
     }

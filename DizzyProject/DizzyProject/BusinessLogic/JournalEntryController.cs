@@ -1,23 +1,33 @@
-﻿using DizzyProxy.Models;
-using DizzyProxy.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using DizzyProxy.Models;
+using DizzyProxy.Resources;
 
 namespace DizzyProject.BusinessLogic
 {
     public class JournalEntryController
     {
-        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
+        private JournalEntryResource _journalEntryResource;
+
+        public JournalEntryController()
         {
-            return await new JournalEntryResource().GetAllJournalEntriesByDateAsync(dateTime);
+            _journalEntryResource = new JournalEntryResource();
         }
 
+        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
+        {
+            return await _journalEntryResource.GetAllJournalEntriesAsync(Resource.UserId, dateTime);
+        }
+
+        // Wierd?
         public async Task<bool> CreateJournalEntryAsync(string note)
         {
-            if (note != null) return await new JournalEntryResource().CreateJournalEntryAsync(note);
-            else return false;
+            if (note == null)
+                return false;
+
+            await _journalEntryResource.CreateJournalEntryAsync(Resource.UserId, note);
+            return true;
         }
     }
 }

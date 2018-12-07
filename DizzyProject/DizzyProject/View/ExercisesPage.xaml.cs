@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DizzyProject.ViewModels;
-using DizzyProxy.Models;
 using DizzyProject.BusinessLogic;
-using System.Collections.ObjectModel;
 using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
@@ -30,7 +24,7 @@ namespace DizzyProject.View
         {
             try
             {
-                exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExercisesByIdAsync());
+                exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExerciseViewModelsAsync());
                 SortAndRefresh();
             }
             catch (ApiException ex)

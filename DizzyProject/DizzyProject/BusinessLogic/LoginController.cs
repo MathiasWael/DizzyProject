@@ -1,24 +1,21 @@
-﻿using DizzyProxy.Models;
+﻿using System.Threading.Tasks;
+using DizzyProxy.Models;
 using DizzyProxy.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProject.BusinessLogic
 {
     public class LoginController
     {
-        private LoginResource _logins;
+        private LoginResource _loginResource;
 
         public LoginController()
         {
-            _logins = new LoginResource();
+            _loginResource = new LoginResource();
         }
 
         public async Task<User> LoginAsync(string email, string password)
         {
-            return await _logins.CreateLoginAsync(email, password);
+            return await _loginResource.CreateLoginAsync(email, password);
         }
     }
 }

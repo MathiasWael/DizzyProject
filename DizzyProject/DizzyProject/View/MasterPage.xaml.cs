@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DizzyProject.ViewModels;
@@ -17,9 +13,7 @@ namespace DizzyProject.View
         public MasterPage()
         {
             InitializeComponent();
-
             MasterBehavior = MasterBehavior.Popover;
-
             MenuPages.Add((int)HomeMenuItemType.DizzyRegister, (NavigationPage)Detail);
         }
 
@@ -29,26 +23,13 @@ namespace DizzyProject.View
             {
                 switch (id)
                 {
-                    case (int)HomeMenuItemType.DizzyRegister:
-                        MenuPages.Add(id, new NavigationPage(new DizzyRegisterPage()));
-                        break;
-                    case (int)HomeMenuItemType.StepCounter:
-                        MenuPages.Add(id, new NavigationPage(new StepCounterPage()));
-                        break;
-                    case (int)HomeMenuItemType.Exercises:
-                        MenuPages.Add(id, new NavigationPage(new ExercisesPage()));
-                        break;
-                    case (int)HomeMenuItemType.Journal:
-                        MenuPages.Add(id, new NavigationPage(new JournalPage()));
-                        break;
-                    case (int)HomeMenuItemType.Logout:                       
-                        break;
-                    case (int)HomeMenuItemType.Statistics:
-                        MenuPages.Add(id, new NavigationPage(new StatisticsPage()));
-                        break;
-                    case (int)HomeMenuItemType.EditProfile:
-                        MenuPages.Add(id, new NavigationPage(new EditProfilePage()));
-                        break;
+                    case (int)HomeMenuItemType.DizzyRegister: MenuPages.Add(id, new NavigationPage(new DizzyRegisterPage())); break;
+                    case (int)HomeMenuItemType.StepCounter: MenuPages.Add(id, new NavigationPage(new StepCounterPage())); break;
+                    case (int)HomeMenuItemType.Exercises: MenuPages.Add(id, new NavigationPage(new ExercisesPage())); break;
+                    case (int)HomeMenuItemType.Journal: MenuPages.Add(id, new NavigationPage(new JournalPage())); break;
+                    case (int)HomeMenuItemType.Statistics: MenuPages.Add(id, new NavigationPage(new StatisticsPage())); break;
+                    case (int)HomeMenuItemType.EditProfile: MenuPages.Add(id, new NavigationPage(new EditProfilePage())); break;
+                    case (int)HomeMenuItemType.Logout: break;
                 }
             }
 

@@ -1,14 +1,10 @@
-﻿using DizzyProject.BusinessLogic;
+﻿using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
 using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DizzyProject.View
 {
@@ -28,10 +24,8 @@ namespace DizzyProject.View
         {
             try
             {
-                if(await new DizzinessController().CreateDizzinessAsync(DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text, selectedExercise.Id))
-                {
-                    await Navigation.PopModalAsync();
-                }
+                await new DizzinessController().CreateDizzinessAsync(selectedExercise.Id, DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text);
+                await Navigation.PopModalAsync();
             }
             catch(ApiException ex)
             {

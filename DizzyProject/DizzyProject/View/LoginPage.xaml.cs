@@ -1,15 +1,10 @@
-﻿using DizzyProject.BusinessLogic;
+﻿using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using DizzyProject.BusinessLogic;
 using DizzyProject.View;
 using DizzyProxy.Exceptions;
 using DizzyProxy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DizzyProject
 {

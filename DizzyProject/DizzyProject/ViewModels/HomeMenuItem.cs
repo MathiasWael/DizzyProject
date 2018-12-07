@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DizzyProject.ViewModels
+﻿namespace DizzyProject.ViewModels
 {
     public enum HomeMenuItemType
     {
@@ -14,6 +10,7 @@ namespace DizzyProject.ViewModels
         Statistics,
         EditProfile
     }
+
     public class HomeMenuItem
     {
         public HomeMenuItemType Type { get; set; }

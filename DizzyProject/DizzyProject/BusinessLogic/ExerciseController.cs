@@ -1,10 +1,8 @@
-﻿using DizzyProject.ViewModels;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using DizzyProject.ViewModels;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DizzyProject.BusinessLogic
 {
@@ -23,7 +21,7 @@ namespace DizzyProject.BusinessLogic
             _recommendationResource = new RecommendationResource();
         }
 
-        public async Task<List<ExerciseViewModel>> GetAllExercisesByIdAsync()
+        public async Task<List<ExerciseViewModel>> GetAllExerciseViewModelsAsync()
         {
             List<ExerciseViewModel> viewModels = new List<ExerciseViewModel>();
             viewModels.AddRange(ConvertToViewModel(await _customExerciseResource.GetAllCustomExercisesAsync(Resource.UserId), ExerciseType.Custom));
@@ -49,35 +47,37 @@ namespace DizzyProject.BusinessLogic
 
         public List<ExerciseViewModel> ConvertToViewModel(List<Exercise> exercises, ExerciseType type)
         {
-            List<ExerciseViewModel> temp = new List<ExerciseViewModel>();
+            List<ExerciseViewModel> viewModels = new List<ExerciseViewModel>();
+
             foreach (Exercise item in exercises)
             {
                 ExerciseViewModel exerciseViewModel = new ExerciseViewModel(item);
                 exerciseViewModel.Type = type;
-                temp.Add(exerciseViewModel);
+                viewModels.Add(exerciseViewModel);
             }
-            return temp;
+
+            return viewModels;
         }
 
         public async Task<bool> FavoriteExerciseAsync(ExerciseViewModel exerciseViewModel)
         {
-            return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exerciseViewModel.Id);
+            return await _exerciseFavoriteResource.CreateFavoriteExerciseAsync(Resource.UserId, exerciseViewModel.Id);
         }
 
         public async Task<bool> UnfavoriteExerciseAsync(ExerciseViewModel exercise)
         {
-            return await new ExerciseFavoriteResource().CreateFavoriteExerciseAsync(exercise.Id);
+            return await _exerciseFavoriteResource.DeleteFavoriteExerciseAsync(Resource.UserId, exercise.Id);
         }
 
-        public async Task<Exercise> GetExerciseByIdAsync(long exerciseId)
+        public async Task<Exercise> GetExerciseAsync(long exerciseId)
         {
-            return await new ExerciseResource().GetExerciseAsync(exerciseId);
+            return await _exerciseResource.GetExerciseAsync(exerciseId);
         }
 
-        public async Task<ExerciseViewModel> GetExerciseViewModelByIdAsync(long exerciseId)
+        public async Task<ExerciseViewModel> GetExerciseViewModelAsync(long exerciseId)
         {
-            List<ExerciseViewModel> temp = await GetAllExercisesByIdAsync();
-            return temp.Find(x => x.Id == exerciseId);
+            List<ExerciseViewModel> viewModels = await GetAllExerciseViewModelsAsync();
+            return viewModels.Find(x => x.Id == exerciseId);
         }
     }
 }

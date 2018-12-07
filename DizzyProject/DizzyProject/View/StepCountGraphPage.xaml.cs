@@ -1,26 +1,22 @@
 ﻿using DizzyProject.BusinessLogic;
 using DizzyProxy.Exceptions;
+using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using DizzyProxy.Models;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StepCountGraphPage : ContentPage
 	{
-		public StepCountGraphPage ()
+		public StepCountGraphPage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
         protected async override void OnAppearing()
@@ -50,6 +46,5 @@ namespace DizzyProject.View
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
-
     }
 }
