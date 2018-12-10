@@ -7,7 +7,7 @@
         <StackLayout Padding="10">
             <Label Text="Your journal entry:" Style="{DynamicResource ListItemTextStyle}"/>
             <Editor x:Name="JournalEntryInputEditor" WidthRequest="300" HeightRequest="100" HorizontalOptions="CenterAndExpand" BackgroundColor="LightGray"/>
-            <Button x:Name="SubmitJournalEntryButton" Text="Submit" HorizontalOptions="EndAndExpand" Clicked="SubmitJournalEntryButton_Clicked"/>
+            <Button x:Name="SubmitJournalEntryButton" BackgroundColor="#2f89cc" TextColor="White" Text="Submit" HorizontalOptions="EndAndExpand" Clicked="SubmitJournalEntryButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

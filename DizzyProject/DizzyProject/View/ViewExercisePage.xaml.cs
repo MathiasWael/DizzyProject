@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
 using DizzyProxy.Models;
+using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
@@ -24,11 +25,22 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            if (_selectedExercise.IsRecommended)
+            try
             {
-                note.Text = _selectedExercise.Recommendation.Note;
-                _physiotherapist = await _physiotherapistController.GetPhysiotherapistAsync(_selectedExercise.Recommendation.PhysiotherapistId);
-                physName.Text = _physiotherapist.FullName;
+                if (_selectedExercise.IsRecommended)
+                {
+                    note.Text = _selectedExercise.Recommendation.Note;
+                    _physiotherapist = await _physiotherapistController.GetPhysiotherapistAsync(_selectedExercise.Recommendation.PhysiotherapistId);
+                    physName.Text = _physiotherapist.FullName;
+                }
+            }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
 

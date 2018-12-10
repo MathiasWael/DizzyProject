@@ -16,12 +16,11 @@ namespace DizzyProject.View
 
         private async void SubmitJournalEntryButton_Clicked(object sender, EventArgs e)
         {
+
             try
             {
-                if (await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text))
-                {
-                    await Navigation.PopModalAsync();
-                }
+                await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text);
+                await Navigation.PopModalAsync();
             }
             catch (ApiException ex)
             {

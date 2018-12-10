@@ -30,9 +30,9 @@ namespace DizzyProject.View
                 journalLogs = await journalLogController.getAllJournalLogsAsync();
                 ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
                 timeRange = SelectedTimeRange.ThisWeek;
-                ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
-                ThisMonthButton.BackgroundColor = Color.LightBlue;
-                LaterButton.BackgroundColor = Color.LightBlue;
+                ThisWeekButton.BackgroundColor = Color.FromHex("#2f89cc");
+                ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
+                LaterButton.BackgroundColor = Color.FromHex("#82b8e0");
             }
             catch (ApiException ex)
             {
@@ -49,9 +49,9 @@ namespace DizzyProject.View
             if(timeRange != SelectedTimeRange.ThisWeek)
             {
                 ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
-                ThisWeekButton.BackgroundColor = Color.FromHex("#3e83f2");
-                ThisMonthButton.BackgroundColor = Color.LightBlue;
-                LaterButton.BackgroundColor = Color.LightBlue;
+                ThisWeekButton.BackgroundColor = Color.FromHex("#2f89cc");
+                ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
+                LaterButton.BackgroundColor = Color.FromHex("#82b8e0");
                 timeRange = SelectedTimeRange.ThisWeek;
             }
         }
@@ -61,9 +61,9 @@ namespace DizzyProject.View
             if (timeRange != SelectedTimeRange.ThisMonth)
             {
                 ListViewJournal.ItemsSource = journalLogController.getThisMonthJournals(journalLogs);
-                ThisWeekButton.BackgroundColor = Color.LightBlue;
-                ThisMonthButton.BackgroundColor = Color.FromHex("#3e83f2");
-                LaterButton.BackgroundColor = Color.LightBlue;
+                ThisWeekButton.BackgroundColor = Color.FromHex("#82b8e0");
+                ThisMonthButton.BackgroundColor = Color.FromHex("#2f89cc");
+                LaterButton.BackgroundColor = Color.FromHex("#82b8e0");
                 timeRange = SelectedTimeRange.ThisMonth;
             }
         }
@@ -73,9 +73,9 @@ namespace DizzyProject.View
             if (timeRange != SelectedTimeRange.Later)
             {
                 ListViewJournal.ItemsSource = journalLogController.getLaterJournals(journalLogs);
-                ThisWeekButton.BackgroundColor = Color.LightBlue;
-                ThisMonthButton.BackgroundColor = Color.LightBlue;
-                LaterButton.BackgroundColor = Color.FromHex("#3e83f2");
+                ThisWeekButton.BackgroundColor = Color.FromHex("#82b8e0");
+                ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
+                LaterButton.BackgroundColor = Color.FromHex("#2f89cc");
                 timeRange = SelectedTimeRange.Later;
             }
         }

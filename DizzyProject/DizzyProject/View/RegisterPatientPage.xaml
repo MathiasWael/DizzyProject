@@ -13,7 +13,7 @@
                 <Entry x:Name="Password1" Placeholder="Password" IsEnabled="true" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <Label Text="Reenter password" FontSize="20" TextColor="Black"/>
                 <Entry x:Name="Password2" Placeholder="Reenter password" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
-                <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Pressed="Submit_PressedAsync"/>
+                <Button Text="Submit" CornerRadius="10" BorderWidth="1" HorizontalOptions="CenterAndExpand" BackgroundColor="#2f89cc" TextColor="White" VerticalOptions="StartAndExpand" Pressed="Submit_PressedAsync"/>
             </StackLayout>
        </ScrollView>
     </ContentPage.Content>

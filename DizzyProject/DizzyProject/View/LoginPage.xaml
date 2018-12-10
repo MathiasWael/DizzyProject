@@ -7,8 +7,8 @@
             <Entry x:Name="EmailEntry" Text="annalarsen@hotmail.com" Placeholder="Email" WidthRequest="300" HorizontalOptions="CenterAndExpand"/>
             <Entry x:Name="PasswordEntry" Text="Password123" Placeholder="Password" WidthRequest="300" IsPassword="True" HorizontalOptions="CenterAndExpand"/>
             <StackLayout VerticalOptions="End">
-                <Button Pressed="Login_Pressed" BackgroundColor="Orange" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill"/>
-                <Button Pressed="CreateAccount" BackgroundColor="Orange" Text="Create Account" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill" />
+                <Button Pressed="Login_Pressed" BackgroundColor="#2f89cc" TextColor="White" Text="Login" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill"/>
+                <Button Pressed="CreateAccount" BackgroundColor="#2f89cc" TextColor="White" Text="Create Account" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -4,9 +4,9 @@
              x:Class="DizzyProject.View.StatisticsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Dizziness" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="ViewDizzinessGraphButton_Clicked"/>
-            <Button Text="Steps" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="StepsGraphButton_Clicked"/>
-            <Button Text="Dizziness/Steps" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="CombinedGraphButton_Clicked"/>
+            <Button Text="Dizziness" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="ViewDizzinessGraphButton_Clicked"/>
+            <Button Text="Steps" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="StepsGraphButton_Clicked"/>
+            <Button Text="Dizziness/Steps" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="CombinedGraphButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

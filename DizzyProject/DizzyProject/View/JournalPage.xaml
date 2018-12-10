@@ -9,9 +9,9 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="0">
-                <Button x:Name="ThisWeekButton" BackgroundColor="LightBlue" Pressed="WeekButton_Pressed" Text="This Week" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
-                <Button x:Name="ThisMonthButton" BackgroundColor="LightBlue" Pressed="MonthButton_Pressed" Text="This Month" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
-                <Button x:Name="LaterButton" BackgroundColor="LightBlue" Pressed="LaterButton_Pressed" Text="Later" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+                <Button x:Name="ThisWeekButton" BackgroundColor="#82b8e0" TextColor="White" Pressed="WeekButton_Pressed" Text="This Week" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+                <Button x:Name="ThisMonthButton" BackgroundColor="#82b8e0" TextColor="White" Pressed="MonthButton_Pressed" Text="This Month" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
+                <Button x:Name="LaterButton" BackgroundColor="#82b8e0" TextColor="White" Pressed="LaterButton_Pressed" Text="Later" HorizontalOptions="FillAndExpand" CornerRadius="0"/>
             </StackLayout>
             <ListView x:Name="ListViewJournal" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="Journal_PressedAsync">
                 <ListView.ItemTemplate>
