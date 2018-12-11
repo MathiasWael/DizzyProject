@@ -13,89 +13,73 @@ namespace DizzyProxyTests
     [TestClass]
     public class JournalEntryTests
     {
+        public JournalEntryResource JournalEntryResource { get; set; }
+
         [TestInitialize]
         public void TestInitialize()
         {
+            JournalEntryResource = new JournalEntryResource();
             Helpers.SetBaseAddress();
             Helpers.Wipe();
         }
 
         [TestMethod]
-        public void GetAllJournalLogsByDateTest_Successful()
+        public void GetAllJournalEntries_Patient_Successful()
         {
             // Arrange
-            Helpers.Login();
-            DateTime dateTime = new DateTime(2018, 10, 15);
+            Helpers.PatientLogin();
 
             // Act
-            List<JournalEntry> journalEntries = new JournalEntryResource().GetAllJournalEntriesByDate(dateTime);
+            List<JournalEntry> journalEntries = JournalEntryResource.GetAllJournalEntries(Resource.UserId);
 
             // Assert
-            Assert.AreEqual(4, journalEntries.Count());
+            Assert.AreEqual(10, journalEntries.Count);
         }
 
         [TestMethod]
-        public void CreateJournalEntry_ValidInput_Successful()
+        public void GetAllJournalEntries_Patient_ByDate_Successful()
         {
             // Arrange
-            Helpers.Login();
-            JournalEntryResource journalEntryResource = new JournalEntryResource();
-            string date = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
-            string journalEntryNote = "Testing Journal Entry";
-            DateTime dateTime = new DateTime(2018, 10, 15);
-            List<JournalEntry> journalEntriesBefore = journalEntryResource.GetAllJournalEntriesByDate(dateTime);
+            Helpers.PatientLogin();
+            DateTime date = new DateTime(2018, 11, 23);
 
             // Act
-            bool success = journalEntryResource.CreateJournalEntryAsync(journalEntryNote).Result;
-            List<JournalEntry> journalEntriesAfter = journalEntryResource.GetAllJournalEntriesByDate(dateTime);
+            List<JournalEntry> journalEntries = JournalEntryResource.GetAllJournalEntries(Resource.UserId, date);
 
             // Assert
-            Assert.IsTrue(success);
-            Assert.AreEqual(journalEntriesBefore.Count() + 1, journalEntriesAfter.Count());
-            Assert.AreEqual(true, journalEntriesAfter.Exists(x => x.Note == journalEntryNote));
-            Assert.AreEqual(false, journalEntriesBefore.Exists(x => x.Note == journalEntryNote));
+            Assert.AreEqual(1, journalEntries.Count);
+            Assert.AreEqual(3, journalEntries[0].Id);
+            Assert.AreEqual(1, journalEntries[0].PatientId);
+            Assert.AreEqual("I dag har jeg det ikke så godt", journalEntries[0].Note);
         }
 
         [TestMethod]
-        public void CreateJournalEntry_InvalidInput_NoteLength()
+        public void GetAllJournalEntries_Physiotherapist_Successful()
         {
             // Arrange
-            Helpers.Login();
-            string journalEntryNote = "Aenean id rutrum lectus, sit amet volutpat lorem. In porta libero quis blandit eleifend. Pellentesque tincidunt nibh pulvinar purus ornare, id consectetur mauris scelerisque. Donec scelerisque fermentum imperdiet. In pellentesque, purus ac elementum semper, purus neque suscipit dolor, non porta turpis nulla ut leo. In nec turpis at neque sollicitudin pellentesque. Integer pulvinar fringilla erat. Mauris non volutpat ligula. Suspendisse efficitur urna a nunc blandit convallis. Phasellus sit amet urna a mauris porta consectetur vitae a turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Fusce urna ipsum, efficitur sit amet purus eu, scelerisque vulputate nunc. Nullam eget molestie risus, at vestibulum nisl. Donec rhoncus mauris felis. Proin ornare semper augue, a tempor tellus tristique non. Nulla ac urna et massa facilisis sodales eleifend nec ante. Integer tristique pellentesque tincidunt. Fusce ac lectus convallis, cursus quam nec, tempus erat. Phasellus id risus non metus.";
-            bool success = false;
+            Helpers.PhysiotherapistLogin();
 
             // Act
-            try
-            {
-                success = new JournalEntryResource().CreateJournalEntryAsync(journalEntryNote).Result;
-            }
-            catch (AggregateException e)
-            {
-                Assert.IsFalse(success);
-                Assert.AreEqual("\"note\" length must be less than or equal to 1000 characters long", e.InnerException.Message);
-            }
+            List<JournalEntry> journalEntries = JournalEntryResource.GetAllJournalEntries(2);
+
+            // Assert
+            Assert.AreEqual(0, journalEntries.Count);
         }
 
         [TestMethod]
-        public void CreateJournalEntry_InvalidInput_NoteRequired()
+        public void CreateJournalEntry_Patient_Successful()
         {
             // Arrange
-            Helpers.Login();
-            string journalEntryNote = null;
-            bool success = false;
+            Helpers.PatientLogin();
+            string note = "Note";
 
             // Act
-            try
-            {
-                success = new JournalEntryResource().CreateJournalEntryAsync(journalEntryNote).Result;
-            }
+            JournalEntry journalEntry = JournalEntryResource.CreateJournalEntry(Resource.UserId, note);
 
             // Assert
-            catch (AggregateException e)
-            {
-                Assert.IsFalse(success);
-                Assert.AreEqual("\"note\" must be a string", e.InnerException.Message);
-            }
+            Assert.AreEqual(11, journalEntry.Id);
+            Assert.AreEqual(1, journalEntry.PatientId);
+            Assert.AreEqual(note, journalEntry.Note);
         }
     }
 }

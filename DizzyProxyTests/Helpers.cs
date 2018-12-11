@@ -14,10 +14,16 @@ namespace DizzyProxyTests
             Resource.BaseAddress = "http://localhost:4000/v1/";
         }
 
-        public static void Login()
+        public static void PatientLogin()
         {
             LoginResource loginResource = new LoginResource();
             loginResource.CreateLogin("annalarsen@hotmail.com", "Password123");
+        }
+
+        public static void PhysiotherapistLogin()
+        {
+            LoginResource loginResource = new LoginResource();
+            loginResource.CreateLogin("hanspetersen@gmail.com", "Password123");
         }
 
         public static void Wipe()

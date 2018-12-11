@@ -11,7 +11,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<StepCount>> GetAllStepCountsAsync(long userId)
         {
-            Request request = new Request(Method.GET, $"patients/{UserId}/stepcounts");
+            Request request = new Request(Method.GET, $"patients/{userId}/stepcounts");
             return await ExecuteAsync<List<StepCount>>(request);
         }
     }
