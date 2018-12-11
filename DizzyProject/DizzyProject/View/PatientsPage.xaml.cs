@@ -24,5 +24,11 @@ namespace DizzyProject.View
             patients = await patientController.GetAllPatientsAsync();
             ListViewPatients.ItemsSource = patients;
         }
+
+        private async void ViewPatient_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
+        {
+            Patient patient = (Patient)e.SelectedItem;
+            await Navigation.PushModalAsync(new NavigationPage(new JournalPage(patient.Id)));
+        }
     }
 }

@@ -16,19 +16,37 @@ namespace DizzyProject.View
 
         private enum SelectedTimeRange { ThisWeek, ThisMonth, Later }
         private SelectedTimeRange timeRange;
+        private long? _patientId;
 
-		public JournalPage ()
+		public JournalPage (long? id)
 		{
 			InitializeComponent();
             journalLogController = new JournalLogController();
+            _patientId = id;
+
+            if (id == null)
+            {
+                ToolbarItem toolbarItem = new ToolbarItem();
+                toolbarItem.Text = "Add";
+                toolbarItem.Clicked += ToolbarAdd_Clicked;
+                ToolbarItems.Add(toolbarItem);
+            }
 		}
 
         protected async override void OnAppearing()
         {
             try
             {
-                journalLogs = await journalLogController.getAllJournalLogsAsync();
-                ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
+                if (_patientId == null)
+                {
+                    journalLogs = await journalLogController.GetAllJournalLogsAsync();
+                }
+                else
+                {
+                    journalLogs = await journalLogController.GetAllJournalLogsByIdAsync((long)_patientId);
+                }
+
+                ListViewJournal.ItemsSource = journalLogController.GetThisWeekJournals(journalLogs);
                 timeRange = SelectedTimeRange.ThisWeek;
                 ThisWeekButton.BackgroundColor = Color.FromHex("#2f89cc");
                 ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
@@ -48,7 +66,7 @@ namespace DizzyProject.View
         {
             if(timeRange != SelectedTimeRange.ThisWeek)
             {
-                ListViewJournal.ItemsSource = journalLogController.getThisWeekJournals(journalLogs);
+                ListViewJournal.ItemsSource = journalLogController.GetThisWeekJournals(journalLogs);
                 ThisWeekButton.BackgroundColor = Color.FromHex("#2f89cc");
                 ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
                 LaterButton.BackgroundColor = Color.FromHex("#82b8e0");
@@ -60,7 +78,7 @@ namespace DizzyProject.View
         {
             if (timeRange != SelectedTimeRange.ThisMonth)
             {
-                ListViewJournal.ItemsSource = journalLogController.getThisMonthJournals(journalLogs);
+                ListViewJournal.ItemsSource = journalLogController.GetThisMonthJournals(journalLogs);
                 ThisWeekButton.BackgroundColor = Color.FromHex("#82b8e0");
                 ThisMonthButton.BackgroundColor = Color.FromHex("#2f89cc");
                 LaterButton.BackgroundColor = Color.FromHex("#82b8e0");
@@ -72,7 +90,7 @@ namespace DizzyProject.View
         {
             if (timeRange != SelectedTimeRange.Later)
             {
-                ListViewJournal.ItemsSource = journalLogController.getLaterJournals(journalLogs);
+                ListViewJournal.ItemsSource = journalLogController.GetLaterJournals(journalLogs);
                 ThisWeekButton.BackgroundColor = Color.FromHex("#82b8e0");
                 ThisMonthButton.BackgroundColor = Color.FromHex("#82b8e0");
                 LaterButton.BackgroundColor = Color.FromHex("#2f89cc");
@@ -82,7 +100,7 @@ namespace DizzyProject.View
 
         private async void Journal_PressedAsync(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ViewJournalPage(((JournalLogViewModel)e.SelectedItem).Date)));
+            await Navigation.PushModalAsync(new NavigationPage(new ViewJournalPage(((JournalLogViewModel)e.SelectedItem).Date, _patientId)));
         }
 
         private async void ToolbarAdd_Clicked(object sender, EventArgs e)

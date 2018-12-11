@@ -5,14 +5,14 @@ using Xamarin.Forms.Xaml;
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DizzyRegisterView : ContentView
+	public partial class DizzyRegisterContentView : ContentView
 	{
         public int? DizzyLevel;
         public Label DizzinessLevelLabel { get { return DizzyLevelLabel; } }
         public Slider DizzinessValueSlider { get { return dizzinessValue; } }
         public Editor DizzinessRegisterNote { get { return Note; } }
 
-        public DizzyRegisterView ()
+        public DizzyRegisterContentView ()
 		{
 			InitializeComponent ();
 		}

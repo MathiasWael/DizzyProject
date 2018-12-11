@@ -59,5 +59,18 @@ namespace DizzyProject.BusinessLogic
         {
             return new JournalViewModel(journalEntry);
         }
+
+        public async Task<List<JournalViewModel>> GetAllJournalItemsByIdAsync(DateTime dateTime, long patientId)
+        {
+            List<Dizziness> dizzinesses = await _dizzinessController.GetAllDizzinessesByDateAsync(dateTime);
+            List<JournalEntry> journalEntries = await _journalEntryController.GetAllJournalEntriesByDateAsync(dateTime);
+
+            List<JournalViewModel> viewModels = new List<JournalViewModel>();
+            viewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));
+            viewModels.AddRange(journalEntries.ConvertAll(new Converter<JournalEntry, JournalViewModel>(JournalEntryJournalViewModelConverter)));
+            viewModels.Sort((a, b) => a.Created.CompareTo(b.Created));
+
+            return viewModels;
+        }
     }
 }

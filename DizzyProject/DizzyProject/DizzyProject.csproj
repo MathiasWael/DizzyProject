@@ -24,8 +24,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="View\DizzyRegisterContentView.xaml.cs">
+      <DependentUpon>DizzyRegisterContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ViewPhysiotherapistExercisePage.xaml.cs">
+      <DependentUpon>ViewPhysiotherapistExercisePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ViewPatientExercisePage.xaml.cs">
+      <DependentUpon>ViewPatientExercisePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\ViewJournalEntryPage.xaml.cs">
       <DependentUpon>ViewJournalEntryPage.xaml</DependentUpon>
@@ -43,7 +52,7 @@
     <EmbeddedResource Update="View\DizzyRegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\DizzyRegisterView.xaml">
+    <EmbeddedResource Update="View\DizzyRegisterContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\DoExercisePage.xaml">
@@ -52,7 +61,13 @@
     <EmbeddedResource Update="View\EditProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\ExerciseContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\ExercisesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ViewPhysiotherapistExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\StepCountGraphPage.xaml">
@@ -85,7 +100,7 @@
     <EmbeddedResource Update="View\StepCounterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ViewExercisePage.xaml">
+    <EmbeddedResource Update="View\ViewPatientExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ViewJournalPage.xaml">

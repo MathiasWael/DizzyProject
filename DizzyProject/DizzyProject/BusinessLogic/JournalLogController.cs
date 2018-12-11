@@ -16,7 +16,7 @@ namespace DizzyProject.BusinessLogic
             _journalLogResource = new JournalLogResource();
         }
 
-        public async Task<List<JournalLogViewModel>> getAllJournalLogsAsync()
+        public async Task<List<JournalLogViewModel>> GetAllJournalLogsAsync()
         {
             List<JournalLog> logs = await _journalLogResource.GetAllJournalLogsAsync(Resource.UserId);
             return logs.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));
@@ -27,7 +27,7 @@ namespace DizzyProject.BusinessLogic
             return new JournalLogViewModel { Date = journalLog.Date.AddDays(1) };
         }
 
-        public List<JournalLogViewModel> getThisWeekJournals(List<JournalLogViewModel> journalLogs)
+        public List<JournalLogViewModel> GetThisWeekJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
             List<JournalLogViewModel> viewModels = journalLogs.FindAll(x => x.Date >= dateTime);
@@ -35,7 +35,7 @@ namespace DizzyProject.BusinessLogic
             return viewModels;
         }
 
-        public List<JournalLogViewModel> getThisMonthJournals(List<JournalLogViewModel> journalLogs)
+        public List<JournalLogViewModel> GetThisMonthJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today;
             DateTime dateTimeWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
@@ -44,12 +44,18 @@ namespace DizzyProject.BusinessLogic
             return viewModels;
         }
 
-        public List<JournalLogViewModel> getLaterJournals(List<JournalLogViewModel> journalLogs)
+        public List<JournalLogViewModel> GetLaterJournals(List<JournalLogViewModel> journalLogs)
         {
             DateTime dateTime = DateTime.Today;
             List<JournalLogViewModel> viewModels = journalLogs.FindAll(x => x.Date.Month < dateTime.Month);
             viewModels.Sort((a, b) => b.Date.CompareTo(a.Date));
             return viewModels;
+        }
+
+        public async Task<List<JournalLogViewModel>> GetAllJournalLogsByIdAsync(long patientId)
+        {
+            List<JournalLog> logs = await _journalLogResource.GetAllJournalLogsAsync(patientId);
+            return logs.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));
         }
     }
 }

@@ -4,7 +4,7 @@
              x:Class="DizzyProject.View.PatientsPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="ListViewPatients" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+            <ListView x:Name="ListViewPatients" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="ViewPatient_ItemSelectedAsync">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

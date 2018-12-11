@@ -9,18 +9,20 @@ using DizzyProxy.Exceptions;
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViewExercisePage : ContentPage
+	public partial class ViewPatientExercisePage : ContentPage
 	{
         private PhysiotherapistController _physiotherapistController;
         private Physiotherapist _physiotherapist;
         private ExerciseViewModel _selectedExercise;
+        private long? _patientId;
 
-		public ViewExercisePage (ExerciseViewModel exercise)
+		public ViewPatientExercisePage (ExerciseViewModel exercise, long? patientId)
 		{
 			InitializeComponent();
             _selectedExercise = exercise;
             BindingContext = _selectedExercise;
             _physiotherapistController = new PhysiotherapistController();
+            _patientId = patientId;
 		}
 
         protected override async void OnAppearing()
@@ -47,11 +49,6 @@ namespace DizzyProject.View
         private async void DoExercise_Pressed(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new DoExercisePage(_selectedExercise)));
-        }
-
-        private async void BackButton_Pressed(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
         }
     }
 }

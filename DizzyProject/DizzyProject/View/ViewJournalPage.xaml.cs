@@ -11,20 +11,31 @@ namespace DizzyProject.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewJournalPage : ContentPage
     {
+        private List<JournalViewModel> _journalViewModels;
         private DateTime _dateTime;
+        private long? _patientId;
 
-        public ViewJournalPage(DateTime dateTime)
+        public ViewJournalPage(DateTime dateTime, long? patientId)
         {
             InitializeComponent();
             _dateTime = dateTime;
+            _patientId = patientId;
         }
 
         protected override async void OnAppearing()
         {
             try
             {
-                List<JournalViewModel> journalViewModels = await new JournalController().GetAllJournalItemsAsync(_dateTime);
-                ListViewJournalItems.ItemsSource = journalViewModels;
+                if (_patientId == null)
+                {
+                    _journalViewModels = await new JournalController().GetAllJournalItemsAsync(_dateTime);
+                }
+                else
+                {
+                    _journalViewModels = await new JournalController().GetAllJournalItemsByIdAsync(_dateTime, (long)_patientId);
+                }
+                
+                ListViewJournalItems.ItemsSource = _journalViewModels;
             }
             catch (ApiException ex)
             {
@@ -39,7 +50,7 @@ namespace DizzyProject.View
         private async void ExerciseLink_Tapped(object sender, EventArgs e)
         {
             Label label = (Label)sender;
-            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new ViewPatientExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel, _patientId)));
         }
     }
 }

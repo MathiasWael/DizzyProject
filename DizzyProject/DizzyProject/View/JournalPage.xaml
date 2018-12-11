@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DizzyProject.View.JournalPage"
              Title="Journals">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarAdd_Clicked"/>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="0">
