@@ -8,7 +8,8 @@
         Journal,
         Logout,
         Statistics,
-        EditProfile
+        EditProfile,
+        Patients
     }
 
     public class HomeMenuItem

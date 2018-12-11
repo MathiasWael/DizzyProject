@@ -10,9 +10,9 @@
                         <ViewCell>
                             <StackLayout Padding="10">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                    <Label Text="{Binding FullName}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
                                 </StackLayout>
-                                <Label Text="{Binding Description}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                                <Label Text="{Binding Email}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

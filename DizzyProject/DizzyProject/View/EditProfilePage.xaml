@@ -39,7 +39,7 @@
                 <Label Text="Reenter your new password" FontSize="20" TextColor="Black"/>
                 <Entry x:Name="NewPassword2" Placeholder="Reenter password*" IsEnabled="True" IsPassword="True" WidthRequest="500" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
                 <StackLayout>
-                    <Button Text="Edit profile" CornerRadius="10" BackgroundColor="Orange" BorderWidth="1" Pressed="Edit_PressedAsync" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="Edit profile" CornerRadius="10" BackgroundColor="#2f89cc" TextColor="White" BorderWidth="1" Pressed="Edit_PressedAsync" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

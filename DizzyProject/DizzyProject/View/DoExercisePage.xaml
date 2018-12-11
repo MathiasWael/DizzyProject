@@ -12,7 +12,7 @@
             </Grid.RowDefinitions>
             <Label x:Name="reviewof" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="0"/>
             <view:DizzyRegisterView x:Name="DizzyView" Grid.Row="1"/>
-            <Button Text="Save to journal" CornerRadius="10" BackgroundColor="LightBlue" BorderWidth="1" Pressed="Save_Pressed" VerticalOptions="CenterAndExpand" Grid.Row="2"/>
+            <Button Text="Save to journal" CornerRadius="10" TextColor="White" BackgroundColor="#2f89cc" BorderWidth="1" Pressed="Save_Pressed" VerticalOptions="CenterAndExpand" Grid.Row="2"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

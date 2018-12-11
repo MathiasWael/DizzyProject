@@ -15,9 +15,9 @@
                         <Label FontSize="Small" TextColor="Gray" Text="{Binding Updated}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label FontSize="Small" TextColor="Gray" Text="{Binding Created}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
-                <Label FontSize="Large" Text="Note" IsVisible="{Binding isRecommended}" HorizontalOptions="Start" VerticalOptions="EndAndExpand"/>
-                <Label x:Name="note" FontSize="Medium" IsVisible="{Binding isRecommended}"/>
-                <Label x:Name="physName" IsVisible="{Binding isRecommended}" VerticalOptions="StartAndExpand"/>
+                <Label FontSize="Large" Text="Note" IsVisible="{Binding IsRecommended}" HorizontalOptions="Start" VerticalOptions="EndAndExpand"/>
+                <Label x:Name="note" FontSize="Medium" IsVisible="{Binding IsRecommended}"/>
+                <Label x:Name="physName" IsVisible="{Binding IsRecommended}" VerticalOptions="StartAndExpand"/>
                 <StackLayout VerticalOptions="EndAndExpand">
                     <Button Text="Do exercise" BackgroundColor="Orange" CornerRadius="10" BorderWidth="1" Pressed="DoExercise_Pressed" HorizontalOptions="Fill"/>
                     <Button Text="Go back to index" BackgroundColor="Orange" CornerRadius="10" BorderWidth="1" Pressed="BackButton_Pressed" HorizontalOptions="Fill" />

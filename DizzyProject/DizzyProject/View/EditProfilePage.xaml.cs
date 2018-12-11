@@ -35,35 +35,46 @@ namespace DizzyProject.View
 
         protected override async void OnAppearing()
         {
-            List<Enum> sexes = new List<Enum>()
+            try
+            {
+                List<Enum> sexes = new List<Enum>()
             {
                 Sex.Female,
                 Sex.Male
             };
 
-            genderPicker.ItemsSource = sexes;
-            CountryPicker.ItemsSource = await countryController.GetAllCountriesAsync();
-            patient = await patientController.GetPatientAsync(Resource.Token.Subject);
-            patientViewModel = new PatientViewModel(patient);
-            sex = (Sex)patientViewModel.Sex;
-            BindingContext = patientViewModel;
+                genderPicker.ItemsSource = sexes;
+                CountryPicker.ItemsSource = await countryController.GetAllCountriesAsync();
+                patient = await patientController.GetPatientAsync(Resource.Token.Subject);
+                patientViewModel = new PatientViewModel(patient);
+                sex = (Sex)patientViewModel.Sex;
+                BindingContext = patientViewModel;
 
-            if (patient.ZipCode != null)
-                ZipCode.Placeholder = patient.ZipCode.ToString();
+                if (patient.ZipCode != null)
+                    ZipCode.Placeholder = patient.ZipCode.ToString();
 
-            if (patient.Address != null)
-                Address.Placeholder = patient.Address;
+                if (patient.Address != null)
+                    Address.Placeholder = patient.Address;
 
-            if (patient.ZipCode != null && patient.CountryCode != null)
-            {
-                city = await cityController.GetCityAsync(patient.ZipCode, patient.CountryCode);
-                City.Text = city.Name;
+                if (patient.ZipCode != null && patient.CountryCode != null)
+                {
+                    city = await cityController.GetCityAsync(patient.ZipCode, patient.CountryCode);
+                    City.Text = city.Name;
+                }
+
+                if (patient.CountryCode != null)
+                {
+                    country = await countryController.GetCountryAsync(patient.CountryCode);
+                    CountryPicker.Title = country.Name;
+                }
             }
-
-            if (patient.CountryCode != null)
+            catch (ApiException ex)
             {
-                country = await countryController.GetCountryAsync(patient.CountryCode);
-                CountryPicker.Title = country.Name;
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
+            catch (ConnectionException)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
         }
 
@@ -128,13 +139,13 @@ namespace DizzyProject.View
                     await DisplayAlert("Success", "Profile updated", "OK");
                     Application.Current.MainPage = new MasterPage();
                 }
+                catch (ApiException ex)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                }
                 catch (ConnectionException)
                 {
                     await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
-                }
-                catch (ApiException ex)
-                {
-                    await DisplayAlert(ex.ErrorCode.ToString(), ex.Message, "ok");
                 }
             }
         }

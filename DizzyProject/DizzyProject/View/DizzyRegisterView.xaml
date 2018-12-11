@@ -6,7 +6,7 @@
         <StackLayout>
             <Label Text="How dizzy are you?" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="15"/>
             <Label x:Name="DizzyLevelLabel" FontSize="75" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
-            <Slider x:Name="dizzinessValue" Maximum="10.0" Minimum="0.0" Value="5.0" VerticalOptions="StartAndExpand" ValueChanged="Slider_ValueChanged" MinimumTrackColor="LightBlue" ThumbColor="Blue" MaximumTrackColor="Gray"/>
+            <Slider x:Name="dizzinessValue" Maximum="10.0" Minimum="0.0" Value="5.0" VerticalOptions="StartAndExpand" ValueChanged="Slider_ValueChanged" MinimumTrackColor="#82b8e0" ThumbColor="#2f89cc" MaximumTrackColor="Gray"/>
             <Editor x:Name="Note" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="LightGray"/>
         </StackLayout>
     </ContentView.Content>

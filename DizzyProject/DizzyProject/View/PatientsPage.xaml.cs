@@ -11,17 +11,17 @@ namespace DizzyProject.View
 	{
         private PatientController patientController;
         private List<Patient> patients;
+
         public PatientsPage()
         {
             InitializeComponent();
             patientController = new PatientController();
-            patients = new List<Patient>();
         }
 
         protected override async void OnAppearing()
         {
             patientController = new PatientController();
-            patients = new List<Patient>(await patientController.GetAllPatientsAsync());
+            patients = await patientController.GetAllPatientsAsync();
             ListViewPatients.ItemsSource = patients;
         }
     }

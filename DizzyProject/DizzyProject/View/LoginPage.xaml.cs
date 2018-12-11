@@ -31,13 +31,13 @@ namespace DizzyProject
                 User user = await _controller.LoginAsync(EmailEntry.Text, PasswordEntry.Text);
                 Application.Current.MainPage = new MasterPage();
             }
+            catch (ApiException ex)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+            }
             catch (ConnectionException)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
-            }
-            catch (ApiException ex)
-            {
-                await DisplayAlert(ex.ErrorCode.ToString(), ex.Message, "OK");
             }
         }
     }
