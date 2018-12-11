@@ -49,17 +49,20 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityTest.cs" />
-    <Compile Include="CountryTest.cs" />
+    <Compile Include="CityTests.cs" />
+    <Compile Include="CountryTests.cs" />
     <Compile Include="CustomExerciseTests.cs" />
-    <Compile Include="DizzinessTest.cs" />
+    <Compile Include="DizzinessTests.cs" />
     <Compile Include="ExerciseFavoriteTests.cs" />
     <Compile Include="ExerciseTests.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="JournalEntryTests.cs" />
     <Compile Include="JournalLogTests.cs" />
+    <Compile Include="LoginTests.cs" />
     <Compile Include="PatientTests.cs" />
+    <Compile Include="PhysiotherapistTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecommendationTests.cs" />
     <Compile Include="StepCountTests.cs" />
   </ItemGroup>
   <ItemGroup>

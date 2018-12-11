@@ -11,7 +11,7 @@ namespace DizzyProxy.Resources
 
         public async Task<List<Recommendation>> GetAllRecommendationsAsync(long userId)
         {
-            Request request = new Request(Method.GET, $"patients/{UserId}/recommendations");
+            Request request = new Request(Method.GET, $"patients/{userId}/recommendations");
             return await ExecuteAsync<List<Recommendation>>(request);
         }
     }

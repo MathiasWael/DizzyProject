@@ -10,6 +10,6 @@ namespace DizzyProxy.Models
     public class Physiotherapist : User
     {
         [JsonProperty("organisation_id")]
-        public long DepartmentId { get; set; }
+        public long OrganisationId { get; set; }
     }
 }

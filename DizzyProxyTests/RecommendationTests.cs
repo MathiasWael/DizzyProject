@@ -1,48 +1,47 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Linq;
 using DizzyProxy.Models;
 using DizzyProxy.Resources;
 
 namespace DizzyProxyTests
 {
     [TestClass]
-    public class StepCountTests
+    public class RecommendationTests
     {
-        public StepCountResource StepCountResource { get; set; }
+        public RecommendationResource RecommendationResource { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            StepCountResource = new StepCountResource();
+            RecommendationResource = new RecommendationResource();
             Helpers.SetBaseAddress();
             Helpers.Wipe();
         }
 
         [TestMethod]
-        public void GetAllStepCounts_Patient_Successful()
+        public void GetAllRecommendations_Patient_Succesful()
         {
             // Arrange
             Helpers.PatientLogin();
 
             // Act
-            List<StepCount> stepCounts = StepCountResource.GetAllStepCounts(Resource.UserId);
+            List<Recommendation> recommendations = RecommendationResource.GetAllRecommendations(Resource.UserId);
 
             // Assert
-            Assert.AreEqual(43, stepCounts.Count());
+            Assert.AreEqual(2, recommendations.Count);
         }
 
         [TestMethod]
-        public void GetAllStepCounts_Physiotherapist_Successful()
+        public void GetAllRecommendations_Physiotherapist_Succesful()
         {
             // Arrange
             Helpers.PhysiotherapistLogin();
 
             // Act
-            List<StepCount> stepCounts = StepCountResource.GetAllStepCounts(2);
+            List<Recommendation> recommendations = RecommendationResource.GetAllRecommendations(2);
 
             // Assert
-            Assert.AreEqual(2, stepCounts.Count());
+            Assert.AreEqual(1, recommendations.Count);
         }
     }
 }
