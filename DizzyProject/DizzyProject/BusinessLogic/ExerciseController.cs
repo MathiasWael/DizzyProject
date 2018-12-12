@@ -21,20 +21,20 @@ namespace DizzyProject.BusinessLogic
             _recommendationResource = new RecommendationResource();
         }
 
-        public async Task<List<ExerciseViewModel>> GetAllExerciseViewModelsAsync()
+        public async Task<List<ExerciseViewModel>> GetAllExerciseViewModelsAsync(long? patientId)
         {
             List<ExerciseViewModel> viewModels = new List<ExerciseViewModel>();
-            viewModels.AddRange(ConvertToViewModel(await _customExerciseResource.GetAllCustomExercisesAsync(Resource.UserId), ExerciseType.Custom));
+            viewModels.AddRange(ConvertToViewModel(await _customExerciseResource.GetAllCustomExercisesAsync(LogicHelper.GetPatientId(patientId)), ExerciseType.Custom));
             viewModels.AddRange(ConvertToViewModel(await _exerciseResource.GetAllExercisesAsync(), ExerciseType.Normal));
 
-            List<Exercise> favoriteExercises = await _exerciseFavoriteResource.GetAllFavoriteExercisesAsync(Resource.UserId);
+            List<Exercise> favoriteExercises = await _exerciseFavoriteResource.GetAllFavoriteExercisesAsync(LogicHelper.GetPatientId(patientId));
             foreach (Exercise favorite in favoriteExercises)
             {
                 ExerciseViewModel ex = viewModels.Find(x => x.Id == favorite.Id);
                 ex.Type = ExerciseType.Favorite;
             }
 
-            List<Recommendation> recommendations = await _recommendationResource.GetAllRecommendationsAsync(Resource.UserId);
+            List<Recommendation> recommendations = await _recommendationResource.GetAllRecommendationsAsync(LogicHelper.GetPatientId(patientId));
             foreach (Recommendation recommendation in recommendations)
             {
                 ExerciseViewModel ex = viewModels.Find(x => x.Id == recommendation.ExerciseId);
@@ -42,6 +42,13 @@ namespace DizzyProject.BusinessLogic
                 ex.Recommendation = recommendation;
             }
 
+            return viewModels;
+        }
+
+        public async Task<List<ExerciseViewModel>> GetGlobalExerciseViewModelsAsync()
+        {
+            List<ExerciseViewModel> viewModels = new List<ExerciseViewModel>();
+            viewModels.AddRange(ConvertToViewModel(await _exerciseResource.GetAllExercisesAsync(), ExerciseType.Normal));
             return viewModels;
         }
 
@@ -74,10 +81,15 @@ namespace DizzyProject.BusinessLogic
             return await _exerciseResource.GetExerciseAsync(exerciseId);
         }
 
-        public async Task<ExerciseViewModel> GetExerciseViewModelAsync(long exerciseId)
+        public async Task<ExerciseViewModel> GetExerciseViewModelAsync(long exerciseId, long? patientId)
         {
-            List<ExerciseViewModel> viewModels = await GetAllExerciseViewModelsAsync();
+            List<ExerciseViewModel> viewModels = await GetAllExerciseViewModelsAsync(patientId);
             return viewModels.Find(x => x.Id == exerciseId);
+        }
+
+        public async Task<Exercise> CreateExerciseAsync(string exerciseName, string exerciseDescription)
+        {
+            return await _exerciseResource.CreateExerciseAsync(exerciseName, exerciseDescription);
         }
     }
 }

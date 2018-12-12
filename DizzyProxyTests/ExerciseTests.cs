@@ -48,5 +48,23 @@ namespace DizzyProxyTests
             Assert.AreEqual("Lunges", exercise.Name);
             Assert.AreEqual("", exercise.Description);
         }
+
+        [TestMethod]
+        public void CreateExercise_Physiotherapist_Successful()
+        {
+            // Arrange
+            Helpers.PhysiotherapistLogin();
+            string exerciseName = "Exercist Test Name";
+            string exerciseDescription = "Exercise Test Description";
+
+            // Act
+            ExerciseResource.CreateExercise(exerciseName, exerciseDescription);
+            Exercise exercise = ExerciseResource.GetExercise(15);
+
+            // Assert
+            Assert.AreEqual(6, exercise.AuthorId);
+            Assert.AreEqual(exerciseName, exercise.Name);
+            Assert.AreEqual(exerciseDescription, exercise.Description);
+        }
     }
 }

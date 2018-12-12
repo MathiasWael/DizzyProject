@@ -16,9 +16,9 @@ namespace DizzyProject.BusinessLogic
             _journalLogResource = new JournalLogResource();
         }
 
-        public async Task<List<JournalLogViewModel>> GetAllJournalLogsAsync()
+        public async Task<List<JournalLogViewModel>> GetAllJournalLogsAsync(long? patientId)
         {
-            List<JournalLog> logs = await _journalLogResource.GetAllJournalLogsAsync(Resource.UserId);
+            List<JournalLog> logs = await _journalLogResource.GetAllJournalLogsAsync(LogicHelper.GetPatientId(patientId));
             return logs.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));
         }
 
@@ -50,12 +50,6 @@ namespace DizzyProject.BusinessLogic
             List<JournalLogViewModel> viewModels = journalLogs.FindAll(x => x.Date.Month < dateTime.Month);
             viewModels.Sort((a, b) => b.Date.CompareTo(a.Date));
             return viewModels;
-        }
-
-        public async Task<List<JournalLogViewModel>> GetAllJournalLogsByIdAsync(long patientId)
-        {
-            List<JournalLog> logs = await _journalLogResource.GetAllJournalLogsAsync(patientId);
-            return logs.ConvertAll(new Converter<JournalLog, JournalLogViewModel>(JournalViewConverter));
         }
     }
 }

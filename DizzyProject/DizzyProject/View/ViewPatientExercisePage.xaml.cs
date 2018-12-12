@@ -11,34 +11,23 @@ namespace DizzyProject.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ViewPatientExercisePage : ContentPage
 	{
-        private PhysiotherapistController _physiotherapistController;
-        private Physiotherapist _physiotherapist;
         private ExerciseViewModel _selectedExercise;
-        private long? _patientId;
 
-		public ViewPatientExercisePage (ExerciseViewModel exercise, long? patientId)
+		public ViewPatientExercisePage (ExerciseViewModel exercise)
 		{
 			InitializeComponent();
             _selectedExercise = exercise;
-            BindingContext = _selectedExercise;
-            _physiotherapistController = new PhysiotherapistController();
-            _patientId = patientId;
 		}
 
         protected override async void OnAppearing()
         {
             try
             {
-                if (_selectedExercise.IsRecommended)
-                {
-                    note.Text = _selectedExercise.Recommendation.Note;
-                    _physiotherapist = await _physiotherapistController.GetPhysiotherapistAsync(_selectedExercise.Recommendation.PhysiotherapistId);
-                    physName.Text = _physiotherapist.FullName;
-                }
+                ExerciseView.OnAppear(_selectedExercise);
             }
             catch (ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch (ConnectionException)
             {

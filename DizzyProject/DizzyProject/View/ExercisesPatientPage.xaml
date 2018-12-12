@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.ExercisesPatientPage"
+             Title="Exercises">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListViewExercises" VerticalOptions="FillAndExpand" HasUnevenRows="True" ItemSelected="ViewExercise_ItemSelectedAsync">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" LineBreakMode="NoWrap"/>
+                                    <Image Source="{Binding Logo}" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="{Binding LogoSize}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="LogoTapped" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                                <Label Text="{Binding Description}" Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

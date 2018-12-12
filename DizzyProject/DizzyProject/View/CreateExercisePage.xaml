@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.CreateExercisePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Exercise Name:" FontSize="Medium" TextColor="Black"/>
+            <Entry x:Name="ExerciseNameEntry" WidthRequest="500" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Exercise Description:" FontSize="Medium" TextColor="Black"/>
+            <Editor x:Name="ExerciseDescriptionEditor" WidthRequest="300" HeightRequest="250" HorizontalOptions="CenterAndExpand" BackgroundColor="LightGray"/>
+            <Button BackgroundColor="#2f89cc" TextColor="White" Text="Submit" HorizontalOptions="EndAndExpand" Clicked="SubmitExerciseButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

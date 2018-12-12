@@ -30,6 +30,9 @@
     <Compile Update="View\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\ExercisesPatientPage.xaml.cs">
+      <DependentUpon>ExercisesPatientPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\ViewPhysiotherapistExercisePage.xaml.cs">
       <DependentUpon>ViewPhysiotherapistExercisePage.xaml</DependentUpon>
     </Compile>
@@ -49,6 +52,9 @@
     <EmbeddedResource Update="View\CombinedGraphPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\CreateExercisePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\DizzyRegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -64,7 +70,10 @@
     <EmbeddedResource Update="View\ExerciseContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ExercisesPage.xaml">
+    <EmbeddedResource Update="View\ExercisesPatientPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ExercisesPhysiotherapistPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ViewPhysiotherapistExercisePage.xaml">

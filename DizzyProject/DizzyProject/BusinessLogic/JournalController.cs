@@ -19,20 +19,20 @@ namespace DizzyProject.BusinessLogic
             _exerciseController = new ExerciseController();
         }
 
-        public async Task<List<JournalViewModel>> GetAllJournalItemsAsync(DateTime dateTime)
+        public async Task<List<JournalViewModel>> GetAllJournalItemsAsync(DateTime dateTime, long? patientId)
         {
-            List<Dizziness> dizzinesses = await _dizzinessController.GetAllDizzinessesByDateAsync(dateTime);
-            List<JournalEntry> journalEntries = await _journalEntryController.GetAllJournalEntriesByDateAsync(dateTime);
+            List<Dizziness> dizzinesses = await _dizzinessController.GetAllDizzinessesByDateAsync(dateTime, LogicHelper.GetPatientId(patientId));
+            List<JournalEntry> journalEntries = await _journalEntryController.GetAllJournalEntriesByDateAsync(dateTime, LogicHelper.GetPatientId(patientId));
 
             List<JournalViewModel> viewModels = new List<JournalViewModel>();
-            viewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));
+            viewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses, patientId));
             viewModels.AddRange(journalEntries.ConvertAll(new Converter<JournalEntry, JournalViewModel>(JournalEntryJournalViewModelConverter)));
             viewModels.Sort((a, b) => a.Created.CompareTo(b.Created));
 
             return viewModels;
         }
 
-        private async Task<List<JournalViewModel>> DizzinessJournalViewModelConverter(List<Dizziness> dizzinesses)
+        private async Task<List<JournalViewModel>> DizzinessJournalViewModelConverter(List<Dizziness> dizzinesses, long? patientId)
         {
             List<JournalViewModel> viewModels = new List<JournalViewModel>();
 
@@ -42,7 +42,7 @@ namespace DizzyProject.BusinessLogic
                 {
                     JournalViewModel journalViewModel = new JournalViewModel(dizziness);
                     Exercise exercise = await _exerciseController.GetExerciseAsync((long)dizziness.ExerciseId);
-                    journalViewModel.ExerciseViewModel = await _exerciseController.GetExerciseViewModelAsync((long)dizziness.ExerciseId);
+                    journalViewModel.ExerciseViewModel = await _exerciseController.GetExerciseViewModelAsync((long)dizziness.ExerciseId, patientId);
                     journalViewModel.ExerciseName = exercise.Name;
                     viewModels.Add(journalViewModel);
                 }
@@ -58,19 +58,6 @@ namespace DizzyProject.BusinessLogic
         private JournalViewModel JournalEntryJournalViewModelConverter(JournalEntry journalEntry)
         {
             return new JournalViewModel(journalEntry);
-        }
-
-        public async Task<List<JournalViewModel>> GetAllJournalItemsByIdAsync(DateTime dateTime, long patientId)
-        {
-            List<Dizziness> dizzinesses = await _dizzinessController.GetAllDizzinessesByDateAsync(dateTime);
-            List<JournalEntry> journalEntries = await _journalEntryController.GetAllJournalEntriesByDateAsync(dateTime);
-
-            List<JournalViewModel> viewModels = new List<JournalViewModel>();
-            viewModels.AddRange(await DizzinessJournalViewModelConverter(dizzinesses));
-            viewModels.AddRange(journalEntries.ConvertAll(new Converter<JournalEntry, JournalViewModel>(JournalEntryJournalViewModelConverter)));
-            viewModels.Sort((a, b) => a.Created.CompareTo(b.Created));
-
-            return viewModels;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
 using DizzyProxy.Exceptions;
+using DizzyProxy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +14,18 @@ using Xamarin.Forms.Xaml;
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViewPhysiotherapistExercisePage : ContentPage
+	public partial class ExercisesPhysiotherapistPage : ContentPage
 	{
-        private ExerciseViewModel _selectedExercise;
-
-        public ViewPhysiotherapistExercisePage (ExerciseViewModel exercise)
+		public ExercisesPhysiotherapistPage ()
 		{
 			InitializeComponent ();
-            _selectedExercise = exercise;
-        }
+		}
 
         protected override async void OnAppearing()
         {
             try
             {
-                ExerciseView.OnAppear(_selectedExercise);
+                ListViewExercises.ItemsSource = new List<ExerciseViewModel>(await new ExerciseController().GetGlobalExerciseViewModelsAsync());
             }
             catch (ApiException ex)
             {
@@ -37,6 +35,16 @@ namespace DizzyProject.View
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
+        }
+
+        private async void ViewExercise_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new ViewPhysiotherapistExercisePage((ExerciseViewModel)e.SelectedItem)));
+        }
+
+        private async void ToolbarAdd_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new CreateExercisePage()));
         }
     }
 }

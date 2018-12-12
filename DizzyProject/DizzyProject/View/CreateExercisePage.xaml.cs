@@ -1,25 +1,29 @@
-﻿using System;
+﻿using DizzyProject.BusinessLogic;
+using DizzyProxy.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DizzyProject.BusinessLogic;
-using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViewJournalEntryPage : ContentPage
+	public partial class CreateExercisePage : ContentPage
 	{
-		public ViewJournalEntryPage()
+		public CreateExercisePage ()
 		{
-			InitializeComponent();
+			InitializeComponent ();
 		}
 
-        private async void SubmitJournalEntryButton_Clicked(object sender, EventArgs e)
+        private async void SubmitExerciseButton_Clicked(object sender, EventArgs e)
         {
-
             try
             {
-                await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text);
+                await new ExerciseController().CreateExerciseAsync(ExerciseNameEntry.Text, ExerciseDescriptionEditor.Text);
                 await Navigation.PopModalAsync();
             }
             catch (ApiException ex)

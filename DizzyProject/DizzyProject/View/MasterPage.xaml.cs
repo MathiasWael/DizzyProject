@@ -37,7 +37,17 @@ namespace DizzyProject.View
                 {
                     case HomeMenuItemType.DizzyRegister: MenuPages.Add(id, new NavigationPage(new DizzyRegisterPage())); break;
                     case HomeMenuItemType.StepCounter: MenuPages.Add(id, new NavigationPage(new StepCounterPage())); break;
-                    case HomeMenuItemType.Exercises: MenuPages.Add(id, new NavigationPage(new ExercisesPage())); break;
+                    case HomeMenuItemType.Exercises:
+                        if(Resource.Token.UserType == DizzyProxy.Models.UserType.Patient)
+                        {
+                            MenuPages.Add(id, new NavigationPage(new ExercisesPatientPage()));
+                            break;
+                        }
+                        else
+                        {
+                            MenuPages.Add(id, new NavigationPage(new ExercisesPhysiotherapistPage()));
+                            break;
+                        }
                     case HomeMenuItemType.Journal: MenuPages.Add(id, new NavigationPage(new JournalPage(null))); break;
                     case HomeMenuItemType.Statistics: MenuPages.Add(id, new NavigationPage(new StatisticsPage())); break;
                     case HomeMenuItemType.EditProfile: MenuPages.Add(id, new NavigationPage(new EditProfilePage())); break;

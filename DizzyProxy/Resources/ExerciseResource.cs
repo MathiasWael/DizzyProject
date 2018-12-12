@@ -23,5 +23,17 @@ namespace DizzyProxy.Resources
             Request request = new Request(Method.GET, $"exercises/{exerciseId}");
             return await ExecuteAsync<Exercise>(request);
         }
+
+        public Exercise CreateExercise(string exerciseName, string exerciseDescription) =>
+            CreateExerciseAsync(exerciseName, exerciseDescription).Result;
+
+        public async Task<Exercise> CreateExerciseAsync(string exerciseName, string exerciseDescription)
+        {
+            Request request = new Request(Method.POST, $"exercises");
+            request.Body["exercise_name"] = exerciseName;
+            request.Body["exercise_description"] = exerciseDescription;
+            request.Body["author_id"] = UserId;
+            return await ExecuteAsync<Exercise>(request);
+        }
     }
 }

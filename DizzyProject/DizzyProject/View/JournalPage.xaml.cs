@@ -37,15 +37,7 @@ namespace DizzyProject.View
         {
             try
             {
-                if (_patientId == null)
-                {
-                    journalLogs = await journalLogController.GetAllJournalLogsAsync();
-                }
-                else
-                {
-                    journalLogs = await journalLogController.GetAllJournalLogsByIdAsync((long)_patientId);
-                }
-
+                journalLogs = await journalLogController.GetAllJournalLogsAsync(_patientId);
                 ListViewJournal.ItemsSource = journalLogController.GetThisWeekJournals(journalLogs);
                 timeRange = SelectedTimeRange.ThisWeek;
                 ThisWeekButton.BackgroundColor = Color.FromHex("#2f89cc");
@@ -54,7 +46,7 @@ namespace DizzyProject.View
             }
             catch (ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch (ConnectionException)
             {

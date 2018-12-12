@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 using DizzyProject.BusinessLogic;
 using DizzyProject.ViewModels;
 using DizzyProxy.Exceptions;
+using DizzyProxy.Resources;
 
 namespace DizzyProject.View
 {
@@ -26,20 +27,12 @@ namespace DizzyProject.View
         {
             try
             {
-                if (_patientId == null)
-                {
-                    _journalViewModels = await new JournalController().GetAllJournalItemsAsync(_dateTime);
-                }
-                else
-                {
-                    _journalViewModels = await new JournalController().GetAllJournalItemsByIdAsync(_dateTime, (long)_patientId);
-                }
-                
+                _journalViewModels = await new JournalController().GetAllJournalItemsAsync(_dateTime, _patientId);
                 ListViewJournalItems.ItemsSource = _journalViewModels;
             }
             catch (ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch (ConnectionException)
             {
@@ -50,7 +43,8 @@ namespace DizzyProject.View
         private async void ExerciseLink_Tapped(object sender, EventArgs e)
         {
             Label label = (Label)sender;
-            await Navigation.PushModalAsync(new NavigationPage(new ViewPatientExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel, _patientId)));
+            if(Resource.Token.UserType == DizzyProxy.Models.UserType.Patient ) await Navigation.PushModalAsync(new NavigationPage(new ViewPatientExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel)));
+            else if(Resource.Token.UserType == DizzyProxy.Models.UserType.Physiotherapist) await Navigation.PushModalAsync(new NavigationPage(new ViewPhysiotherapistExercisePage(((JournalViewModel)label.BindingContext).ExerciseViewModel)));
         }
     }
 }
