@@ -5,15 +5,16 @@ using Xamarin.Forms.Xaml;
 using DizzyProject.ViewModels;
 using DizzyProject.BusinessLogic;
 using DizzyProxy.Exceptions;
+using DizzyProxy.Resources;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ExercisesPage : ContentPage
+	public partial class ExercisesPatientPage : ContentPage
 	{
         private ExerciseController exerciseController;
         private List<ExerciseViewModel> exercises;
-		public ExercisesPage ()
+		public ExercisesPatientPage ()
 		{
 			InitializeComponent ();
 
@@ -24,12 +25,12 @@ namespace DizzyProject.View
         {
             try
             {
-                exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExerciseViewModelsAsync());
+                exercises = new List<ExerciseViewModel>(await exerciseController.GetAllExerciseViewModelsAsync(null));
                 SortAndRefresh();
             }
             catch (ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch (ConnectionException)
             {
@@ -69,7 +70,7 @@ namespace DizzyProject.View
             }
             catch (ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch (ConnectionException)
             {
@@ -79,7 +80,7 @@ namespace DizzyProject.View
 
         private async void ViewExercise_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ViewExercisePage((ExerciseViewModel)e.SelectedItem)));
+            await Navigation.PushModalAsync(new NavigationPage(new ViewPatientExercisePage((ExerciseViewModel)e.SelectedItem)));
         }
     }
 }

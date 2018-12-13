@@ -29,7 +29,7 @@ namespace DizzyProject.View
             }
             catch(ApiException ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, ErrorHandling.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
+                await DisplayAlert(AppResources.ErrorTitle, LogicHelper.ErrorMessage(ex.ErrorCode), AppResources.DialogOk);
             }
             catch(ConnectionException)
             {

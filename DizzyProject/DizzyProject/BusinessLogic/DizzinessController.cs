@@ -19,12 +19,13 @@ namespace DizzyProject.BusinessLogic
 
         public async Task<Dizziness> CreateDizzinessAsync(long? exerciseId, int? dizziness, string note)
         {
+            if (note == null) note = "";
             return await _dizzinessResource.CreateDizzinessAsync(Resource.UserId, exerciseId, dizziness, note);
         }
 
-        public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime)
+        public async Task<List<Dizziness>> GetAllDizzinessesByDateAsync(DateTime dateTime, long? patientId)
         {
-            return await _dizzinessResource.GetAllDizzinessesAsync(Resource.UserId, dateTime);
+            return await _dizzinessResource.GetAllDizzinessesAsync(LogicHelper.GetPatientId(patientId), dateTime);
         }
 
         public async Task<List<Dizziness>> GetAllDizzinessesWithLevelAsync()

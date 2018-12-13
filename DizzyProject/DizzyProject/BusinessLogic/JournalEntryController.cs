@@ -15,9 +15,9 @@ namespace DizzyProject.BusinessLogic
             _journalEntryResource = new JournalEntryResource();
         }
 
-        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime)
+        public async Task<List<JournalEntry>> GetAllJournalEntriesByDateAsync(DateTime dateTime, long? patientId)
         {
-            return await _journalEntryResource.GetAllJournalEntriesAsync(Resource.UserId, dateTime);
+            return await _journalEntryResource.GetAllJournalEntriesAsync(LogicHelper.GetPatientId(patientId), dateTime);
         }
 
         public async Task<JournalEntry> CreateJournalEntryAsync(string note)

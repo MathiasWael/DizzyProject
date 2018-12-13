@@ -2,25 +2,28 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
+using DizzyProxy.Models;
 using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViewJournalEntryPage : ContentPage
+	public partial class ViewPatientExercisePage : ContentPage
 	{
-		public ViewJournalEntryPage()
+        private ExerciseViewModel _selectedExercise;
+
+		public ViewPatientExercisePage (ExerciseViewModel exercise)
 		{
 			InitializeComponent();
+            _selectedExercise = exercise;
 		}
 
-        private async void SubmitJournalEntryButton_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-
             try
             {
-                await new JournalEntryController().CreateJournalEntryAsync(JournalEntryInputEditor.Text);
-                await Navigation.PopModalAsync();
+                ExerciseView.OnAppear(_selectedExercise);
             }
             catch (ApiException ex)
             {
@@ -30,6 +33,11 @@ namespace DizzyProject.View
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ConnectionException, AppResources.DialogOk);
             }
+        }
+
+        private async void DoExercise_Pressed(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new DoExercisePage(_selectedExercise)));
         }
     }
 }

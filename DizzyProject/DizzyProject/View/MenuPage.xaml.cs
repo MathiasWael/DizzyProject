@@ -33,7 +33,9 @@ namespace DizzyProject.View
             {
                 menuItems = new List<HomeMenuItem>
                 {
-                    new HomeMenuItem {Type = HomeMenuItemType.Patients, Title = "Patients"}
+                    new HomeMenuItem {Type = HomeMenuItemType.Patients, Title = "Patients"},
+                    new HomeMenuItem {Type = HomeMenuItemType.Exercises, Title = "Exercises"},
+                    new HomeMenuItem {Type = HomeMenuItemType.Logout, Title = "Logout"},
                 };
             }
 

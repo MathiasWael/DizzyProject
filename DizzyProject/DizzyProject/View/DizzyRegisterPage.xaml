@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:view="clr-namespace:DizzyProject.View"
-             x:Class="DizzyProject.View.DizzyRegisterPage">
+             x:Class="DizzyProject.View.DizzyRegisterPage"
+             Title="Dizzy Register">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <view:DizzyRegisterView x:Name="DizzyView" Grid.Row="0"/>
+            <view:DizzyRegisterContentView x:Name="DizzyView" Grid.Row="0"/>
             <Button Text="Submit" TextColor="White" BackgroundColor="#2f89cc" CornerRadius="10" BorderWidth="1" HorizontalOptions="Fill" Pressed="Submit_Pressed" Grid.Row="1"/>
         </Grid>
     </ContentPage.Content>

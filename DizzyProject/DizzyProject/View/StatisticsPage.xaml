@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DizzyProject.View.StatisticsPage">
+             x:Class="DizzyProject.View.StatisticsPage"
+             Title="Statistics">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
             <Button Text="Dizziness" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="ViewDizzinessGraphButton_Clicked"/>
             <Button Text="Steps" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="StepsGraphButton_Clicked"/>
             <Button Text="Dizziness/Steps" BackgroundColor="#2f89cc" TextColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="250" Clicked="CombinedGraphButton_Clicked"/>

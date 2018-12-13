@@ -1,28 +1,33 @@
-﻿using System;
+﻿using DizzyProject.BusinessLogic;
+using DizzyProject.ViewModels;
+using DizzyProxy.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DizzyProject.BusinessLogic;
-using DizzyProxy.Exceptions;
 
 namespace DizzyProject.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DizzyRegisterPage : ContentPage
+	public partial class ViewPhysiotherapistExercisePage : ContentPage
 	{
-		public DizzyRegisterPage ()
+        private ExerciseViewModel _selectedExercise;
+
+        public ViewPhysiotherapistExercisePage (ExerciseViewModel exercise)
 		{
 			InitializeComponent ();
-		}
+            _selectedExercise = exercise;
+        }
 
-        private async void Submit_Pressed(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
             try
             {
-                bool answer = await DisplayAlert("Submit", "Are you sure you want to submit your answer?", "Yes", "No");
-                if (answer)
-                {
-                    await new DizzinessController().CreateDizzinessAsync(null, DizzyView.DizzyLevel, DizzyView.DizzinessRegisterNote.Text);
-                }
+                ExerciseView.OnAppear(_selectedExercise);
             }
             catch (ApiException ex)
             {

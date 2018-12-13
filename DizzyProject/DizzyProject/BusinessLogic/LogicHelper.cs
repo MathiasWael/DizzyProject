@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DizzyProxy.Resources;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DizzyProject.BusinessLogic
 {
-    public static class ErrorHandling
+    public static class LogicHelper
     {
         public static string ErrorMessage(int errorCode)
         {
@@ -28,6 +29,12 @@ namespace DizzyProject.BusinessLogic
                 case 40501: return AppResources.ApiError50001InternalServerError;
                 default: return AppResources.UnhandledError;
             }
+        }
+
+        public static long GetPatientId(long? userId)
+        {
+            if (userId == null) return Resource.UserId;
+            else return (long)userId;
         }
     }
 }

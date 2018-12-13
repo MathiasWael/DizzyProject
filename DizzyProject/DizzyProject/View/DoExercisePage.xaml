@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:view="clr-namespace:DizzyProject.View"
-             x:Class="DizzyProject.View.DoExercisePage">
+             x:Class="DizzyProject.View.DoExercisePage"
+             Title="Exercise">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -11,7 +12,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Label x:Name="reviewof" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="0"/>
-            <view:DizzyRegisterView x:Name="DizzyView" Grid.Row="1"/>
+            <view:DizzyRegisterContentView x:Name="DizzyView" Grid.Row="1"/>
             <Button Text="Save to journal" CornerRadius="10" TextColor="White" BackgroundColor="#2f89cc" BorderWidth="1" Pressed="Save_Pressed" VerticalOptions="CenterAndExpand" Grid.Row="2"/>
         </Grid>
     </ContentPage.Content>

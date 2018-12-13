@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DizzyProject.View.ViewPatientExercisePage"
+             xmlns:view="clr-namespace:DizzyProject.View"
+             Title="Exercise">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <view:ExerciseContentView x:Name="ExerciseView" Grid.Row="0"/>
+                <Button Text="Do exercise" BackgroundColor="#2f89cc" TextColor="White" CornerRadius="10" BorderWidth="1" Pressed="DoExercise_Pressed" HorizontalOptions="Fill" Grid.Row="1"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
