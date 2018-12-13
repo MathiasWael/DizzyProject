@@ -10,7 +10,7 @@ namespace DizzyProject
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<IStep>();
             MainPage = new LoginPage();
 
         }
