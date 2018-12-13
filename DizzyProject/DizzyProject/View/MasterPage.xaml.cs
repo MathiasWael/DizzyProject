@@ -51,7 +51,10 @@ namespace DizzyProject.View
                     case HomeMenuItemType.Journal: MenuPages.Add(id, new NavigationPage(new JournalPage(null))); break;
                     case HomeMenuItemType.Statistics: MenuPages.Add(id, new NavigationPage(new StatisticsPage())); break;
                     case HomeMenuItemType.EditProfile: MenuPages.Add(id, new NavigationPage(new EditProfilePage())); break;
-                    case HomeMenuItemType.Logout: break;
+                    case HomeMenuItemType.Logout:
+                        Resource.Token = new DizzyProxy.Models.JsonWebToken();
+                        Application.Current.MainPage = new LoginPage();
+                        return;
                     case HomeMenuItemType.Patients: MenuPages.Add(id, new NavigationPage(new PatientsPage())); break;
                 }
             }
