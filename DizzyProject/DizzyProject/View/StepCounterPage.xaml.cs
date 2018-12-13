@@ -29,12 +29,17 @@ namespace DizzyProject.View
             base.OnAppearing();
 
             Step.Connect();
-            Steps.Text = Step.Count.ToString() == null ? "null" : "received";
+            Step.CountChanged += OnCountChanged;
+
+            if (Step.Count != null)
+            {
+                Steps.Text = Step.Count.ToString();
+            }
         }
 
         private void OnCountChanged(object sender, EventArgs e)
         {
-            Steps.Text = DependencyService.Get<IStep>().Count.ToString();
+            Steps.Text = Step.Count.ToString();
         }
     }
 }
