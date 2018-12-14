@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DizzyProject
 {
-    public interface IStep
+    public interface IStepCounter
     {
+        void StartSensor();
         event EventHandler CountChanged;
-        int? Count { get; }
-        void Connect();
+        int Count { get; }
     }
 }

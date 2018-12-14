@@ -8,17 +8,17 @@ namespace DizzyProject.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StepCounterPage : ContentPage
     {
-        private IStep _step;
-        public IStep Step
+        private IStepCounter _step;
+        public IStepCounter Step
         {
             get
             {
                 if (_step == null)
-                    _step = DependencyService.Get<IStep>();
+                    _step = DependencyService.Get<IStepCounter>();
                 return _step;
             }
         }
-            
+
         public StepCounterPage()
 		{
 			InitializeComponent();
@@ -28,13 +28,13 @@ namespace DizzyProject.View
         {
             base.OnAppearing();
 
-            Step.Connect();
-            Steps.Text = Step.Count.ToString() == null ? "null" : "received";
+            Step.StartSensor();
+            Step.CountChanged += OnCountChanged;
         }
 
         private void OnCountChanged(object sender, EventArgs e)
         {
-            Steps.Text = DependencyService.Get<IStep>().Count.ToString();
+            StepsLabel.Text = Step.Count.ToString();
         }
     }
 }

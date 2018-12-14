@@ -5,8 +5,8 @@
              Title="Step Counter">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Steps" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Label x:Name="Steps" Text="Loading" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Label Text="Your steps today" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="15"/>
+            <Label x:Name="StepsLabel"  FontSize="75" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
